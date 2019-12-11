@@ -1,0 +1,80 @@
+main {
+	@include display-flex;
+	@include flex-flow(row, nowrap);
+	align-items: flex-start;
+	max-width: 1200px;
+	margin: 10px auto;    
+}
+article {
+	background-color: $articleColor;
+	box-shadow: $shadowArticle;
+	margin: 0 10px 0;
+	border-radius: 10px;
+    padding: 10px;
+    flex: 1;
+    img {
+    	float: left;
+    	margin: 2px 15px 2px 5px;
+    }
+    &.center {
+    	flex: 5;
+        min-width: 40em;
+    }
+    &.important {
+    	flex: 2;
+        min-width: 25em;
+    }
+    h1 {
+        color: $hArticleColor;
+        border-bottom: 1px solid $hArticleColor;
+        margin-bottom: 20px;
+    }
+    h2 {
+        position: relative;
+        overflow: hidden;
+        color: $hArticleColor;
+        border-bottom: 1px dashed $hArticleColor;
+        margin: 0 10px 20px;
+        padding: 0 0 3px;
+        .date {
+            position: absolute;
+            bottom: -1.7em;
+            right: 0;
+            padding: 3px 7px;
+            font-size: 0.6em;
+            color: #999;
+        }
+    }
+    .has_date {
+        overflow: visible;
+    }
+    p {
+        margin: 0 10px 0;
+        text-indent: 2em;
+    }
+
+}
+
+article.event {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    p {
+        text-indent: 0;
+    }
+}
+section {
+    margin: 5px 0 20px;
+}
+.event {
+    section {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: $articleColor;
+        box-shadow: $shadowArticle;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

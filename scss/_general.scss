@@ -1,0 +1,31 @@
+html {
+	font-size: 62.5%;
+}
+body {
+	line-height: 1.2;
+}
+* {
+	box-sizing: border-box;
+}
+h1, h2, h3, h4, h5 {
+	font-family: $general_font;
+	font-weight: bold;
+}
+h1 {
+	font-size: 2.6em;
+}
+h2 {
+	font-size: 2.1em;
+}
+h3 {
+	font-size: 1.8em;
+}
+
+p {
+	font-size: 1.6em;
+}
+
+a {
+	text-decoration: none;
+	font-size: 1.6em;
+}

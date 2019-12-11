@@ -1,0 +1,22 @@
+// шрифты
+@import url('https://fonts.googleapis.com/css?family=Marck+Script|Roboto:400,400i,700,700i&display=swap&subset=cyrillic');
+$general_font: 'Roboto', sans-serif;			//основной шрифт
+$handwriting_font: 'Marck Script', cursive;		//рукописный шрифт
+
+// цвета
+$mainTitleColor: rgba(13, 9, 216, 0.9);		//цвет названия гимназии
+$headerColor: #bdf7ff;						//цвет верхней баннера на странице
+$articleColor: #f9eed8;
+$hArticleColor: #777;
+
+// градиенты
+$gradient_header: linear-gradient(to top, #96bcea, #5dcab0);    //градиент верхней части окна
+$gradient_nav_li: linear-gradient(to top, #20386d, #76cad6);	//заливка ссылки меню
+
+// тени
+$shadow_nav_li: 4px 4px 6px rgba(50, 70, 70, .6); 	//тень меню
+$shadowArticle: 4px 4px 8px rgba(64, 59, 43, 0.8);
+
+
+//границы
+$nav_border: 1px solid #fff;	

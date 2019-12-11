@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css?family=Marck+Script|Roboto:400,400i,700,700i&display=swap&subset=cyrillic");
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  line-height: 1.2; }
+
+* {
+  box-sizing: border-box; }
+
+h1, h2, h3, h4, h5 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold; }
+
+h1 {
+  font-size: 2.6em; }
+
+h2 {
+  font-size: 2.1em; }
+
+h3 {
+  font-size: 1.8em; }
+
+p {
+  font-size: 1.6em; }
+
+a {
+  text-decoration: none;
+  font-size: 1.6em; }
+
+header {
+  background-color: #bdf7ff;
+  background-image: linear-gradient(to top, #96bcea, #5dcab0); }
+  header img {
+    max-height: 150px;
+    max-width: 150px;
+    margin: 0 20px; }
+  header > div {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    justify-content: space-between;
+    align-items: center; }
+
+.main_title * {
+  font-family: "Marck Script", cursive;
+  text-align: center;
+  font-size: 2.4em;
+  font-weight: bold;
+  color: rgba(13, 9, 216, 0.9); }
+
+.main_name {
+  font-size: 3.4em; }
+
+nav.header {
+  max-width: 1200px;
+  min-width: 93em;
+  min-width: -moz-max-content;
+  min-width: -webkit-max-content;
+  min-width: max-content;
+  min-height: 2.7em;
+  margin: 0 auto;
+  padding: 1px 10px 0; }
+  nav.header .container {
+    float: left;
+    min-height: 2.7em;
+    position: relative; }
+    nav.header .container:nth-child(1) {
+      min-width: 8.5em;
+      width: 9.24918%; }
+      nav.header .container:nth-child(1) ul {
+        width: 100%; }
+    nav.header .container:nth-child(2) {
+      min-width: 26.4em;
+      width: 28.72688%; }
+      nav.header .container:nth-child(2) ul {
+        width: 100%; }
+    nav.header .container:nth-child(3) {
+      min-width: 20.1em;
+      width: 21.8716%; }
+      nav.header .container:nth-child(3) ul {
+        width: 100%; }
+    nav.header .container:nth-child(4) {
+      min-width: 24.4em;
+      width: 26.5506%; }
+      nav.header .container:nth-child(4) ul {
+        width: 100%; }
+    nav.header .container:nth-child(5) {
+      min-width: 12.5em;
+      width: 13.60174%; }
+      nav.header .container:nth-child(5) ul {
+        width: 100%; }
+  nav.header .container:nth-child(n+1) {
+    margin: -1px; }
+  nav.header .container:first-child li:first-child {
+    border-bottom-right-radius: 0; }
+  nav.header .container:last-child li:first-child {
+    border-bottom-right-radius: 5px; }
+  nav.header .container:last-child:hover li:first-child {
+    border-bottom-right-radius: 0; }
+  nav.header li {
+    padding: 2px 10px 2px;
+    background: #ccc;
+    background: linear-gradient(to top, #20386d, #76cad6);
+    border: 1px solid #fff;
+    border-top: none; }
+    nav.header li:hover {
+      background: linear-gradient(to top, #eee, #fff); }
+      nav.header li:hover a {
+        color: #000; }
+  nav.header li:last-child {
+    border-radius: 0 0 5px 5px; }
+  nav.header li:first-child {
+    text-align: center;
+    border-top: 1px solid #fff; }
+  nav.header a {
+    font-size: 1.8em;
+    color: white; }
+  nav.header ul {
+    position: absolute;
+    max-height: 2.7em;
+    overflow: hidden;
+    box-shadow: 4px 4px 6px rgba(50, 70, 70, 0.6);
+    z-index: 100; }
+    nav.header ul:hover {
+      max-height: 30em; }
+
+main {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 10px auto; }
+
+article {
+  background-color: #f9eed8;
+  box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8);
+  margin: 0 10px 0;
+  border-radius: 10px;
+  padding: 10px;
+  flex: 1; }
+  article img {
+    float: left;
+    margin: 2px 15px 2px 5px; }
+  article.center {
+    flex: 5;
+    min-width: 40em; }
+  article.important {
+    flex: 2;
+    min-width: 25em; }
+  article h1 {
+    color: #777;
+    border-bottom: 1px solid #777;
+    margin-bottom: 20px; }
+  article h2 {
+    position: relative;
+    overflow: hidden;
+    color: #777;
+    border-bottom: 1px dashed #777;
+    margin: 0 10px 20px;
+    padding: 0 0 3px; }
+    article h2 .date {
+      position: absolute;
+      bottom: -1.7em;
+      right: 0;
+      padding: 3px 7px;
+      font-size: 0.6em;
+      color: #999; }
+  article .has_date {
+    overflow: visible; }
+  article p {
+    margin: 0 10px 0;
+    text-indent: 2em; }
+
+article.event {
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0; }
+  article.event p {
+    text-indent: 0; }
+
+section {
+  margin: 5px 0 20px; }
+
+.event section {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f9eed8;
+  box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8); }
+  .event section:first-child {
+    margin-top: 0; }
+
+/*# sourceMappingURL=styles.css.map */

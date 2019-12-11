@@ -1,0 +1,144 @@
+header {
+	background-color: $headerColor;
+	background-image: $gradient_header;
+	img {
+		max-height: 150px;
+		max-width: 150px;
+		margin: 0 20px;
+	}
+	&>div {
+		@include display-flex;
+		@include flex-flow (row, nowrap);	
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 20px 0;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+// название в баннере
+.main_title *{
+	font-family: $handwriting_font;
+	text-align: center;
+	font-size: 2.4em;
+	font-weight: bold;
+	color: $mainTitleColor;
+}
+// основное название
+.main_name {
+	font-size: 3.4em;
+}
+
+nav.header {
+	max-width: 1200px;
+	min-width: 93em;
+	min-width: -moz-max-content;
+	min-width: -webkit-max-content;
+	min-width: max-content;
+	min-height: 2.7em;
+	margin: 0 auto;
+	padding: 1px 10px 0;
+	.container {
+		float: left;
+		min-height: 2.7em;
+		position: relative;
+		&:nth-child(1) {
+			min-width: 8.5em;
+			width: 9.24918%;
+			ul {
+				// min-width: 8.5em;
+				// width: 9.24918%;
+				width: 100%;
+			}
+		}
+		&:nth-child(2) {
+			min-width: 26.4em;
+			width: 28.72688%;
+			ul {
+				// min-width: 26.4em;
+				// width: 28.72688%;
+				width: 100%;
+			}
+		}
+		&:nth-child(3) {
+			min-width: 20.1em;
+			width: 21.8716%;
+			ul {
+				// min-width: 20.1em;
+				// width: 21.8716%;
+				width: 100%;
+			}
+		}
+		&:nth-child(4) {
+			min-width: 24.4em;
+			width: 26.5506%;
+			ul {
+				// min-width: 24.4em;
+				// width: 26.5506%;
+				width: 100%;
+			}
+		}
+		&:nth-child(5) {
+			min-width: 12.5em;
+			width: 13.60174%;
+			ul {
+				// min-width: 12.5em;
+				// width: 13.60174%;
+				width: 100%;
+			}
+		}
+	}
+	.container:nth-child(n+1) {
+		margin: -1px;
+	}
+	.container:first-child {
+		li:first-child{
+			border-bottom-right-radius: 0;
+		}
+	}
+	.container:last-child {
+		li:first-child {
+			border-bottom-right-radius: 5px;
+		}
+		&:hover{
+			li:first-child {
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+	li {
+		padding: 2px 10px 2px;
+		background: #ccc;
+		background: $gradient_nav_li;
+		border: $nav_border;
+		border-top: none;
+		&:hover {
+			background: linear-gradient(to top, #eee, #fff);
+			a {
+				color: #000;
+			}
+		}
+	}
+	li:last-child {
+		border-radius: 0 0 5px 5px;
+	}
+	li:first-child {
+		text-align:center;
+		border-top: $nav_border;
+	}
+	a {
+		font-size: 1.8em;
+		color: white;
+	}
+	ul {
+		position: absolute;
+		max-height: 2.7em;
+		overflow: hidden;
+		box-shadow: $shadow_nav_li;
+		z-index: 100;
+		&:hover {
+			max-height: 30em;
+		}
+	}
+}
