@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<news>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>9</month>
+			<day>5</day>
+		</date>
+		<href>new1.html</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>9</month>
+			<day>10</day>
+		</date>
+		<href>new2.html</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>9</month>
+			<day>1</day>
+		</date>
+		<href>new3.html</href>
+	</new>
+</news>
