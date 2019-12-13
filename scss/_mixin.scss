@@ -12,3 +12,11 @@
 	-webkit-flex-flow: $direction $wrap;
 	flex-flow: $direction $wrap;
 }
+
+@mixin transition($property, $duration, $timing:linear, $delay:0s){
+	-webkit-transition: $property $duration $timing $delay;
+	-moz-transition: $property $duration $timing $delay;
+	-ms-transition: $property $duration $timing $delay;
+	-o-transition: $property $duration $timing $delay;
+	transition: $property $duration $timing $delay;
+}

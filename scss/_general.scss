@@ -13,19 +13,30 @@ h1, h2, h3, h4, h5 {
 }
 h1 {
 	font-size: 2.6em;
+	font-size: 2.6rem;
 }
 h2 {
 	font-size: 2.1em;
+	font-size: 2.1rem;
 }
 h3 {
 	font-size: 1.8em;
+	font-size: 1.8rem;
 }
 
 p {
 	font-size: 1.6em;
+	font-size: 1.6rem;
 }
 
 a {
 	text-decoration: none;
 	font-size: 1.6em;
+	font-size: 1.6rem;
+	color: #00ace5;
+	border-bottom: 1px solid transparent;
+	@include transition(border-bottom-color, .5s);
+}
+a:hover {
+	border-bottom-color: #00ace5;
 }
