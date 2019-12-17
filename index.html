@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/loadNews.js"></script>
 	<link rel="stylesheet" href="css/styles.css">
 	<title>Главная</title>
 </head>
@@ -19,15 +20,20 @@
 	</noscript>
 	<main>
 		<article class="important">
-			<img src="images/teachers/volvakov_sp.jpg" alt="Директор Вольваков С.П.">
-			<h2>Обращение директора!</h2>
+			<figure class="big center">
+				<img src="images/teachers/volvakov_sp.jpg" alt="Директор Вольваков С.П.">
+				<figcaption>Директор гимназии Вольваков С.П.</figcaption>
+			</figure>
+			<!-- <h2>Обращение директора!</h2> -->
 			<p>Трали-вали тили-тили. Наша школа лучше всех.
 			</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore possimus hic, a accusantium rem laudantium animi officia perferendis porro magni delectus dicta cumque, beatae laborum earum eius libero nam qui nobis vel quod numquam quae! Inventore omnis quasi, similique iure eos delectus itaque ut repellat nulla. Ipsam aut laudantium amet harum, possimus officia tempore dolores nemo sint ex, vitae qui doloribus iure, et ad sunt omnis ducimus laborum rem quibusdam dolore saepe animi optio tenetur? Quia voluptatem consequuntur, deserunt incidunt dicta minus libero, quos eligendi officia consectetur nam culpa sequi consequatur! Optio quo nemo consequatur ea, beatae exercitationem assumenda quod!</p>
 		</article>
 		<article id="news" class="center">
 			<h1>Новости</h1>
-			<script src="js/loadNews.js"></script>
+			<script>
+				mainNews();
+			</script>
 		</article>
 		<article class="event">
 			<section>

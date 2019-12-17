@@ -3,10 +3,18 @@
 	<new>
 		<date>
 			<year>2019</year>
+			<month>12</month>
+			<day>12</day>
+		</date>
+		<href>net-and-cloud</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
 			<month>9</month>
 			<day>5</day>
 		</date>
-		<href>new1.html</href>
+		<href>new1</href>
 	</new>
 	<new>
 		<date>
@@ -14,7 +22,7 @@
 			<month>9</month>
 			<day>10</day>
 		</date>
-		<href>new2.html</href>
+		<href>new2</href>
 	</new>
 	<new>
 		<date>
@@ -22,6 +30,6 @@
 			<month>9</month>
 			<day>1</day>
 		</date>
-		<href>new3.html</href>
+		<href>new3</href>
 	</new>
 </news>

@@ -1,21 +1,32 @@
 let maxAmount = 5;	//макс. кол-во новостей на странице
 let sectionNumber;
 let sectionArray = [];	//массив полученных новостей
-let id = window.location.hash;
+/*let id = window.location.hash;
 id = parseInt(id.replace(/#/g, ""));
-loadNews(id);
+loadNews(id);*/
 
+// загрузка новостей на главной странице
+function mainNews()
+{
+	let id = window.location.hash;
+	id = parseInt(id.replace(/#/g, ""));
+	loadNews(id);
+}
+
+// перезагрузка навостей на главной странице
 function reloadNews(number)
 {
 	clearNews();
 	loadNews(number);
 }
 
+// очистка новостей на главной странице
 function clearNews()
 {
 	$("#news *").not("h1").detach();
 }
 
+// загрузка наовстей из файла
 function loadNews(number)
 {
 	if (isNaN(number) || number < 1)
@@ -30,17 +41,14 @@ function loadNews(number)
 	});
 }
 
+// получение пути к html документу
 function getPath()
 {
-	let path = window.location.origin + 
-	window.location.pathname;
-	if (path != "" && path.charAt(path.length - 1) != "/")
-	{
-		path +="/";
-	}
+	let path = $.urlPath(window.location.href);
 	return path;
 }
 
+// получение относительного пути
 function getRelativePath()
 {
 	let path = window.location.pathname;
@@ -51,6 +59,7 @@ function getRelativePath()
 	return path;
 }
 
+// добавление секций с новостями
 function appendSections(xmlData, number)
 {
 	let options = {
@@ -62,14 +71,15 @@ function appendSections(xmlData, number)
 	//получаем maxAmount значений из массива со смещением
 	let data = xmlData.slice((number - 1)*maxAmount, number*maxAmount);
 	sectionNumber = data.length;
+	sectionArray.length = 0;
 
 	$.each(data, function(index, item){
-		let path = getPath() + "news/" + item.href;
+		let path = getPath() + "news/" + item.href + ".html";
 		$.ajax({
 			url: path, 
 			success: function(html)
 			{
-				sectionArray.push(getNew(html, item));
+				sectionArray.push(parseShortNew(html, item));
 			},
 			complete: function(){
 				sectionNumber--;
@@ -113,28 +123,37 @@ function appendLink(xmlData, number)
 	$("#news").append(div);
 }
 
-function getNew(html, item)
+
+function parseShortNew(html, item)
 {
-	let doc = new DOMParser().parseFromString(html, "text/html");
-	let section = $(doc).find("section#new");
+	let section = parseNew(html);
 	$(section).find("p:gt(0)").remove();
-	$(section).removeAttr("id");
+	$(section).find("figure").remove();
+	$(section).find("img").remove();
 	let options = {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
 	}
-	$(section).find("h2:eq(0)").addClass("has_date").append('<span class="date">' + item.date.toLocaleString("ru", options) + '</span>');
+	/*$(section).find("h2:eq(0)").addClass("has_date").append('<span class="date">' + item.date.toLocaleString("ru", options) + '</span>');*/
 	let p = $(section).find("p");
 	let innerHtml = p[0].innerHTML;
 	if (innerHtml.length > 500)
 	{
 		innerHtml = innerHtml.substring(0, 500);
 		p[0].innerHTML = innerHtml + "...";
+		p[0].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
 	}
-	p[0].innerHTML += "<a href='" + getRelativePath() + "news/" + item.href + "'>читать далее</a>"
 	return section;
 
+}
+
+function parseNew(html)
+{
+	let doc = new DOMParser().parseFromString(html, "text/html");
+	let section = $(doc).find("section#new");
+	$(section).removeAttr("id");
+	return section;
 }
 
 function parseXml(xml)
@@ -155,4 +174,33 @@ function parseXml(xml)
 	});
 
 	return xmlData;
+}
+
+function getNew()
+{
+	let fileName = $.urlParam("fn", window.location.search);
+	fileName = $.urlPath(window.location.href) + "news/" + fileName + ".html";
+	sectionArray.length = 0;
+	$.ajax({
+		url: fileName,
+		success: function(html) {
+			sectionArray.push(parseNew(html));
+			appendSectionsArray();
+		}
+	});
+
+}
+
+$.urlParam = function(parametrName, href){
+	let results = new RegExp('[\?&]' + parametrName + '=([^&#]*)').exec(href);
+	if (results == null){
+		return null;
+	}
+	return results[1] || 0;
+}
+
+$.urlPath = function(href){
+	let re = new RegExp('^(https*).*/');
+	let result = re.exec(href);
+	return result == null ? null : result[0] || 0;
 }

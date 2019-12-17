@@ -11,22 +11,22 @@ article {
 	margin: 0 10px 0;
 	border-radius: 10px;
     padding: 10px;
-    flex: 1;
-    img {
-    	float: left;
-    	margin: 2px 15px 2px 5px;
-    }
+    flex: 1 0 16em;
+    // img {
+    // 	float: left;
+    // 	margin: 2px 15px 2px 5px;
+    // }
     &.center {
-    	flex: 5;
-        min-width: 40em;
+    	flex: 5 0 40em;
+        // min-width: 40em;
     }
     &.important {
-    	flex: 2;
-        min-width: 25em;
+    	flex: 2 0 25em;
+        // min-width: 25em;
     }
     h1 {
-        color: $hArticleColor;
-        border-bottom: 1px solid $hArticleColor;
+        color: $hMainArticleColor;
+        border-bottom: 1px solid $hMainArticleColor;
         margin-bottom: 20px;
     }
     h2 {
@@ -42,7 +42,7 @@ article {
             right: 0;
             padding: 3px 7px;
             font-size: 0.6em;
-            color: #999;
+            color: $hArticleColor;
         }
     }
     .has_date {
@@ -75,6 +75,34 @@ section {
         box-shadow: $shadowArticle;
         &:first-child {
             margin-top: 0;
+        }
+    }
+}
+#news {
+    section {
+        padding: 5px 5px 10px;
+        background-color: #cbe0ec;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
+        position: relative;
+        // background-image: url(../images/interface/mapmarker_left.png), url(../images/interface/mapmarker_right.png);
+        // background-repeat: no-repeat, no-repeat;
+        // background-position: left 20px top 20px, right 20px top 20px;
+        &:before, &:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            top: -10px;
+        }
+        &:before {
+            background-image: url(../images/interface/mapmarker_left.png);
+            left: -7px;
+        }
+        &:after {
+            background-image: url(../images/interface/mapmarker_right.png);
+            right: -7px;
         }
     }
 }

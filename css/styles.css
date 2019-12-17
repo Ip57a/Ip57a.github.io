@@ -53,10 +53,10 @@ body {
   line-height: 1.2; }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif; }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Roboto", sans-serif;
   font-weight: bold; }
 
 h1 {
@@ -89,6 +89,26 @@ a {
 
 a:hover {
   border-bottom-color: #00ace5; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+figure.big * {
+  max-width: 40em;
+  max-height: 40em; }
+figure.center * {
+  margin: 2px auto 5px; }
+figure img {
+  margin: 2px 10px 5px;
+  display: block; }
+
+figcaption {
+  text-align: center;
+  color: #555;
+  font-size: 1.2em; }
 
 header {
   background-color: #bdf7ff;
@@ -207,30 +227,25 @@ main {
   margin: 10px auto; }
 
 article {
-  background-color: #f9eed8;
+  background-color: #f7efcd;
   box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8);
   margin: 0 10px 0;
   border-radius: 10px;
   padding: 10px;
-  flex: 1; }
-  article img {
-    float: left;
-    margin: 2px 15px 2px 5px; }
+  flex: 1 0 16em; }
   article.center {
-    flex: 5;
-    min-width: 40em; }
+    flex: 5 0 40em; }
   article.important {
-    flex: 2;
-    min-width: 25em; }
+    flex: 2 0 25em; }
   article h1 {
-    color: #777;
-    border-bottom: 1px solid #777;
+    color: #504c8e;
+    border-bottom: 1px solid #504c8e;
     margin-bottom: 20px; }
   article h2 {
     position: relative;
     overflow: hidden;
-    color: #777;
-    border-bottom: 1px dashed #777;
+    color: #73210e;
+    border-bottom: 1px dashed #73210e;
     margin: 0 10px 20px;
     padding: 0 0 3px; }
     article h2 .date {
@@ -239,7 +254,7 @@ article {
       right: 0;
       padding: 3px 7px;
       font-size: 0.6em;
-      color: #999; }
+      color: #73210e; }
   article .has_date {
     overflow: visible; }
   article p {
@@ -260,10 +275,30 @@ section {
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
-  background-color: #f9eed8;
+  background-color: #f7efcd;
   box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8); }
   .event section:first-child {
     margin-top: 0; }
+
+#news section {
+  padding: 5px 5px 10px;
+  background-color: #cbe0ec;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  position: relative; }
+  #news section:before, #news section:after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    top: -10px; }
+  #news section:before {
+    background-image: url(../images/interface/mapmarker_left.png);
+    left: -7px; }
+  #news section:after {
+    background-image: url(../images/interface/mapmarker_right.png);
+    right: -7px; }
 
 span.a_disabled {
   font-size: 1.6em;
