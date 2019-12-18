@@ -68,8 +68,8 @@ h2 {
   font-size: 2.1rem; }
 
 h3 {
-  font-size: 1.8em;
-  font-size: 1.8rem; }
+  font-size: 1.6em;
+  font-size: 1.6rem; }
 
 p {
   font-size: 1.6em;
@@ -99,16 +99,25 @@ a:hover {
 figure.big * {
   max-width: 40em;
   max-height: 40em; }
+figure.medium * {
+  max-width: 30em;
+  max-height: 30em; }
 figure.center * {
   margin: 2px auto 5px; }
 figure img {
-  margin: 2px 10px 5px;
+  margin: 2px 20px 5px;
   display: block; }
 
 figcaption {
   text-align: center;
   color: #555;
   font-size: 1.2em; }
+
+.signature {
+  text-align: right;
+  float: right;
+  margin: 20px 20px;
+  color: #98032c; }
 
 header {
   background-color: #bdf7ff;
@@ -188,14 +197,14 @@ nav.header {
   nav.header .container:last-child:hover li:first-child {
     border-bottom-right-radius: 0; }
   nav.header li {
-    padding: 2px 10px 2px;
+    padding: 2px 1px 2px;
     background: #ccc;
     background: linear-gradient(to top, #20386d, #76cad6);
     border: 1px solid #fff;
     border-top: none; }
-    nav.header li:hover {
+    nav.header li:hover, nav.header li.here {
       background: linear-gradient(to top, #eee, #fff); }
-      nav.header li:hover a {
+      nav.header li:hover a, nav.header li.here a {
         color: #000; }
   nav.header li:last-child {
     border-radius: 0 0 5px 5px; }
@@ -204,7 +213,12 @@ nav.header {
     border-top: 1px solid #fff; }
   nav.header a {
     font-size: 1.8em;
-    color: white; }
+    color: white;
+    display: block;
+    border-bottom: none;
+    padding: 0 5px; }
+  nav.header a:hover {
+    border-bottom: none; }
   nav.header ul {
     position: absolute;
     max-height: 2.7em;
@@ -246,7 +260,7 @@ article {
     overflow: hidden;
     color: #73210e;
     border-bottom: 1px dashed #73210e;
-    margin: 0 10px 20px;
+    margin: 5px 15px 20px;
     padding: 0 0 3px; }
     article h2 .date {
       position: absolute;
@@ -255,6 +269,8 @@ article {
       padding: 3px 7px;
       font-size: 0.6em;
       color: #73210e; }
+  article h3 {
+    margin: 20px 15px; }
   article .has_date {
     overflow: visible; }
   article p {
@@ -280,25 +296,32 @@ section {
   .event section:first-child {
     margin-top: 0; }
 
-#news section {
+section.sticker {
   padding: 5px 5px 10px;
   background-color: #cbe0ec;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   position: relative; }
-  #news section:before, #news section:after {
+  section.sticker:before, section.sticker:after {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 40px;
     background-size: contain;
+    background-repeat: no-repeat;
     top: -10px; }
-  #news section:before {
-    background-image: url(../images/interface/mapmarker_left.png);
+  section.sticker:before {
+    background-image: url(../images/interface/marker_left.png);
     left: -7px; }
-  #news section:after {
-    background-image: url(../images/interface/mapmarker_right.png);
+  section.sticker:after {
+    background-image: url(../images/interface/marker_right.png);
     right: -7px; }
+  section.sticker a {
+    color: #00a; }
+  section.sticker a:hover {
+    border-bottom-color: #00a; }
+  section.sticker h3 {
+    margin: 5px 15px; }
 
 span.a_disabled {
   font-size: 1.6em;

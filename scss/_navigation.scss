@@ -108,12 +108,12 @@ nav.header {
 		}
 	}
 	li {
-		padding: 2px 10px 2px;
+		padding: 2px 1px 2px;
 		background: #ccc;
 		background: $gradient_nav_li;
 		border: $nav_border;
 		border-top: none;
-		&:hover {
+		&:hover, &.here {
 			background: linear-gradient(to top, #eee, #fff);
 			a {
 				color: #000;
@@ -130,6 +130,12 @@ nav.header {
 	a {
 		font-size: 1.8em;
 		color: white;
+		display: block;
+		border-bottom: none;
+		padding: 0 5px;
+	}
+	a:hover {
+		border-bottom: none;
 	}
 	ul {
 		position: absolute;

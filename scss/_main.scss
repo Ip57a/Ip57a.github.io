@@ -34,7 +34,7 @@ article {
         overflow: hidden;
         color: $hArticleColor;
         border-bottom: 1px dashed $hArticleColor;
-        margin: 0 10px 20px;
+        margin: 5px 15px 20px;
         padding: 0 0 3px;
         .date {
             position: absolute;
@@ -44,6 +44,9 @@ article {
             font-size: 0.6em;
             color: $hArticleColor;
         }
+    }
+    h3 {
+        margin: 20px 15px;
     }
     .has_date {
         overflow: visible;
@@ -78,32 +81,38 @@ section {
         }
     }
 }
-#news {
-    section {
-        padding: 5px 5px 10px;
-        background-color: #cbe0ec;
-        border-radius: 10px;
-        box-shadow: 2px 2px 2px rgba(0, 0, 0, .2);
-        position: relative;
-        // background-image: url(../images/interface/mapmarker_left.png), url(../images/interface/mapmarker_right.png);
-        // background-repeat: no-repeat, no-repeat;
-        // background-position: left 20px top 20px, right 20px top 20px;
-        &:before, &:after {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-size: contain;
-            top: -10px;
-        }
-        &:before {
-            background-image: url(../images/interface/mapmarker_left.png);
-            left: -7px;
-        }
-        &:after {
-            background-image: url(../images/interface/mapmarker_right.png);
-            right: -7px;
-        }
+section.sticker {
+    padding: 5px 5px 10px;
+    background-color: #cbe0ec;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, .3);
+    position: relative;
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        top: -10px;
+    }
+    &:before {
+        background-image: url(../images/interface/marker_left.png);
+        left: -7px;
+    }
+    &:after {
+        background-image: url(../images/interface/marker_right.png);
+        right: -7px;
+    }
+    a {
+        color: #00a;
+        
+    }
+    a:hover {
+        border-bottom-color: #00a;
+    }
+    h3 {
+        margin: 5px 15px;
     }
 }
 

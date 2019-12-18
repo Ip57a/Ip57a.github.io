@@ -127,22 +127,49 @@ function appendLink(xmlData, number)
 function parseShortNew(html, item)
 {
 	let section = parseNew(html);
-	$(section).find("p:gt(0)").remove();
-	$(section).find("figure").remove();
-	$(section).find("img").remove();
+	//$(section).find("figure").remove();
+	//$(section).find("img").remove();
+	//$(section).find("p:gt(0)").remove();
+	$(section).contents().not("h1, h2, h3, h4, h5, h6, div, p, a, br").remove();
+	$(section).contents().filter(function(){
+		return this.textContent.trim().length === 0;
+	}).remove();
+	$(section).addClass("sticker");
 	let options = {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
 	}
 	/*$(section).find("h2:eq(0)").addClass("has_date").append('<span class="date">' + item.date.toLocaleString("ru", options) + '</span>');*/
-	let p = $(section).find("p");
-	let innerHtml = p[0].innerHTML;
-	if (innerHtml.length > 500)
+	//let text = $(section).find("p");
+	let text = $(section).contents();
+	if (text.length == 0)
+		return section;
+
+	let innerText; // = p[0].innerHTML;
+	let max = current = 0;
+	let tags = [];
+	let i = 0;
+	while (max <= 500 && i < text.length)
 	{
-		innerHtml = innerHtml.substring(0, 500);
-		p[0].innerHTML = innerHtml + "...";
-		p[0].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
+		i++;
+		innerText = text[i-1].innerText;
+		max += innerText.length;
+		tags.push(text[i-1]);
+		if (max <= 500)
+		{
+			current = max;
+		}
+	}
+
+	if (max > 500)
+	{
+		innerText = innerText.substring(0, 500 - current);
+		text[i-1].innerText = innerText + "...";
+		text[i-1].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
+		/*let attr = "p:gt(" + (i-1) + ")";
+		$(section).find(attr).remove();*/
+		$(section).children(":gt("+(i-1)+")").remove();
 	}
 	return section;
 
