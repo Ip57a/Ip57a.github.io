@@ -20,6 +20,9 @@ function getBodyName(id)
 		case "home":
 			name = "Главная";
 			break;
+		case "generalInfo":
+			name = "Основные сведения";
+			break;
 	}
 	return name;
 }

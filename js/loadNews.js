@@ -1,4 +1,4 @@
-let maxAmount = 3;	//макс. кол-во новостей на странице
+let maxAmount = 5;	//макс. кол-во новостей на странице
 let maxSymbols = 400;  //мак. кол-во символов в "короткой" новости
 let sectionNumber;
 let sectionArray = [];	//массив полученных новостей

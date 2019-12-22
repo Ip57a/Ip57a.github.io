@@ -117,7 +117,8 @@ figcaption {
   text-align: right;
   float: right;
   margin: 20px 20px;
-  color: #98032c; }
+  color: #98032c;
+  clear: right; }
 
 header {
   background-color: #bdf7ff;
@@ -240,17 +241,23 @@ main {
   max-width: 1200px;
   margin: 10px auto; }
 
+.simpleFlex {
+  flex: 1 0 10em; }
+
+.important {
+  flex: 2 0 25em; }
+
+.center {
+  flex: 5 0 40em; }
+
 article {
   background-color: #f7efcd;
   box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8);
-  margin: 0 10px 0;
+  margin: 0 10px 10px;
   border-radius: 10px;
-  padding: 10px;
-  flex: 1 0 16em; }
-  article.center {
-    flex: 5 0 40em; }
-  article.important {
-    flex: 2 0 25em; }
+  padding: 10px; }
+  article.nav {
+    flex: 1 0 25em; }
   article h1 {
     color: #504c8e;
     border-bottom: 1px solid #504c8e;
@@ -277,12 +284,33 @@ article {
     margin: 0 10px 0;
     text-indent: 2em; }
 
-article.event {
+article.event, article.banner {
   background-color: transparent;
   box-shadow: none;
   padding: 0; }
-  article.event p {
+  article.event p, article.banner p {
     text-indent: 0; }
+
+div.banner {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  margin: 0 10px; }
+  div.banner .small {
+    max-width: 130px;
+    max-height: 130px; }
+  div.banner .rectangle {
+    max-width: 25em;
+    max-width: 25rem; }
+  div.banner a {
+    border-bottom: none; }
+  div.banner a:hover {
+    border-bottom: none; }
 
 section {
   margin: 5px 0 20px; }

@@ -5,24 +5,24 @@ main {
 	max-width: 1200px;
 	margin: 10px auto;    
 }
+
+.simpleFlex {
+    flex: 1 0 10em;
+}
+.important {
+    flex: 2 0 25em;
+}
+.center {
+        flex: 5 0 40em;
+    }
 article {
 	background-color: $articleColor;
 	box-shadow: $shadowArticle;
-	margin: 0 10px 0;
+	margin: 0 10px 10px;
 	border-radius: 10px;
     padding: 10px;
-    flex: 1 0 16em;
-    // img {
-    // 	float: left;
-    // 	margin: 2px 15px 2px 5px;
-    // }
-    &.center {
-    	flex: 5 0 40em;
-        // min-width: 40em;
-    }
-    &.important {
-    	flex: 2 0 25em;
-        // min-width: 25em;
+    &.nav {
+        flex: 1 0 25em;
     }
     h1 {
         color: $hMainArticleColor;
@@ -58,12 +58,32 @@ article {
 
 }
 
-article.event {
+article.event, article.banner {
     background-color: transparent;
     box-shadow: none;
     padding: 0;
     p {
         text-indent: 0;
+    }
+}
+div.banner {
+    @include display-flex;
+    @include flex-flow(row, wrap);
+    align-items: flex-start;
+    margin: 0 10px;
+    .small {
+        max-width: 130px;
+        max-height: 130px;
+    }
+    .rectangle {
+        max-width: 25em;
+        max-width: 25rem;
+    }
+    a {
+        border-bottom: none;
+    }
+    a:hover {
+        border-bottom: none;
     }
 }
 section {
