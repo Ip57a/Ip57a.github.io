@@ -4,6 +4,14 @@
 		<date>
 			<year>2019</year>
 			<month>12</month>
+			<day>12</day>
+		</date>
+		<href>net-and-cloud</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>12</month>
 			<day>9</day>
 		</date>
 		<href>konkurs-hud-chteniay</href>
@@ -12,9 +20,9 @@
 		<date>
 			<year>2019</year>
 			<month>12</month>
-			<day>12</day>
+			<day>7</day>
 		</date>
-		<href>net-and-cloud</href>
+		<href>lomonosov-child</href>
 	</new>
 	<new>
 		<date>
@@ -23,21 +31,5 @@
 			<day>5</day>
 		</date>
 		<href>new1</href>
-	</new>
-	<new>
-		<date>
-			<year>2019</year>
-			<month>9</month>
-			<day>10</day>
-		</date>
-		<href>new2</href>
-	</new>
-	<new>
-		<date>
-			<year>2019</year>
-			<month>9</month>
-			<day>1</day>
-		</date>
-		<href>new3</href>
 	</new>
 </news>

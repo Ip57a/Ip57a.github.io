@@ -1,4 +1,5 @@
-let maxAmount = 5;	//макс. кол-во новостей на странице
+let maxAmount = 3;	//макс. кол-во новостей на странице
+let maxSymbols = 400;  //мак. кол-во символов в "короткой" новости
 let sectionNumber;
 let sectionArray = [];	//массив полученных новостей
 /*let id = window.location.hash;
@@ -109,7 +110,7 @@ function appendLink(xmlData, number)
 	if (amount < 2)
 		return;
 	let div = "<div style='text-align:center'>";
-	for (i = 1; i < amount; i++)
+	for (i = 1; i <= amount; i++)
 	{
 		if (i != number)
 		{
@@ -150,19 +151,19 @@ function parseShortNew(html, item)
 	let max = current = 0;
 	let tags = [];
 	let i = 0;
-	while (max <= 500 && i < text.length)
+	while (max <= maxSymbols && i < text.length)
 	{
 		i++;
 		innerText = text[i-1].innerText;
 		max += innerText.length;
 		tags.push(text[i-1]);
-		if (max <= 500)
+		if (max <= maxSymbols)
 		{
 			current = max;
 		}
 	}
 
-	if (max > 500)
+	if (max > maxSymbols)
 	{
 		innerText = innerText.substring(0, 500 - current);
 		text[i-1].innerText = innerText + "...";
