@@ -76,11 +76,12 @@ function appendSections(xmlData, number)
 
 	$.each(data, function(index, item){
 		let path = getPath() + "news/" + item.href + ".html";
+		item.id = index;
 		$.ajax({
 			url: path, 
 			success: function(html)
 			{
-				sectionArray.push(parseShortNew(html, item));
+				sectionArray[item.id] = (parseShortNew(html, item));
 			},
 			complete: function(){
 				sectionNumber--;
