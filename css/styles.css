@@ -229,6 +229,72 @@ nav.header {
     nav.header ul:hover {
       max-height: 30em; }
 
+.changingPhoto {
+  margin: 10px auto;
+  height: 300px;
+  max-width: 800px;
+  background: #C00;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+  background: url(../images/interface/change/rod.jpg) center/cover no-repeat #aaa;
+  -webkit-animation: mainPhoto1 10s infinite;
+  -moz-animation: mainPhoto1 10s infinite;
+  -o-animation: mainPhoto1 10s infinite;
+  animation: mainPhoto1 10s infinite;
+  background-image: url(../images/interface/change/rod.jpg), url(../images/interface/change/1.jpg);
+  background-position: center -20px, 800px -50px; }
+
+@-webkit-keyframes mainPhoto1 {
+  0%, 45% {
+    background-position: center -20px, 800px -50px; }
+  50%, 95% {
+    background-position: -800px -20px, center -50px; }
+  100% {
+    background-position: center -20px, 800px -50px; } }
+@-moz-keyframes mainPhoto1 {
+  0%, 45% {
+    background-position: center -20px, 800px -50px; }
+  50%, 95% {
+    background-position: -800px -20px, center -50px; }
+  100% {
+    background-position: center -20px, 800px -50px; } }
+@-ms-keyframes mainPhoto1 {
+  0%, 45% {
+    background-position: center -20px, 800px -50px; }
+  50%, 95% {
+    background-position: -800px -20px, center -50px; }
+  100% {
+    background-position: center -20px, 800px -50px; } }
+@keyframes mainPhoto1 {
+  0%, 45% {
+    background-position: center -20px, 800px -50px; }
+  50%, 95% {
+    background-position: -800px -20px, center -50px; }
+  100% {
+    background-position: center -20px, 800px -50px; } }
+@-webkit-keyframes mainPhoto2 {
+  0%, 45% {
+    background-image: url(../images/interface/change/1.jpg);
+    background-position: 700 center; }
+  50%, 95% {
+    background-position: center; } }
+@-moz-keyframes mainPhoto2 {
+  0%, 45% {
+    background-image: url(../images/interface/change/1.jpg);
+    background-position: 700 center; }
+  50%, 95% {
+    background-position: center; } }
+@-ms-keyframes mainPhoto2 {
+  0%, 45% {
+    background-image: url(../images/interface/change/1.jpg);
+    background-position: 700 center; }
+  50%, 95% {
+    background-position: center; } }
+@keyframes mainPhoto2 {
+  0%, 45% {
+    background-image: url(../images/interface/change/1.jpg);
+    background-position: 700 center; }
+  50%, 95% {
+    background-position: center; } }
 main {
   display: -webkit-box;
   display: -moz-box;

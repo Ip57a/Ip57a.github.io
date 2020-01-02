@@ -20,3 +20,32 @@
 	-o-transition: $property $duration $timing $delay;
 	transition: $property $duration $timing $delay;
 }
+
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation($name, $duration, $timing-function: ease, $delay: 0s, $iteration-count: 1, $fill-mode: none, $play-state: running) {
+	-webkit-animation: $name $duration $timing-function $delay $iteration-count $fill-mode $play-state;
+    -moz-animation: $name $duration $timing-function $delay $iteration-count $fill-mode $play-state;
+    -o-animation: $name $duration $timing-function $delay $iteration-count $fill-mode $play-state;
+    animation: $name $duration $timing-function $delay $iteration-count $fill-mode $play-state;
+}
+
+@mixin animationArray($args...) {
+	-webkit-animation: $args;
+    -moz-animation: $args;
+    -o-animation: $args;
+    animation: $args;
+}
