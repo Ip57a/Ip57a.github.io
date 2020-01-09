@@ -90,6 +90,12 @@ a {
 a:hover {
   border-bottom-color: #00ace5; }
 
+time {
+  font-weight: bold; }
+
+strong {
+  font-weight: bold; }
+
 .left {
   float: left; }
 
@@ -229,6 +235,26 @@ nav.header {
     nav.header ul:hover {
       max-height: 30em; }
 
+nav.left ul {
+  margin: 10px 5px; }
+nav.left li {
+  margin: 0 10px;
+  border-bottom: 1px solid #999;
+  padding: 5px 10px; }
+  nav.left li.here {
+    background: 3px center/6% url("../images/interface/checked.png") no-repeat;
+    padding-left: 20px; }
+    nav.left li.here a {
+      font-weight: bold; }
+  nav.left li:hover:not(.here) {
+    background: 3px center/6% url("../images/interface/checked_black.png") no-repeat;
+    padding-left: 20px; }
+    nav.left li:hover:not(.here) a {
+      font-weight: bold; }
+nav.left a {
+  color: #227;
+  border-bottom: none; }
+
 .changingPhoto {
   margin: 10px auto;
   height: 300px;
@@ -347,8 +373,16 @@ article {
   article .has_date {
     overflow: visible; }
   article p {
-    margin: 0 10px 0;
-    text-indent: 2em; }
+    text-indent: 2em;
+    margin: 0 10px 0; }
+  article ul, article p {
+    color: #333; }
+  article ul {
+    margin: 0 0 10px 20px;
+    font-size: 1.6em;
+    font-size: 1.6rem; }
+  article li {
+    margin: 2px 0; }
 
 article.event, article.banner {
   background-color: transparent;
@@ -421,5 +455,16 @@ span.a_disabled {
   font-size: 1.6em;
   font-size: 1.6rem;
   color: black; }
+
+.divided {
+  margin: 15px 0;
+  border-bottom: 1px solid #999;
+  padding-bottom: 10px; }
+  .divided p {
+    margin-bottom: 5px; }
+
+.withoutIndent {
+  text-indent: 0;
+  margin: 20px; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -148,3 +148,33 @@ nav.header {
 		}
 	}
 }
+
+nav.left {
+	ul {
+		margin: 10px 5px;
+	}
+	li {
+		margin: 0 10px;
+		border-bottom: 1px solid #999;
+		padding: 5px 10px;
+		&.here {
+			background: 3px center / 6% url("../images/interface/checked.png") no-repeat;
+			padding-left: 20px;
+			a {
+				font-weight: bold;
+			}
+		}
+		&:hover:not(.here) {
+			background: 3px center / 6% url("../images/interface/checked_black.png") no-repeat;
+			padding-left: 20px;
+			a{
+				font-weight: bold;
+			}
+		}
+	}
+	a {
+		color: #227;
+		border-bottom: none;
+	}
+}
+
