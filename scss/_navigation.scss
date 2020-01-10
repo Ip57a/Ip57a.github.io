@@ -107,6 +107,13 @@ nav.header {
 			}
 		}
 	}
+	li:last-child {
+		border-radius: 0 0 5px 5px;
+	}
+	li:first-child {
+		text-align:center;
+		border-top: $nav_border;
+	}
 	li {
 		padding: 2px 1px 2px;
 		background: #ccc;
@@ -115,18 +122,13 @@ nav.header {
 		border-top: none;
 		&:hover, &.here {
 			background: linear-gradient(to top, #eee, #fff);
+			box-shadow: inset 1px 1px 7px -2px rgba(0, 0, 0, .9);
 			a {
 				color: #000;
 			}
 		}
 	}
-	li:last-child {
-		border-radius: 0 0 5px 5px;
-	}
-	li:first-child {
-		text-align:center;
-		border-top: $nav_border;
-	}
+	
 	a {
 		font-size: 1.8em;
 		color: white;
