@@ -56,6 +56,7 @@ function getBodyFromId(id)
 			name = "Главная";
 			break;
 		case "generalInfo":
+		case "structure":
 			name = "Сведения об ОО";
 			break;
 	}
@@ -68,6 +69,9 @@ function getGeneralInfoName(id)
 	switch(id) {
 		case "generalInfo":
 			name = "Основные сведения";
+			break;
+		case "structure":
+			name = "Структура ОО";
 			break;
 	}
 	return name;

@@ -127,6 +127,9 @@ nav.header {
 				color: #000;
 			}
 		}
+		&.here a {
+			cursor: default;
+		}
 	}
 	
 	a {

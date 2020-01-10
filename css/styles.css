@@ -127,11 +127,13 @@ figcaption {
   clear: right; }
 
 a[href$=".doc"],
+a[href$=".docx"],
 a[href$=".pdf"],
 a[href^="mailto:"] {
   padding-right: 20px; }
 
-a[href$=".doc"] {
+a[href$=".doc"],
+a[href$=".docx"] {
   background: no-repeat right url("../images/interface/links/word.png"); }
 
 a[href$=".pdf"] {
@@ -139,6 +141,9 @@ a[href$=".pdf"] {
 
 a[href^="mailto:"] {
   background: no-repeat right url("../images/interface/links/email.gif"); }
+
+ul.mark {
+  list-style: circle inside; }
 
 header {
   background-color: #bdf7ff;
@@ -233,6 +238,8 @@ nav.header {
       box-shadow: inset 1px 1px 7px -2px rgba(0, 0, 0, 0.9); }
       nav.header li:hover a, nav.header li.here a {
         color: #000; }
+    nav.header li.here a {
+      cursor: default; }
   nav.header a {
     font-size: 1.8em;
     color: white;
@@ -364,7 +371,7 @@ article {
   border-radius: 10px;
   padding: 10px; }
   article.nav {
-    flex: 1 0 25em; }
+    flex: 1 0 20em; }
   article h1 {
     color: #504c8e;
     border-bottom: 1px solid #504c8e;
@@ -479,7 +486,11 @@ span.a_disabled {
     margin-bottom: 5px; }
 
 .withoutIndent {
-  text-indent: 0;
-  margin: 20px; }
+  text-indent: 0; }
+
+.interlinear {
+  vertical-align: super;
+  font-size: .8em;
+  margin-top: 0; }
 
 /*# sourceMappingURL=styles.css.map */

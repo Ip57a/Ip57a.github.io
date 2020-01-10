@@ -58,7 +58,7 @@ article {
 	border-radius: 10px;
     padding: 10px;
     &.nav {
-        flex: 1 0 25em;
+        flex: 1 0 20em;
     }
     h1 {
         color: $hMainArticleColor;
@@ -200,5 +200,10 @@ span.a_disabled {
 
 .withoutIndent {
     text-indent: 0;
-    margin: 20px;
+}
+
+.interlinear {
+    vertical-align: super;
+    font-size: .8em;
+    margin-top: 0;
 }
