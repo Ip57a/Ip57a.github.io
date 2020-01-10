@@ -1,0 +1,17 @@
+a[href$=".doc"], 
+a[href$=".pdf"],
+a[href^="mailto:"] {
+	padding-right: 20px;
+}
+
+a[href$=".doc"] {
+	background: no-repeat right url("../images/interface/links/word.png");
+}
+
+a[href$=".pdf"] {
+	background: no-repeat right url("../images/interface/links/acrobat.png");
+}
+
+a[href^="mailto:"] {
+	background: no-repeat right url("../images/interface/links/email.gif");
+}

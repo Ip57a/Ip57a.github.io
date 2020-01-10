@@ -126,6 +126,20 @@ figcaption {
   color: #98032c;
   clear: right; }
 
+a[href$=".doc"],
+a[href$=".pdf"],
+a[href^="mailto:"] {
+  padding-right: 20px; }
+
+a[href$=".doc"] {
+  background: no-repeat right url("../images/interface/links/word.png"); }
+
+a[href$=".pdf"] {
+  background: no-repeat right url("../images/interface/links/acrobat.png"); }
+
+a[href^="mailto:"] {
+  background: no-repeat right url("../images/interface/links/email.gif"); }
+
 header {
   background-color: #bdf7ff;
   background-image: linear-gradient(to top, #96bcea, #5dcab0); }
