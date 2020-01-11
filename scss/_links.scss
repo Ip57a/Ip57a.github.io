@@ -1,6 +1,8 @@
 a[href$=".doc"], 
 a[href$=".docx"],
 a[href$=".pdf"],
+a[href$=".jpg"],
+a[href$=".png"],
 a[href^="mailto:"] {
 	padding-right: 20px;
 }
@@ -16,4 +18,9 @@ a[href$=".pdf"] {
 
 a[href^="mailto:"] {
 	background: no-repeat right url("../images/interface/links/email.gif");
+}
+
+a[href$=".jpg"],
+a[href$=".png"] {
+	background: no-repeat right url("../images/interface/links/image.png");	
 }
