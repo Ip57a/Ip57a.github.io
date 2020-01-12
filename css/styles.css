@@ -131,7 +131,10 @@ a[href$=".docx"],
 a[href$=".pdf"],
 a[href$=".jpg"],
 a[href$=".png"],
-a[href^="mailto:"] {
+a[href$=".zip"],
+a[href^="mailto:"],
+a[href^="http:"],
+a[href^="https:"] {
   padding-right: 20px; }
 
 a[href$=".doc"],
@@ -147,6 +150,13 @@ a[href^="mailto:"] {
 a[href$=".jpg"],
 a[href$=".png"] {
   background: no-repeat right url("../images/interface/links/image.png"); }
+
+a[href$=".zip"] {
+  background: no-repeat right url("../images/interface/links/zip.png"); }
+
+a[href^="http:"],
+a[href^="https:"] {
+  background: no-repeat right url("../images/interface/links/globe.png"); }
 
 ul.mark {
   list-style: circle;

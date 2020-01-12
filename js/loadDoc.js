@@ -9,7 +9,7 @@ function newWindowLink() {
 		let href = element.getAttribute("href");
 		if (href == undefined)
 			return false;
-		let re = /(\.(docx?)|(png)|(jpe?g)|(gif)|(pdf))$/i;
+		let re = /(\.(png)|(jpe?g)|(gif)|(pdf))$/i;
 		return re.test(href);
 	})
 	return a;

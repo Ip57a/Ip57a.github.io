@@ -58,6 +58,7 @@ function getBodyFromId(id)
 		case "generalInfo":
 		case "structure":
 		case "docs":
+		case "education":
 			name = "Сведения об ОО";
 			break;
 	}
@@ -76,6 +77,9 @@ function getGeneralInfoName(id)
 			break;
 		case "docs":
 			name = "Документы";
+			break;
+		case "education":
+			name = "Образование";
 			break;
 	}
 	return name;
