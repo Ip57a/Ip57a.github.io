@@ -12,6 +12,19 @@ $photoURL2: url(../images/interface/change/1.jpg);
     background-position: center -20px, 800px -50px;
 }
 
+.changingMiniPhoto
+{
+    margin: 10px auto;
+    height: 200px;
+    width: 300px;
+    background: #C00;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .8);
+    background: url(../images/interface/change/rod.jpg) center / cover no-repeat #aaa;
+    @include animationArray(mainPhoto2 10s infinite);
+    background-image: $photoURL1, $photoURL2;
+    background-position: center, 300px center;
+}
+
 @include keyframes(mainPhoto1) {
     0%, 45% {
         background-position: center -20px, 800px -50px;
@@ -26,11 +39,13 @@ $photoURL2: url(../images/interface/change/1.jpg);
 
 @include keyframes(mainPhoto2) {
     0%, 45% {
-        background-image: url(../images/interface/change/1.jpg);
-        background-position: 700 center;
+        background-position: center, 300px center;
     }
     50%, 95% {
-        background-position: center;
+        background-position: -340px center, center;
+    }
+    100% {
+        background-position: center, 300px center;
     }
 }
 
