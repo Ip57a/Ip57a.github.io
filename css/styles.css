@@ -135,28 +135,28 @@ a[href$=".zip"],
 a[href^="mailto:"],
 a[href^="http:"],
 a[href^="https:"] {
-  padding-right: 20px; }
+  padding-left: 20px; }
 
 a[href$=".doc"],
 a[href$=".docx"] {
-  background: no-repeat right url("../images/interface/links/word.png"); }
+  background: no-repeat left url("../images/interface/links/word.png"); }
 
 a[href$=".pdf"] {
-  background: no-repeat right url("../images/interface/links/acrobat.png"); }
+  background: no-repeat left url("../images/interface/links/acrobat.png"); }
 
 a[href^="mailto:"] {
-  background: no-repeat right url("../images/interface/links/email.gif"); }
+  background: no-repeat left url("../images/interface/links/email.gif"); }
 
 a[href$=".jpg"],
 a[href$=".png"] {
-  background: no-repeat right url("../images/interface/links/image.png"); }
+  background: no-repeat left url("../images/interface/links/image.png"); }
 
 a[href$=".zip"] {
-  background: no-repeat right url("../images/interface/links/zip.png"); }
+  background: no-repeat left url("../images/interface/links/zip.png"); }
 
 a[href^="http:"],
 a[href^="https:"] {
-  background: no-repeat right url("../images/interface/links/globe.png"); }
+  background: no-repeat left url("../images/interface/links/globe.png"); }
 
 ul.mark {
   list-style: circle;
