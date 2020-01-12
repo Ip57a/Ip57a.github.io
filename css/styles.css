@@ -179,7 +179,6 @@ header {
     flex-flow: row nowrap;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
     justify-content: space-between;
     align-items: center; }
 
@@ -309,9 +308,10 @@ nav.left a {
   background-position: center -20px, 800px -50px; }
 
 .changingMiniPhoto {
-  margin: 10px auto;
+  margin: 10px 30px 10px 10px;
   height: 200px;
   width: 300px;
+  min-width: 300px;
   background: #C00;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
   background: url(../images/interface/change/rod.jpg) center/cover no-repeat #aaa;
