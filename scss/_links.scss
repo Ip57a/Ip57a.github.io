@@ -36,3 +36,8 @@ a[href^="http:"],
 a[href^="https:"] {
 	background: no-repeat left url("../images/interface/links/globe.png");
 }
+
+.banner a {
+	padding-left: unset;
+	background: none;
+}

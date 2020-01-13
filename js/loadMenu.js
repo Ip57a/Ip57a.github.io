@@ -39,7 +39,8 @@ function setLiHere(li)
 function getBodyName()
 {
 	let bodyId = $("body").attr("id");
-	return getBodyFromId(bodyId);
+	//return getBodyFromId(bodyId);
+	return getGeneralInfoName(bodyId);
 }
 
 function getNavName()
@@ -47,7 +48,7 @@ function getNavName()
 	let bodyId = $("body").attr("id");
 	return getGeneralInfoName(bodyId);
 }
-
+/*
 function getBodyFromId(id)
 {
 	let name = "";
@@ -64,14 +65,17 @@ function getBodyFromId(id)
 			break;
 	}
 	return name;
-}
+}*/
 
 function getGeneralInfoName(id)
 {
 	let name = "";
 	switch(id) {
+		case "home":
+			name = "Главная";
+			break;
 		case "generalInfo":
-			name = "Основные сведения";
+			name = "Сведения об ОО";
 			break;
 		case "structure":
 			name = "Структура ОО";
