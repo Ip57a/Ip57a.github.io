@@ -532,4 +532,15 @@ span.a_disabled {
   font-size: .8em;
   margin-top: 0; }
 
+.nowrap {
+  white-space: nowrap; }
+
+.remark {
+  font-size: 1.2em;
+  font-size: 1.2rem;
+  text-indent: 0;
+  margin-left: 20px; }
+  .remark:before {
+    content: "*"; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -89,6 +89,12 @@ function getGeneralInfoName(id)
 		case "educationStandarts":
 			name = "Образовательные стандарты";
 			break;
+		case "pedSostav":
+			name = "Руководство. Педагогический состав";
+			break;
+		case "equipment":
+			name = "Материально-техническое обеспечение";
+			break;
 	}
 	return name;
 }
