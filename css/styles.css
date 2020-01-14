@@ -275,7 +275,7 @@ nav.header {
     box-shadow: 4px 4px 6px rgba(50, 70, 70, 0.6);
     z-index: 100; }
     nav.header ul:hover {
-      max-height: 30em; }
+      max-height: 40em; }
 
 nav.left ul {
   margin: 10px 5px; }
