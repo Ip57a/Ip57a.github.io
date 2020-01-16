@@ -1,0 +1,33 @@
+table.general {
+	font-size: 1.6em;
+	font-size: 1.6rem;
+	border: $table_border;
+	margin: 10px auto;
+	max-width: 70%;
+	caption, th, td {
+		padding: 5px 10px;
+		vertical-align: middle;
+		text-align: center;
+	}
+	caption {
+		color: $hArticleColor;
+	}
+	th, td {
+		border: $table_border;
+	}
+	th.subpoint {
+		min-width: 5rem;
+	}
+	thead tr{
+		background: linear-gradient(to top, #1d3d40, #2cb4c1);
+		color: white;
+	}
+	tbody tr:nth-of-type(odd) {
+		background: linear-gradient(to bottom, #316082, #22202d);
+		color: #d6cccc;
+	}
+	tbody tr:nth-of-type(even) {
+		background: linear-gradient(to top, #6f6c6c, #ffffff);
+	}
+
+}

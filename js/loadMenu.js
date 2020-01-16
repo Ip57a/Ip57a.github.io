@@ -95,6 +95,18 @@ function getGeneralInfoName(id)
 		case "equipment":
 			name = "Материально-техническое обеспечение";
 			break;
+		case "grants":
+			name = "Стипендии и иные виды материальной поддержки";
+			break;
+		case "paidServices":
+			name = "Платные образовательные услуги";
+			break;
+		case "finActivity":
+			name = "Финансово-хозяйственная деятельность";
+			break;
+		case "vacancy":
+			name = "Вакантные места";
+			break;
 	}
 	return name;
 }

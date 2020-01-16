@@ -52,7 +52,7 @@ html {
 body {
   line-height: 1.2; }
 
-* {
+body * {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif; }
 
@@ -128,6 +128,8 @@ figcaption {
 
 a[href$=".doc"],
 a[href$=".docx"],
+a[href$=".xls"],
+a[href$=".xlsx"],
 a[href$=".pdf"],
 a[href$=".jpg"],
 a[href$=".png"],
@@ -140,6 +142,10 @@ a[href^="https:"] {
 a[href$=".doc"],
 a[href$=".docx"] {
   background: no-repeat left url("../images/interface/links/word.png"); }
+
+a[href$=".xls"],
+a[href$=".xlsx"] {
+  background: no-repeat left url("../images/interface/links/excel.png"); }
 
 a[href$=".pdf"] {
   background: no-repeat left url("../images/interface/links/acrobat.png"); }
@@ -165,6 +171,31 @@ a[href^="https:"] {
 ul.mark {
   list-style: circle;
   padding-left: 10px; }
+
+table.general {
+  font-size: 1.6em;
+  font-size: 1.6rem;
+  border: 1px solid black;
+  margin: 10px auto;
+  max-width: 70%; }
+  table.general caption, table.general th, table.general td {
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center; }
+  table.general caption {
+    color: #73210e; }
+  table.general th, table.general td {
+    border: 1px solid black; }
+  table.general th.subpoint {
+    min-width: 5rem; }
+  table.general thead tr {
+    background: linear-gradient(to top, #1d3d40, #2cb4c1);
+    color: white; }
+  table.general tbody tr:nth-of-type(odd) {
+    background: linear-gradient(to bottom, #316082, #22202d);
+    color: #d6cccc; }
+  table.general tbody tr:nth-of-type(even) {
+    background: linear-gradient(to top, #6f6c6c, #ffffff); }
 
 header {
   background-color: #bdf7ff;
@@ -248,7 +279,7 @@ nav.header {
     text-align: center;
     border-top: 1px solid #fff; }
   nav.header li {
-    padding: 2px 1px 2px;
+    padding: 3px 1px 3px;
     background: #ccc;
     background: linear-gradient(to top, #20386d, #76cad6);
     border: 1px solid #fff;
@@ -270,7 +301,7 @@ nav.header {
     border-bottom: none; }
   nav.header ul {
     position: absolute;
-    max-height: 2.7em;
+    max-height: 2.9em;
     overflow: hidden;
     box-shadow: 4px 4px 6px rgba(50, 70, 70, 0.6);
     z-index: 100; }

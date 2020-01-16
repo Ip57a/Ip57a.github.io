@@ -114,7 +114,7 @@ nav.header {
 		border-top: $nav_border;
 	}
 	li {
-		padding: 2px 1px 2px;
+		padding: 3px 1px 3px;
 		background: #ccc;
 		background: $gradient_nav_li;
 		border: $nav_border;
@@ -143,7 +143,7 @@ nav.header {
 	}
 	ul {
 		position: absolute;
-		max-height: 2.7em;
+		max-height: 2.9em;
 		overflow: hidden;
 		box-shadow: $shadow_nav_li;
 		z-index: 100;

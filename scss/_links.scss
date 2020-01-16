@@ -1,5 +1,7 @@
 a[href$=".doc"], 
 a[href$=".docx"],
+a[href$=".xls"], 
+a[href$=".xlsx"],
 a[href$=".pdf"],
 a[href$=".jpg"],
 a[href$=".png"],
@@ -13,6 +15,11 @@ a[href^="https:"] {
 a[href$=".doc"],
 a[href$=".docx"] {
 	background: no-repeat left url("../images/interface/links/word.png");
+}
+
+a[href$=".xls"], 
+a[href$=".xlsx"] {
+	background: no-repeat left url("../images/interface/links/excel.png");
 }
 
 a[href$=".pdf"] {
