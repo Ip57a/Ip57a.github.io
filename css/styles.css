@@ -189,10 +189,10 @@ table.general {
   table.general th.subpoint {
     min-width: 5rem; }
   table.general thead tr {
-    background: linear-gradient(to top, #1d3d40, #2cb4c1);
+    background: linear-gradient(to top, #2d1205, #5f2626);
     color: white; }
   table.general tbody tr:nth-of-type(odd) {
-    background: linear-gradient(to bottom, #316082, #22202d);
+    background: linear-gradient(to bottom, #947132, #22202d);
     color: #d6cccc; }
   table.general tbody tr:nth-of-type(even) {
     background: linear-gradient(to top, #6f6c6c, #ffffff); }
