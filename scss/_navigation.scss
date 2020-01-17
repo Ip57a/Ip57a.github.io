@@ -129,6 +129,10 @@ nav.header {
 		&.here a {
 			cursor: default;
 		}
+		&.here:first-of-type:not(:only-child) a:before {
+			content: "\2261";
+			margin-right: 10px;
+		}
 	}
 	
 	a {
@@ -148,7 +152,7 @@ nav.header {
 		box-shadow: $shadow_nav_li;
 		z-index: 100;
 		&:hover {
-			max-height: 40em;
+			max-height: 50em;
 		}
 	}
 }

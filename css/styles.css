@@ -291,6 +291,9 @@ nav.header {
         color: #000; }
     nav.header li.here a {
       cursor: default; }
+    nav.header li.here:first-of-type:not(:only-child) a:before {
+      content: "\2261";
+      margin-right: 10px; }
   nav.header a {
     font-size: 1.8em;
     color: white;
@@ -306,7 +309,7 @@ nav.header {
     box-shadow: 4px 4px 6px rgba(50, 70, 70, 0.6);
     z-index: 100; }
     nav.header ul:hover {
-      max-height: 40em; }
+      max-height: 50em; }
 
 nav.left ul {
   margin: 10px 5px; }
@@ -435,7 +438,7 @@ main {
   flex: 5 0 40em; }
 
 article {
-  background-color: #f7efcd;
+  background-color: #f9f0d7;
   box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8);
   margin: 0 10px 10px;
   border-radius: 10px;
@@ -511,7 +514,7 @@ section {
   margin: 10px 0;
   padding: 10px;
   border-radius: 10px;
-  background-color: #f7efcd;
+  background-color: #f9f0d7;
   box-shadow: 4px 4px 8px rgba(64, 59, 43, 0.8); }
   .event section:first-child {
     margin-top: 0; }

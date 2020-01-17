@@ -4,13 +4,20 @@ $("nav.header").load("menu.html");
 //установка текущего тэга li в основном меню
 function setHeaderCurrentLi()
 {
-	let name = getBodyName();
-	if (name == "")
+	let bodyName = getBodyName();
+	if (bodyName == "")
 		return;
+	let name = getMainMenuName(bodyName);
 	let li = getNavLiWhereIs("nav.header", name);
+	setLiHere(li);
+	name = getSubMenuName(bodyName);
+	if (!name)
+		return;
+	li = getNavLiWhereIs("nav.header", name);
 	setLiHere(li);
 }
 
+//установка текущего тэга li в дополнительном меню
 function setLeftNavCurrentLi()
 {
 	let name = getNavName();
@@ -38,18 +45,15 @@ function setLiHere(li)
 
 function getBodyName()
 {
-	let bodyId = $("body").attr("id");
-	//return getBodyFromId(bodyId);
-	return getGeneralInfoName(bodyId);
+	return $("body").attr("id");
 }
 
 function getNavName()
 {
-	let bodyId = $("body").attr("id");
-	return getGeneralInfoName(bodyId);
+	return getSubMenuName(getBodyName());
 }
-/*
-function getBodyFromId(id)
+
+function getMainMenuName(id)
 {
 	let name = "";
 	switch(id) {
@@ -61,21 +65,24 @@ function getBodyFromId(id)
 		case "docs":
 		case "education":
 		case "educationStandarts":
+		case "pedSostav":
+		case "equipment":
+		case "grants":
+		case "paidServices":
+		case "finActivity":
+		case "vacancy":
 			name = "Сведения об ОО";
 			break;
 	}
 	return name;
-}*/
+}
 
-function getGeneralInfoName(id)
+function getSubMenuName(id)
 {
 	let name = "";
 	switch(id) {
-		case "home":
-			name = "Главная";
-			break;
 		case "generalInfo":
-			name = "Сведения об ОО";
+			name = "Основные сведения";
 			break;
 		case "structure":
 			name = "Структура ОО";
