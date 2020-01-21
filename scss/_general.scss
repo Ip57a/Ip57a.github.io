@@ -35,7 +35,8 @@ a {
 	font-size: 1.6rem;
 	color: #00ace5;
 	border-bottom: 1px solid transparent;
-	@include transition(border-bottom-color, .5s);
+	//@include transition(border-bottom-color, .5s);
+	transition: border-bottom-color 0.5s;
 }
 a:hover {
 	border-bottom-color: #00ace5;

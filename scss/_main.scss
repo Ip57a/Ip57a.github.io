@@ -7,7 +7,8 @@ $photoURL2: url(../images/interface/change/1.jpg);
     background: #C00;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, .8);
     background: url(../images/interface/change/rod.jpg) center / cover no-repeat #aaa;
-    @include animationArray(mainPhoto1 10s infinite);
+    -webkit-animation: mainPhoto1 10s infinite;
+            animation: mainPhoto1 10s infinite;
     background-image: $photoURL1, $photoURL2;
     background-position: center -20px, 800px -50px;
 }
@@ -21,12 +22,13 @@ $photoURL2: url(../images/interface/change/1.jpg);
     background: #C00;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, .8);
     background: url(../images/interface/change/rod.jpg) center / cover no-repeat #aaa;
-    @include animationArray(mainPhoto2 10s infinite);
+    -webkit-animation: mainPhoto2 10s infinite;
+            animation: mainPhoto2 10s infinite;
     background-image: $photoURL1, $photoURL2;
     background-position: center, 300px center;
 }
 
-@include keyframes(mainPhoto1) {
+@-webkit-keyframes mainPhoto1 {
     0%, 45% {
         background-position: center -20px, 800px -50px;
     }
@@ -38,7 +40,33 @@ $photoURL2: url(../images/interface/change/1.jpg);
     }
 }
 
-@include keyframes(mainPhoto2) {
+@keyframes mainPhoto1 {
+    0%, 45% {
+        background-position: center -20px, 800px -50px;
+    }
+    50%, 95% {
+        background-position: -800px -20px, center -50px;
+    }
+    100% {
+        background-position: center -20px, 800px -50px;
+    }
+}
+
+
+@-webkit-keyframes mainPhoto2 {
+    0%, 45% {
+        background-position: center, 300px center;
+    }
+    50%, 95% {
+        background-position: -340px center, center;
+    }
+    100% {
+        background-position: center, 300px center;
+    }
+}
+
+
+@keyframes mainPhoto2 {
     0%, 45% {
         background-position: center, 300px center;
     }
@@ -51,30 +79,40 @@ $photoURL2: url(../images/interface/change/1.jpg);
 }
 
 main {
-	@include display-flex;
-	@include flex-flow(row, nowrap);
-	align-items: flex-start;
-	max-width: 1200px;
-	margin: 10px auto;    
+    /*@include display-flex;*/
+    /*@include flex-flow(row, nowrap);*/
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row, nowrap;
+    -webkit-box-align: start;
+            align-items: flex-start;
+    max-width: 1200px;
+    margin: 10px auto;    
 }
 
 .simpleFlex {
-    flex: 1 0 10em;
+    -webkit-box-flex: 1;
+            flex: 1 0 10em;
 }
 .important {
-    flex: 2 0 25em;
+    -webkit-box-flex: 2;
+            flex: 2 0 25em;
 }
 .center {
-        flex: 5 0 40em;
+        -webkit-box-flex: 5;
+                flex: 5 0 40em;
     }
 article {
-	background-color: $articleColor;
-	box-shadow: $shadowArticle;
-	margin: 0 10px 10px;
-	border-radius: 10px;
+    background-color: $articleColor;
+    box-shadow: $shadowArticle;
+    margin: 0 10px 10px;
+    border-radius: 10px;
     padding: 10px;
     &.nav {
-        flex: 1 0 20em;
+        -webkit-box-flex: 1;
+                flex: 1 0 20em;
     }
     h1 {
         color: $hMainArticleColor;
@@ -130,9 +168,15 @@ article.event, article.banner {
     }
 }
 div.banner {
-    @include display-flex;
-    @include flex-flow(row, wrap);
-    align-items: flex-start;
+    /*@include display-flex;*/
+    /*@include flex-flow(row, wrap);*/
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row, nowrap;
+    -webkit-box-align: start;
+            align-items: flex-start;
     margin: 0 10px;
     .small {
         max-width: 130px;

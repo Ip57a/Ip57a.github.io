@@ -73,6 +73,9 @@ function getMainMenuName(id)
 		case "vacancy":
 			name = "Сведения об ОО";
 			break;
+		case "ovz":
+			name = "Деятельность";
+		break;
 	}
 	return name;
 }
@@ -113,6 +116,9 @@ function getSubMenuName(id)
 			break;
 		case "vacancy":
 			name = "Вакантные места";
+			break;
+		case "ovz":
+			name = "ОВЗ";
 			break;
 	}
 	return name;
