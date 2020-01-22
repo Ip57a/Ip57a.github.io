@@ -2,12 +2,15 @@ table.general {
 	font-size: 1.6em;
 	font-size: 1.6rem;
 	border: $table_border;
+	border-radius: 15px;
+	overflow: hidden;
 	margin: 10px auto;
 	caption, th, td {
 		padding: 5px 10px;
 		vertical-align: middle;
 		text-align: center;
 	}
+
 	caption {
 		color: $hArticleColor;
 	}

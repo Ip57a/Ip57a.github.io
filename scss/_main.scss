@@ -85,7 +85,7 @@ main {
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-            flex-flow: row, nowrap;
+            flex-flow: row nowrap;
     -webkit-box-align: start;
             align-items: flex-start;
     max-width: 1200px;
@@ -101,8 +101,8 @@ main {
             flex: 2 0 25em;
 }
 .center {
-        -webkit-box-flex: 5;
-                flex: 5 0 40em;
+    -webkit-box-flex: 5;
+            flex: 5 0 40em;
     }
 article {
     background-color: $articleColor;
@@ -174,7 +174,7 @@ div.banner {
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-            flex-flow: row, nowrap;
+            flex-flow: row wrap;
     -webkit-box-align: start;
             align-items: flex-start;
     margin: 0 10px;

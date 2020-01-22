@@ -173,6 +173,8 @@ table.general {
   font-size: 1.6em;
   font-size: 1.6rem;
   border: 1px solid black;
+  border-radius: 15px;
+  overflow: hidden;
   margin: 10px auto; }
   table.general caption, table.general th, table.general td {
     padding: 5px 10px;
@@ -417,7 +419,7 @@ main {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  flex-flow: row, nowrap;
+  flex-flow: row nowrap;
   -webkit-box-align: start;
   align-items: flex-start;
   max-width: 1200px;
@@ -492,7 +494,7 @@ div.banner {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-  flex-flow: row, nowrap;
+  flex-flow: row wrap;
   -webkit-box-align: start;
   align-items: flex-start;
   margin: 0 10px; }
