@@ -1,9 +1,11 @@
+/*TODO: если в таблице есть caption, то края не круглые - исправить;*/
 table.general {
 	font-size: 1.6em;
 	font-size: 1.6rem;
-	border: $table_border;
-	border-radius: 15px;
-	overflow: hidden;
+	/*border: $table_border;*/
+	/*border-radius: 15px;*/
+	/*overflow: hidden;*/
+	border-collapse: separate;
 	margin: 10px auto;
 	caption, th, td {
 		padding: 5px 10px;
@@ -15,7 +17,7 @@ table.general {
 		color: $hArticleColor;
 	}
 	th, td {
-		border: $table_border;
+		/*border: $table_border;*/
 	}
 	.description, .note {
 		text-align: left;
@@ -26,25 +28,47 @@ table.general {
 	th.subpoint {
 		min-width: 5rem;
 	}
-	thead tr{
-		background: -webkit-gradient(linear, left bottom, left top, from(#2d1205), to(#5f2626));
-		background: linear-gradient(to top, #2d1205, #5f2626);
-		color: white;
-	}
-	tbody tr:nth-of-type(odd) {
-		background: -webkit-gradient(linear, left top, left bottom, from(#947132), to(#22202d));
-		background: linear-gradient(to bottom, #947132, #22202d);
-		color: #d6cccc;
-		p, li {
-			color: #d6cccc;
+	thead {
+		tr {
+			background: -webkit-gradient(linear, left bottom, left top, from(#2d1205), to(#5f2626));
+			background: linear-gradient(to top, #2d1205, #5f2626);
+			color: white;
+		}
+		tr:first-child {
+			border-radius: 15px 15px 0 0;
+			th:first-child {
+				border-radius: 15px 0 0 0;
+			}
+			th:last-child {
+				border-radius: 0 15px 0 0;
+			}
 		}
 	}
-	tbody tr:nth-of-type(even) {
-		background: -webkit-gradient(linear, left bottom, left top, from(#6f6c6c), to(#ffffff));
-		background: linear-gradient(to top, #6f6c6c, #ffffff);
-		color: black;
-		p, li {
+	tbody {
+		tr:nth-of-type(odd) {
+			background: -webkit-gradient(linear, left top, left bottom, from(#947132), to(#22202d));
+			background: linear-gradient(to bottom, #947132, #22202d);
+			color: #d6cccc;
+			p, li {
+				color: #d6cccc;
+			}
+		}
+		tr:nth-of-type(even) {
+			background: -webkit-gradient(linear, left bottom, left top, from(#6f6c6c), to(#ffffff));
+			background: linear-gradient(to top, #6f6c6c, #ffffff);
 			color: black;
+			p, li {
+				color: black;
+			}
+		}
+		tr:last-child {
+			border-radius: 0 0 10px 10px;
+			td:first-child {
+				border-radius: 0 0 0 10px;
+			}
+			td:last-child {
+				border-radius: 0 0 10px 0;
+			}
 		}
 	}
 }

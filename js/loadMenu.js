@@ -73,8 +73,12 @@ function getMainMenuName(id)
 		case "vacancy":
 			name = "Сведения об ОО";
 			break;
+		case "progress":
+		case "gia9":
+		case "gia11":
 		case "ovz":
-			name = "Деятельность";
+		case "vpr":
+			name = "Учебная работа";
 		break;
 	}
 	return name;
@@ -119,6 +123,18 @@ function getSubMenuName(id)
 			break;
 		case "ovz":
 			name = "ОВЗ";
+			break;
+		case "progress":
+			name = "Успеваемость";
+			break;
+		case "gia9":
+			name = "ГИА-9";
+			break;
+		case "gia11":
+			name = "ГИА-11";
+			break;
+		case "vpr":
+			name = "ВПР";
 			break;
 	}
 	return name;
