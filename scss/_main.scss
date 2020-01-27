@@ -79,8 +79,6 @@ $photoURL2: url(../images/interface/change/1.jpg);
 }
 
 main {
-    /*@include display-flex;*/
-    /*@include flex-flow(row, nowrap);*/
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;
@@ -88,7 +86,7 @@ main {
             flex-flow: row nowrap;
     -webkit-box-align: start;
             align-items: flex-start;
-    max-width: 1200px;
+    max-width: $maxWidth;
     margin: 10px auto;    
 }
 
@@ -100,7 +98,7 @@ main {
     -webkit-box-flex: 2;
             flex: 2 0 25em;
 }
-.center {
+.generalFlexItem {
     -webkit-box-flex: 5;
             flex: 5 0 40em;
     }
@@ -168,8 +166,6 @@ article.event, article.banner {
     }
 }
 div.banner {
-    /*@include display-flex;*/
-    /*@include flex-flow(row, wrap);*/
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;

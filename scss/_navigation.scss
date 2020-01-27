@@ -7,14 +7,12 @@ header {
 		margin: 0 20px;
 	}
 	&>div {
-		/*@include display-flex;*/
-		/*@include flex-flow (row, nowrap);	*/
 		display: -webkit-box;
 		display: flex;
 		-webkit-box-orient: horizontal;
 		-webkit-box-direction: normal;
-		        flex-flow: row, nowrap;
-		max-width: 1200px;
+		        flex-flow: row nowrap;
+		max-width: $maxWidth;
 		margin: 0 auto;
 		-webkit-box-pack: justify;
 		        justify-content: space-between;
@@ -37,7 +35,7 @@ header {
 }
 
 nav.header {
-	max-width: 1200px;
+	max-width: $maxWidth;
 	min-width: 93em;
 	min-width: -moz-max-content;
 	min-width: -webkit-max-content;

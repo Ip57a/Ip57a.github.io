@@ -232,13 +232,11 @@ header {
     max-width: 150px;
     margin: 0 20px; }
   header > div {
-    /*@include display-flex;*/
-    /*@include flex-flow (row, nowrap);	*/
     display: -webkit-box;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    flex-flow: row, nowrap;
+    flex-flow: row nowrap;
     max-width: 1200px;
     margin: 0 auto;
     -webkit-box-pack: justify;
@@ -373,6 +371,30 @@ nav.left a {
   color: #227;
   border-bottom: none; }
 
+#footer {
+  background: black;
+  color: white; }
+  #footer * {
+    font-size: 1.2rem; }
+  #footer *:not(a) {
+    color: #ddd; }
+  #footer section {
+    padding: 0 20px; }
+  #footer h2 {
+    margin: 5px 0;
+    border-bottom: 1px solid;
+    padding: 5px 15px 3px;
+    font-size: 1.6rem; }
+  #footer p {
+    line-height: 1.4; }
+
+.flexContainer {
+  display: flex; }
+
+.maxWidth {
+  max-width: 1200px;
+  margin: 0 auto; }
+
 .changingPhoto {
   margin: 10px auto;
   height: 300px;
@@ -427,8 +449,6 @@ nav.left a {
   100% {
     background-position: center, 300px center; } }
 main {
-  /*@include display-flex;*/
-  /*@include flex-flow(row, nowrap);*/
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -447,7 +467,7 @@ main {
   -webkit-box-flex: 2;
   flex: 2 0 25em; }
 
-.center {
+.generalFlexItem {
   -webkit-box-flex: 5;
   flex: 5 0 40em; }
 
@@ -502,8 +522,6 @@ article.event, article.banner {
     text-indent: 0; }
 
 div.banner {
-  /*@include display-flex;*/
-  /*@include flex-flow(row, wrap);*/
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
