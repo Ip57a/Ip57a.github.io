@@ -1,0 +1,93 @@
+.nav__item {
+	float: left;
+	min-height: 2.7em;
+	position: relative;
+	ul {
+		box-shadow: $shadow_nav_li;
+		max-height: 2.9em;
+		position: absolute;
+		overflow: hidden;
+		width: 100%;
+		z-index: 100;
+		&:hover {
+			max-height: 50em;
+		}
+	}
+	a {
+		font-size: 1.8em;
+		color: white;
+		display: block;
+		border-bottom: none;
+		padding: 0 5px;
+	}
+	a:hover {
+		border-bottom: none;
+	}
+	&:nth-child(1) {
+		min-width: 8.5em;
+		width: 9.24918%;
+	}
+	&:nth-child(2) {
+		min-width: 26.4em;
+		width: 28.72688%;
+	}
+	&:nth-child(3) {
+		min-width: 20.1em;
+		width: 21.8716%;
+	}
+	&:nth-child(4) {
+		min-width: 24.4em;
+		width: 26.5506%;
+	}
+	&:nth-child(5) {
+		min-width: 12.5em;
+		width: 13.60174%;
+	}
+	&:nth-child(n+1) {
+		margin: -1px;
+	}
+	&:first-child {
+		li:first-child{
+			border-bottom-right-radius: 0;
+		}
+	}
+	&:last-child {
+		li:first-child {
+			border-bottom-right-radius: 5px;
+		}
+		&:hover{
+			li:first-child {
+				border-bottom-right-radius: 0;
+			}
+		}
+	}
+	li:last-child {
+		border-radius: 0 0 5px 5px;
+	}
+	li:first-child {
+		text-align:center;
+		border-top: $nav_border;
+	}
+	li {
+		padding: 3px 1px 3px;
+		background: #ccc;
+		background: $gradient_nav_li;
+		border: $nav_border;
+		border-top: none;
+		&:hover, &.here {
+			background: -webkit-gradient(linear, left bottom, left top, from(#eee), to(#fff));
+			background: linear-gradient(to top, #eee, #fff);
+			box-shadow: inset 1px 1px 7px -2px rgba(0, 0, 0, .9);
+			a {
+				color: #000;
+			}
+		}
+		&.here a {
+			cursor: default;
+		}
+		&.here:first-of-type:not(:only-child) a:before {
+			content: "\2261";
+			margin-right: 10px;
+		}
+	}
+}

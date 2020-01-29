@@ -1,5 +1,8 @@
+let mainMenuNameSearch = ".nav";
+let subMenuNameSearch = "nav.left";
+//TODO: убрать id banner, заменить классом header
 $("#banner").load("banner.html");
-$("nav.header").load("menu.html");
+$(".nav").load("menu.html");
 
 //установка текущего тэга li в основном меню
 function setHeaderCurrentLi()
@@ -8,12 +11,12 @@ function setHeaderCurrentLi()
 	if (bodyName == "")
 		return;
 	let name = getMainMenuName(bodyName);
-	let li = getNavLiWhereIs("nav.header", name);
+	let li = getNavLiWhereIs(mainMenuNameSearch, name);
 	setLiHere(li);
 	name = getSubMenuName(bodyName);
 	if (!name)
 		return;
-	li = getNavLiWhereIs("nav.header", name);
+	li = getNavLiWhereIs(mainMenuNameSearch, name);
 	setLiHere(li);
 }
 
@@ -23,7 +26,7 @@ function setLeftNavCurrentLi()
 	let name = getNavName();
 	if (name == "")
 		return;
-	let li = getNavLiWhereIs("nav.left", name);
+	let li = getNavLiWhereIs(subMenuNameSearch, name);
 	setLiHere(li);
 }
 
