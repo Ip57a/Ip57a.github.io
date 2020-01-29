@@ -1,0 +1,24 @@
+.sticker {
+	padding: 5px 5px 10px;
+    background-color: #cbe0ec;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, .3);
+    position: relative;
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 40px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        top: -10px;
+    }
+    &:before {
+        background-image: url(../images/interface/marker_left.png);
+        left: -7px;
+    }
+    &:after {
+        background-image: url(../images/interface/marker_right.png);
+        right: -7px;
+    }
+}

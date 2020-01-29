@@ -2,6 +2,14 @@
 <news>
 	<new>
 		<date>
+			<year>2020</year>
+			<month>1</month>
+			<day>1</day>
+		</date>
+		<href>newsTemplate</href>
+	</new>
+	<new>
+		<date>
 			<year>2019</year>
 			<month>12</month>
 			<day>12</day>

@@ -29,18 +29,6 @@ p{
 	font-size: 1.6rem;
 }
 
-a {
-	text-decoration: none;
-	font-size: 1.6em;
-	font-size: 1.6rem;
-	color: #00ace5;
-	border-bottom: 1px solid transparent;
-	//@include transition(border-bottom-color, .5s);
-	transition: border-bottom-color 0.5s;
-}
-a:hover {
-	border-bottom-color: #00ace5;
-}
 time {
 	font-weight: bold;
 }
@@ -55,7 +43,7 @@ strong {
 	float: right;
 }
 
-figure {
+/*figure {
 	&.big *{
 		max-width: 40em;
 		max-height: 40em;
@@ -76,12 +64,13 @@ figcaption {
 	text-align: center;
 	color: #555;
 	font-size: 1.2em;
-}
+}*/
 
-.signature {
+/*TODO: забивается селектором article p;*/
+/*.signature {
 	text-align: right;
 	float: right;
 	margin: 20px 20px;
 	color: #98032c;
 	clear: right;
-}
+}*/

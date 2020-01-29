@@ -2,3 +2,25 @@
 	display: -webkit-box;
 	display: flex;
 }
+
+.flexContainer_row_wrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	        flex-flow: row wrap;
+}
+.flexContainer_row_nowrap {
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	        flex-flow: row nowrap;
+}
+.flexContainer_center {
+	-webkit-box-pack: justify;
+	    justify-content: space-between;
+	-webkit-box-align: center;
+	    align-items: center;
+}
+
+.flexContainer_hTop {
+	-webkit-box-align: start;
+	    align-items: flex-start;
+}

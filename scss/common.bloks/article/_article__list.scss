@@ -1,0 +1,13 @@
+.article__list {
+	color: $textColor;
+	margin: 0 0 10px 20px;
+	font-size: 1.6rem;
+	li {
+		margin: 2px 0;
+	}
+}
+
+.article__list_mark {
+	list-style: circle;
+	padding-left: 10px;
+}

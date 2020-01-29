@@ -1,0 +1,17 @@
+.caption_lvl1 {
+	color: $hMainArticleColor;
+    border-bottom: 1px solid $hMainArticleColor;
+    margin-bottom: 20px;
+}
+
+.caption_lvl2 {
+	color: $hArticleColor;
+    border-bottom: 1px dashed $hArticleColor;
+    margin: 5px 15px 20px;
+    padding: 0 0 3px;
+}
+
+.caption_hasDate {
+	position: relative;
+    overflow: visible;
+}

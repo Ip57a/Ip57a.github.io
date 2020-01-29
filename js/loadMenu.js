@@ -8,7 +8,7 @@ $(".nav").load("menu.html");
 function setHeaderCurrentLi()
 {
 	let bodyName = getBodyName();
-	if (bodyName == "")
+	if (!bodyName || bodyName == "")
 		return;
 	let name = getMainMenuName(bodyName);
 	let li = getNavLiWhereIs(mainMenuNameSearch, name);

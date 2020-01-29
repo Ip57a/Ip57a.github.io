@@ -63,12 +63,6 @@ function getRelativePath()
 // добавление секций с новостями
 function appendSections(xmlData, number)
 {
-	let options = {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	}
-
 	//получаем maxAmount значений из массива со смещением
 	let data = xmlData.slice((number - 1)*maxAmount, number*maxAmount);
 	sectionNumber = data.length;
@@ -105,8 +99,8 @@ function appendSectionsArray()
 
 function appendLink(xmlData, number)
 {
+	//макс. кол-во новостей в секции
 	let amount = Math.ceil(xmlData.length / maxAmount);
-	//let amount = 5; //для тестирования
 	if (amount < 2)
 		return;
 	let div = "<div style='text-align:center'>";
@@ -128,26 +122,20 @@ function appendLink(xmlData, number)
 function parseShortNew(html, item)
 {
 	let section = parseNew(html);
-	//$(section).find("figure").remove();
-	//$(section).find("img").remove();
-	//$(section).find("p:gt(0)").remove();
+	//оставляем только разрешенные теги	
 	$(section).contents().not("h1, h2, h3, h4, h5, h6, div, p, a, br").remove();
 	$(section).contents().filter(function(){
 		return this.textContent.trim().length === 0;
 	}).remove();
+
 	$(section).addClass("sticker");
-	let options = {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	}
-	/*$(section).find("h2:eq(0)").addClass("has_date").append('<span class="date">' + item.date.toLocaleString("ru", options) + '</span>');*/
-	//let text = $(section).find("p");
+	$(section).find(".article__h3").removeClass("article__h3").addClass("sticker__h3");
+	// ограничиваем секцию
 	let text = $(section).contents();
 	if (text.length == 0)
 		return section;
 
-	let innerText; // = p[0].innerHTML;
+	let innerText; 
 	let max = current = 0;
 	let tags = [];
 	let i = 0;
@@ -168,8 +156,6 @@ function parseShortNew(html, item)
 		innerText = innerText.substring(0, 500 - current);
 		text[i-1].innerText = innerText + "...";
 		text[i-1].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
-		/*let attr = "p:gt(" + (i-1) + ")";
-		$(section).find(attr).remove();*/
 		$(section).children(":gt("+(i-1)+")").remove();
 	}
 	return section;
