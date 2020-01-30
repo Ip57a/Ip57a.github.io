@@ -15,6 +15,7 @@
 @import "common.bloks/article/_article__text.scss";
 @import "common.bloks/caption/_caption.scss";
 @import "common.bloks/caption/_caption__date.scss";
+@import "common.bloks/divided/_divided.scss";
 @import "common.bloks/header/_header.scss";
 @import "common.bloks/headerBanner/_headerBanner.scss";
 @import "common.bloks/headerBanner/_headerBanner__img.scss";
@@ -31,9 +32,14 @@
 @import "common.bloks/imgContainer/_imgContainer__caption.scss";
 @import "common.bloks/imgContainer/_imgContainer__img.scss";
 @import "common.bloks/imgContainer/_imgContainer__item_center.scss";
+@import "common.bloks/interlinear/_interlinear.scss";
+@import "common.bloks/interlinear/_interlinear__item.scss";
+@import "common.bloks/linkDisabled/_linkDisabled.scss";
 @import "common.bloks/maxContainer/_maxContainer.scss";
 @import "common.bloks/nav/_nav.scss";
 @import "common.bloks/nav/_nav__item.scss";
+@import "common.bloks/nowrap/_nowrap.scss";
+@import "common.bloks/remark/_remark.scss";
 @import "common.bloks/section/_section.scss";
 @import "common.bloks/signature/_signature.scss";
 @import "common.bloks/sticker/_sticker.scss";

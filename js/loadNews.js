@@ -106,13 +106,15 @@ function appendLink(xmlData, number)
 	let div = "<div style='text-align:center'>";
 	for (i = 1; i <= amount; i++)
 	{
+		div += "<a href='#" + i + "' onclick=";
 		if (i != number)
 		{
-			div += "<a href='#" + i + "' onclick='reloadNews(" + i + ")'> " + i + " </a>";
+			div += "'reloadNews(" + i + ")'";
 		}else
 		{
-			div += "<span class='a_disabled'> " + i + " </span>"
+			div += "'return false' class='linkDisabled' ";
 		}
+		div += "> " + i + " </a>"
 	}
 	div += "</div>"
 	$("#news").append(div);

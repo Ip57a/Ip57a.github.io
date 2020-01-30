@@ -43,34 +43,15 @@ strong {
 	float: right;
 }
 
-/*figure {
-	&.big *{
-		max-width: 40em;
-		max-height: 40em;
-	}
-	&.medium *{
-		max-width: 30em;
-		max-height: 30em;
-	}
-	&.center *{
-		margin: 2px auto 5px;
-	}
-	img {
-		margin: 2px 20px 5px;
-		display: block;
-	}
+a {
+	text-decoration: none;
+	font-size: 1.6em;
+	font-size: 1.6rem;
+	color: #00ace5;
+	border-bottom: 1px solid transparent;
+	-webkit-transition: border-bottom-color 0.5s;
+	transition: border-bottom-color 0.5s;
 }
-figcaption {
-	text-align: center;
-	color: #555;
-	font-size: 1.2em;
-}*/
-
-/*TODO: забивается селектором article p;*/
-/*.signature {
-	text-align: right;
-	float: right;
-	margin: 20px 20px;
-	color: #98032c;
-	clear: right;
-}*/
+a:hover {
+	border-bottom-color: #00ace5;
+}
