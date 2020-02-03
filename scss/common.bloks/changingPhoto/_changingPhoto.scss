@@ -1,0 +1,39 @@
+$photoURL1: url(../images/interface/change/rod.jpg);
+$photoURL2: url(../images/interface/change/1.jpg);
+.changingPhoto {
+	margin: 10px 30px 10px 10px;
+    height: 200px;
+    width: 300px;
+    min-width: 300px;
+    background: #C00;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .8);
+    background: $photoURL1 center / cover no-repeat #aaa;
+    -webkit-animation: mainPhoto2 10s infinite;
+            animation: mainPhoto2 10s infinite;
+    background-image: $photoURL1, $photoURL2;
+    background-position: center, 300px center;
+}
+
+@-webkit-keyframes mainPhoto2 {
+    0%, 45% {
+        background-position: center, 300px center;
+    }
+    50%, 95% {
+        background-position: -340px center, center;
+    }
+    100% {
+        background-position: center, 300px center;
+    }
+}
+
+@keyframes mainPhoto2 {
+    0%, 45% {
+        background-position: center, 300px center;
+    }
+    50%, 95% {
+        background-position: -340px center, center;
+    }
+    100% {
+        background-position: center, 300px center;
+    }
+}

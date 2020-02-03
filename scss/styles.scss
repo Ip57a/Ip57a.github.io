@@ -3,9 +3,6 @@
 @import "_reset.scss";
 @import "_general.scss";
 @import "_links.scss";
-@import "_list.scss";
-@import "_table.scss";
-@import "_navigation.scss";
 @import "common.bloks/adBanner/_adBanner.scss";
 @import "common.bloks/adBanner/_adBanner__rectangle.scss";
 @import "common.bloks/adBanner/_adBanner__small.scss";
@@ -15,6 +12,7 @@
 @import "common.bloks/article/_article__text.scss";
 @import "common.bloks/caption/_caption.scss";
 @import "common.bloks/caption/_caption__date.scss";
+@import "common.bloks/changingPhoto/_changingPhoto.scss";
 @import "common.bloks/divided/_divided.scss";
 @import "common.bloks/header/_header.scss";
 @import "common.bloks/headerBanner/_headerBanner.scss";
@@ -44,4 +42,12 @@
 @import "common.bloks/signature/_signature.scss";
 @import "common.bloks/sticker/_sticker.scss";
 @import "common.bloks/sticker/_sticker__h3.scss";
-@import "_main.scss";
+@import "common.bloks/subNav/_subNav.scss";
+@import "common.bloks/subNav/_subNav__item.scss";
+@import "common.bloks/table/_table.scss";
+@import "common.bloks/table/_table__body.scss";
+@import "common.bloks/table/_table__caption.scss";
+@import "common.bloks/table/_table__cell.scss";
+@import "common.bloks/table/_table__coll.scss";
+@import "common.bloks/table/_table__headRow.scss";
+@import "common.bloks/table/_table__row.scss";

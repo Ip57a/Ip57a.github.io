@@ -1,0 +1,22 @@
+.table__row_first {
+	border-radius: 10px 10px 0 0;
+	.table__cell_first {
+		border-radius: 10px 0 0 0;
+	}
+	.table__cell_last {
+		border-radius: 0 10px 0 0;
+	}
+}
+
+.table__row_last {
+	border-radius: 10px 10px 0 0;
+	.table__cell {
+		border-bottom: $table_border;
+	}
+	.table__cell_first {
+		border-radius: 0 0 0 10px;
+	}
+	.table__cell_last {
+		border-radius: 0 0 10px 0;
+	}
+}

@@ -1,0 +1,25 @@
+.table__cell {
+	padding: 5px 10px;
+	border: $table_border;
+	border-bottom: none;
+	border-right: none;
+}
+
+.table__cell:last-child {	
+	border-right: $table_border;
+}
+
+.table__cell_general {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.table__cell_head {
+	padding: 5px 10px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.table__cell_subpoint {
+	min-width: 5rem;
+}

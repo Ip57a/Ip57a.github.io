@@ -1,0 +1,12 @@
+.table__body {
+	tr:nth-of-type(odd) {
+		background: -webkit-gradient(linear, left top, left bottom, from(#947132), to(#22202d));
+		background: linear-gradient(to bottom, #947132, #22202d);
+		color: #d6cccc;
+	}
+	tr:nth-of-type(even) {
+		background: -webkit-gradient(linear, left bottom, left top, from(#6f6c6c), to(#ffffff));
+		background: linear-gradient(to top, #6f6c6c, #ffffff);
+		color: black;
+	}
+}

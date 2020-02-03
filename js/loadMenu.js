@@ -1,5 +1,5 @@
 let mainMenuNameSearch = ".nav";
-let subMenuNameSearch = "nav.left";
+let subMenuNameSearch = "nav.subNav";
 //TODO: убрать id banner, заменить классом header
 $("#banner").load("banner.html");
 $(".nav").load("menu.html");

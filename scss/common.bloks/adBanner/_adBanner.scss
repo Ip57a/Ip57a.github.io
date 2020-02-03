@@ -2,7 +2,13 @@
 	padding: 0 10px;
 }
 
-.adBanner a {
-	background: none;
-	padding-left: 0;
+.adBanner {
+	a {
+		background: unset;
+		padding-left: 0;
+		border-bottom: none;
+	}
+	a:hover {
+		border-bottom: none;
+	}
 }
