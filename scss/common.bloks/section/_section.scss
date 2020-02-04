@@ -1,6 +1,12 @@
 .section{
-	padding: 0 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 .section_vert {
-	padding: 10px 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.section_bottom {
+	padding-bottom: 10px;
 }
