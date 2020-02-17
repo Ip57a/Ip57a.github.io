@@ -10,7 +10,9 @@
 		width: 100%;
 		z-index: 100;
 		&:hover {
-			max-height: 50em;
+			max-height: 55em;
+			border-bottom-right-radius: 5px;
+			border-bottom-left-radius: 5px;
 		}
 	}
 	a {
