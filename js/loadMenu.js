@@ -1,6 +1,5 @@
 let mainMenuNameSearch = ".nav";
 let subMenuNameSearch = "nav.subNav";
-//TODO: убрать id banner, заменить классом header
 $("#banner").load("banner.html");
 $(".nav").load("menu.html");
 
@@ -82,7 +81,10 @@ function getMainMenuName(id)
 		case "ovz":
 		case "vpr":
 			name = "Учебная работа";
-		break;
+			break;
+		case "graduates":
+			name = "Общий раздел";
+			break;
 	}
 	return name;
 }
@@ -138,6 +140,9 @@ function getSubMenuName(id)
 			break;
 		case "vpr":
 			name = "ВПР";
+			break;
+		case "graduates":
+			name = "Выпускники";
 			break;
 	}
 	return name;

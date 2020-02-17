@@ -1,16 +1,17 @@
 .nav__item {
-	float: left;
-	min-height: 2.7em;
+	//float: left;
+	min-height: $firstRowMinHeight;
 	position: relative;
+	//width: 100% / $colAmount;
 	ul {
 		box-shadow: $shadow_nav_li;
-		max-height: 2.9em;
+		max-height: $firstRowMinHeight;
 		position: absolute;
 		overflow: hidden;
 		width: 100%;
 		z-index: 100;
 		&:hover {
-			max-height: 55em;
+			max-height: 65em;
 			border-bottom-right-radius: 5px;
 			border-bottom-left-radius: 5px;
 		}
@@ -26,26 +27,29 @@
 	a:hover {
 		border-bottom: none;
 	}
-	&:nth-child(1) {
+	@for $i from 1 through $colAmount {
+		&:nth-child(#{$i}){
+			$width: nth($colMinWidth, $i);
+			min-width: $width;
+			$flexGrow: $width/$minNavWidth * 100;
+			flex: $flexGrow 0 $width;
+		}
+	}
+	/*&:nth-child(1) {
 		min-width: 8.5em;
-		width: 9.4972%;
 	}
 	&:nth-child(2) {
-		min-width: 24em;
-		width: 26.8156%;
+		min-width: 17em;
 	}
 	&:nth-child(3) {
 		min-width: 17em;
-		width: 18.9944%;
 	}
 	&:nth-child(4) {
-		min-width: 23em;
-		width: 25.6983%;
+		min-width: 17em;
 	}
 	&:nth-child(5) {
 		min-width: 17em;
-		width: 18.9945%;
-	}
+	}*/
 	&:nth-child(n+1) {
 		margin: -1px;
 	}
@@ -70,6 +74,13 @@
 	li:first-child {
 		text-align:center;
 		border-top: $nav_border;
+		min-height: $firstRowMinHeight;
+		display: -webkit-box;
+		display: flex;
+		-webkit-box-pack: center;
+		        justify-content: center;
+		-webkit-box-align: center;
+		        align-items: center;
 	}
 	li {
 		padding: 3px 1px 3px;
@@ -87,10 +98,12 @@
 		}
 		&.here a {
 			cursor: default;
+			padding-left: 20px;
+			background: 5px center / auto 9px url("../images/interface/menuHere.png") no-repeat;
 		}
-		&.here:first-of-type:not(:only-child) a:before {
+		/*&.here:first-of-type:not(:only-child) a:before {
 			content: "\2261";
 			margin-right: 10px;
-		}
+		}*/
 	}
 }

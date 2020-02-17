@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/loadDoc.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Выпускники</title>
+</head>
+<body id="graduates">
+	<header id="banner" class="header">
+		
+	</header>
+	<nav class="nav maxContainer">
+		
+	</nav>
+	<script src="js/loadMenu.js"></script>
+	<noscript>
+		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
+	</noscript>
+	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
+		<article class="article flexContainer__subNav">
+			<nav class="subNav">
+				<script>
+					$("nav.subNav").load("menuLive.html");
+				</script>
+			</nav>
+		</article>
+		<article class="article flexContainer__size5">
+			<h1 class="caption_lvl1">Выпускники</h1>
+			<h2 class="caption_lvl2">2019 год</h2>
+			<div class="graduatesPanel"></div>
+		</article>
+	</main>
+</body>
+</html>

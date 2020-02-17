@@ -1,8 +1,17 @@
+$firstRowMinHeight: 5em; //мин. высота основного меню
+$colMinWidth: 8.5em 17em 14em 16em 17em 13.5em;	//минимальные ширины меню
+$colAmount: length($colMinWidth);	//кол-во элементов меню
+$minNavWidth:0;
+@each $col in $colMinWidth {
+	$minNavWidth: $minNavWidth + $col;
+}
+
 .nav {
-	min-width: 93em;
-	min-width: -webkit-max-content;
+	//min-width: $navWidth;
+	/*min-width: -webkit-max-content;
 	min-width: -moz-max-content;
-	min-width: max-content;
-	min-height: 2.7em;
+	min-width: max-content;*/
+	//min-height: $firstRowMinHeight;
 	padding: 1px 10px 0;
+	display: flex;
 }
