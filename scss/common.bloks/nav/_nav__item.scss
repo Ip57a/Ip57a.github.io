@@ -1,8 +1,6 @@
 .nav__item {
-	//float: left;
 	min-height: $firstRowMinHeight;
 	position: relative;
-	//width: 100% / $colAmount;
 	ul {
 		box-shadow: $shadow_nav_li;
 		max-height: $firstRowMinHeight;
@@ -32,24 +30,10 @@
 			$width: nth($colMinWidth, $i);
 			min-width: $width;
 			$flexGrow: $width/$minNavWidth * 100;
-			flex: $flexGrow 0 $width;
+			-webkit-box-flex: $flexGrow;
+			        flex: $flexGrow 0 $width;
 		}
 	}
-	/*&:nth-child(1) {
-		min-width: 8.5em;
-	}
-	&:nth-child(2) {
-		min-width: 17em;
-	}
-	&:nth-child(3) {
-		min-width: 17em;
-	}
-	&:nth-child(4) {
-		min-width: 17em;
-	}
-	&:nth-child(5) {
-		min-width: 17em;
-	}*/
 	&:nth-child(n+1) {
 		margin: -1px;
 	}
@@ -75,6 +59,7 @@
 		text-align:center;
 		border-top: $nav_border;
 		min-height: $firstRowMinHeight;
+		height: 0;	//для работы в IE11
 		display: -webkit-box;
 		display: flex;
 		-webkit-box-pack: center;
