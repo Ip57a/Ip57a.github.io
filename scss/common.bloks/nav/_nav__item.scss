@@ -81,8 +81,12 @@
 				color: #000;
 			}
 		}
-		&.here a {
-			cursor: default;
+		&.here {
+			a {
+				cursor: default;
+			}
+		}
+		&.here:first-of-type a {
 			padding-left: 20px;
 			background: 5px center / auto 9px url("../images/interface/menuHere.png") no-repeat;
 		}

@@ -41,7 +41,7 @@ function getNavLiWhereIs(navSelector, text)
 function setLiHere(li)
 {
 	li.addClass("here");
-	let a = li.find("a");
+	let a = li.find(">a");
 	a.attr("onclick", "return false;")
 }
 
@@ -73,6 +73,7 @@ function getMainMenuName(id)
 		case "paidServices":
 		case "finActivity":
 		case "vacancy":
+		case "npb":
 			name = "Сведения об ОО";
 			break;
 		case "progress":
@@ -143,6 +144,9 @@ function getSubMenuName(id)
 			break;
 		case "graduates":
 			name = "Выпускники";
+			break;
+		case "npb":
+			name = "Нормативно-правовая база";
 			break;
 	}
 	return name;

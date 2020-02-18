@@ -397,35 +397,13 @@ a[href^="https:"] {
 /*╨╝╨╕╨╜╨╕╨╝╨░╨╗╤М╨╜╤Л╨╡ ╤И╨╕╤А╨╕╨╜╤Л ╨╝╨╡╨╜╤О*/
 /*╨║╨╛╨╗-╨▓╨╛ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╨╛╨▓ ╨╝╨╡╨╜╤О*/
 .nav {
-  /*min-width: $navWidth;*/
-  /*min-width: -webkit-max-content;
-  min-width: -moz-max-content;
-  min-width: max-content;*/
-  /*min-height: $firstRowMinHeight;*/
   padding: 1px 10px 0;
   display: -webkit-box;
   display: flex; }
 
 .nav__item {
-  /*float: left;*/
   min-height: 5em;
-  position: relative;
-  /*width: 100% / $colAmount;*/
-  /*&:nth-child(1) {
-  	min-width: 8.5em;
-  }
-  &:nth-child(2) {
-  	min-width: 17em;
-  }
-  &:nth-child(3) {
-  	min-width: 17em;
-  }
-  &:nth-child(4) {
-  	min-width: 17em;
-  }
-  &:nth-child(5) {
-  	min-width: 17em;
-  }*/ }
+  position: relative; }
   .nav__item ul {
     box-shadow: 4px 4px 6px rgba(50, 70, 70, 0.6);
     max-height: 5em;
@@ -508,7 +486,8 @@ a[href^="https:"] {
       .nav__item li:hover a, .nav__item li.here a {
         color: #000; }
     .nav__item li.here a {
-      cursor: default;
+      cursor: default; }
+    .nav__item li.here:first-of-type a {
       padding-left: 20px;
       background: 5px center/auto 9px url("../images/interface/menuHere.png") no-repeat; }
 
@@ -565,25 +544,34 @@ a[href^="https:"] {
 .sticker__h3 {
   margin: 5px 15px; }
 
-.subNav__item {
+.subNav {
   margin: 10px 5px; }
-  .subNav__item li {
-    margin: 0 10px;
-    border-bottom: 1px solid #999;
-    padding: 5px 10px; }
-    .subNav__item li.here {
-      background: 3px center/6% url("../images/interface/checked.png") no-repeat;
-      padding-left: 20px; }
-      .subNav__item li.here a {
-        font-weight: bold; }
-    .subNav__item li:hover:not(.here) {
-      background: 3px center/6% url("../images/interface/checked_black.png") no-repeat;
-      padding-left: 20px; }
-      .subNav__item li:hover:not(.here) a {
-        font-weight: bold; }
-  .subNav__item a {
-    color: #227;
-    border-bottom: none; }
+
+.subNav__container {
+  margin: 3px 0 0; }
+
+.subNav__item.here, .subNav__item:hover:not(.here), .subNav__item_lvl2.here, .subNav__item_lvl2:hover:not(.here) {
+  padding-left: 20px; }
+  .subNav__item.here > a, .subNav__item:hover:not(.here) > a, .subNav__item_lvl2.here > a, .subNav__item_lvl2:hover:not(.here) > a {
+    font-weight: bold; }
+.subNav__item.here, .subNav__item:hover:not(.here), .subNav__item_lvl2.here, .subNav__item_lvl2:hover:not(.here) {
+  background: 3px 8px / 13px auto no-repeat; }
+.subNav__item.here, .subNav__item_lvl2.here {
+  background-image: url("../images/interface/checked.png"); }
+  .subNav__item.here > a, .subNav__item_lvl2.here > a {
+    cursor: default; }
+.subNav__item:hover:not(.here), .subNav__item_lvl2:hover:not(.here) {
+  background-image: url("../images/interface/checked_black.png"); }
+.subNav__item a, .subNav__item_lvl2 a {
+  color: #227;
+  border-bottom: none; }
+
+.subNav__item {
+  padding: 5px 10px;
+  border-bottom: 1px solid #999; }
+
+.subNav__item_lvl2 {
+  padding: 3px 15px; }
 
 .table {
   font-size: 1.6rem;
