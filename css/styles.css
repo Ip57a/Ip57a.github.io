@@ -186,13 +186,14 @@ a[href^="https:"] {
 .caption_lvl1 {
   color: #504c8e;
   border-bottom: 1px solid #504c8e;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding-left: 15px; }
 
 .caption_lvl2 {
   color: #73210e;
   border-bottom: 1px dashed #73210e;
   margin: 5px 15px 20px;
-  padding: 0 0 3px; }
+  padding: 0 0 3px 15px; }
 
 .caption_hasDate {
   position: relative;

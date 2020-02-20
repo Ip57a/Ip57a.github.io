@@ -2,13 +2,14 @@
 	color: $hMainArticleColor;
     border-bottom: 1px solid $hMainArticleColor;
     margin-bottom: 20px;
+    padding-left: 15px;
 }
 
 .caption_lvl2 {
 	color: $hArticleColor;
     border-bottom: 1px dashed $hArticleColor;
     margin: 5px 15px 20px;
-    padding: 0 0 3px;
+    padding: 0 0 3px 15px;
 }
 
 .caption_hasDate {
