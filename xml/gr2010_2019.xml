@@ -9,7 +9,27 @@
 					<name>Фарафонова Светлана Павловна</name>
 					<photo>images/teachers/farafonova_m.jpg</photo>
 				</curator>
-				<groupPhoto>images/graduates/2019/exampleClass/group.jpg</groupPhoto>
+				<groupPhoto>images/graduates/2019/exampleClass/group3.jpg</groupPhoto>
+				<student>
+					<name></name>
+					<photo></photo>
+				</student>
+				<student>
+					<name></name>
+					<photo></photo>
+				</student>
+				<student>
+					<name></name>
+					<photo></photo>
+				</student>
+				<student>
+					<name></name>
+					<photo></photo>
+				</student>
+				<student>
+					<name></name>
+					<photo></photo>
+				</student>
 			</class>
 		</classes>
 	</item>

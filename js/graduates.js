@@ -47,7 +47,6 @@ function parseItemGraduatesXml(xml) {
 			let unit = {};
 			unit.name = $(this).children("name").text();	
 			unit.curator = {};
-			debugger;
 			unit.curator.name = $(this).children("curator").children("name").text();
 			unit.curator.photo = $(this).children("curator").children("photo").text();
 			unit.groupPhoto = $(this).children("groupPhoto").text();
@@ -185,7 +184,7 @@ function createCuratorPhoto(unit) {
 function createGroupPhoto(unit) {
 	let photo = unit.groupPhoto;
 	if (photo && photo.length > 0) {
-		return createPhotoContainer(null, photo);
+		return createPhotoContainer("", photo);
 	}
 	return null;
 }
