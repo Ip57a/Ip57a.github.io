@@ -1,0 +1,9 @@
+.graduatesPanel__photoContainer {
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	        flex-flow: column;
+	-webkit-box-align: center;
+	        align-items: center;
+}

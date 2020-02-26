@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graduates>
+	<item>
+		<name>2010-2019</name>
+		<file>xml/gr2010_2019.xml</file>
+	</item>
+	<item>
+		<name>2000-2009</name>
+		<file>xml/gr2000_2009.xml</file>
+	</item>
+</graduates>

@@ -2,5 +2,10 @@
 	<li class="subNav__item"><a href="graduates.html">Выпускники</a></li>
 </ul>
 <script>
-	setLeftNavCurrentLi();
+	let addMenu = new MultipleLoadingScript();
+	addMenu.src = ["js/path.js", "js/graduates.js"];
+	addMenu.runOnLoad = [null, {funcName : "appendMenu", param: ".subNav li:has(a[href='graduates.html')"}];
+	addMenu.runAfter = [{funcName: "setLeftNavCurrentLi", param:null}];
+	addMenu.start();
+
 </script>

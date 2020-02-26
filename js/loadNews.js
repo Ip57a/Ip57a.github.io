@@ -2,9 +2,6 @@ let maxAmount = 5;	//макс. кол-во новостей на страниц�
 let maxSymbols = 400;  //мак. кол-во символов в "короткой" новости
 let sectionNumber;
 let sectionArray = [];	//массив полученных новостей
-/*let id = window.location.hash;
-id = parseInt(id.replace(/#/g, ""));
-loadNews(id);*/
 
 // загрузка новостей на главной странице
 function mainNews()
@@ -14,7 +11,7 @@ function mainNews()
 	loadNews(id);
 }
 
-// перезагрузка навостей на главной странице
+// перезагрузка новостей на главной странице
 function reloadNews(number)
 {
 	clearNews();
@@ -32,7 +29,7 @@ function loadNews(number)
 {
 	if (isNaN(number) || number < 1)
 		number = 1;
-	$.get(getPath() + "xml/news.xml", function(xml)
+	$.get($.getPath() + "xml/news.xml", function(xml)
 	{
 		let xmlData = parseXml(xml);
 		let amount = Math.ceil(xmlData.length / maxAmount);
@@ -40,13 +37,6 @@ function loadNews(number)
 			number = amount;
 		appendSections(xmlData, number);
 	});
-}
-
-// получение пути к html документу
-function getPath()
-{
-	let path = $.urlPath(window.location.href);
-	return path;
 }
 
 // получение относительного пути
@@ -69,7 +59,7 @@ function appendSections(xmlData, number)
 	sectionArray.length = 0;
 
 	$.each(data, function(index, item){
-		let path = getPath() + "news/" + item.href + ".html";
+		let path = $.getPath() + "news/" + item.href + ".html";
 		$.ajax({
 			url: path, 
 			success: function(html)
@@ -205,18 +195,4 @@ function getNew()
 		}
 	});
 
-}
-
-$.urlParam = function(parametrName, href){
-	let results = new RegExp('[\?&]' + parametrName + '=([^&#]*)').exec(href);
-	if (results == null){
-		return null;
-	}
-	return results[1] || 0;
-}
-
-$.urlPath = function(href){
-	let re = new RegExp('^(https*).*/');
-	let result = re.exec(href);
-	return result == null ? null : result[0] || 0;
 }

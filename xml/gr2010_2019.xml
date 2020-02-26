@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graduates>
+	<item>
+		<year>2019</year>
+		<classes>
+			<class>
+				<name>11А</name>
+				<curator>
+					<name>Фарафонова Светлана Павловна</name>
+					<photo>images/teachers/farafonova_m.jpg</photo>
+				</curator>
+				<groupPhoto>images/graduates/2019/exampleClass/group.jpg</groupPhoto>
+			</class>
+		</classes>
+	</item>
+</graduates>
