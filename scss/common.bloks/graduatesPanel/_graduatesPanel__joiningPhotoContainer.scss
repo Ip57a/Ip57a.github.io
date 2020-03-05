@@ -1,0 +1,12 @@
+.graduatesPanel__joiningPhotoContainer {
+	display: -webkit-box;
+	display: flex;
+	justify-content:space-around;
+	-webkit-box-align: center;
+	        align-items: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	        flex-flow: row wrap;
+	max-width: 180px;
+	max-height: 120px;
+}

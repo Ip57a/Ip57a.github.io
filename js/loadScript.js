@@ -49,7 +49,7 @@ function MultipleLoadingScript() {
 		if (!funcs)
 			return;
 		if (Array.isArray(funcs)) {
-			for (var i = 0; i < funcs.length; i++) {
+			for (let i = 0; i < funcs.length; i++) {
 				this.runFunc(funcs[i]);
 			}
 		} else 
@@ -58,7 +58,7 @@ function MultipleLoadingScript() {
 
 	this.runAfterFunc = function() {
 		if (this.runAfter && this.runAfter.length > 0)
-			for (var i = 0; i < this.runAfter.length; i++) {
+			for (let i = 0; i < this.runAfter.length; i++) {
 				this.runFunc(this.runAfter[i]);
 			}
 	};

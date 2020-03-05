@@ -50,6 +50,14 @@ function parseItemGraduatesXml(xml) {
 			unit.curator.name = $(this).children("curator").children("name").text();
 			unit.curator.photo = $(this).children("curator").children("photo").text();
 			unit.groupPhoto = $(this).children("groupPhoto").text();
+			unit.students = [];
+			$(this).find("student").each(function() {
+				let student = {
+					name: $(this).children("name").text(),
+					photo: $(this).children("photo").text(),
+				}
+				unit.students.push(student);
+			});
 			item.classes.push(unit);
 		});
 		
@@ -77,7 +85,7 @@ function createSubMenu(data)
 {
 	let menu = document.createElement("ul");
 	menu.classList.add("subNav__container");
-	for (var i = 0; i < data.length; i++) {
+	for (let i = 0; i < data.length; i++) {
 		let li = document.createElement("li");
 		li.classList.add("subNav__item_lvl2");
 		let link = document.createElement("a");
@@ -116,7 +124,7 @@ function loadArticle()
 function getFile(name)
 {
 	let data = _data.data;
-	for (var i = 0; i < data.length; i++) {
+	for (let i = 0; i < data.length; i++) {
 		if (name == data[i].name) {
 			return data[i].file;
 		}
@@ -126,14 +134,10 @@ function getFile(name)
 
 function appendArticle(xmlData){
 	let where = "#graduatesArticle";
-	for (var i = 0; i < xmlData.length; i++) {
+	for (let i = 0; i < xmlData.length; i++) {
 		appendYear(where, xmlData[i]);
 		createGraduatesPanel(where, xmlData[i]);
 	}
-}
-
-function appendCurator(item) {
-	//let curator = 
 }
 
 function appendYear(where, item) {
@@ -147,7 +151,7 @@ function appendYear(where, item) {
 
 function createTag(tagName, classNames) {
 	let tag = document.createElement(tagName);
-	for (var i = 1; i < arguments.length; i++) {
+	for (let i = 1; i < arguments.length; i++) {
 		tag.classList.add(arguments[i]);
 	}
 	return tag;
@@ -186,7 +190,21 @@ function createGroupPhoto(unit) {
 	if (photo && photo.length > 0) {
 		return createPhotoContainer("", photo);
 	}
-	return null;
+	return joinInGroupPhoto(unit);
+}
+
+function joinInGroupPhoto(unit) {
+	if (!unit.students || !Array.isArray(unit.students))
+		return null;
+	let src = [];
+	for (let i = 0; i < unit.students.length; i++) {
+		let path = unit.students[i].photo;
+		if (path && path.length > 0) {
+			src.push(unit.students[i].photo);
+		}
+
+	}
+	return getPhotoGalery(src, 140, 120);
 }
 
 function createPhotoContainer(caption, photo, alt) {
