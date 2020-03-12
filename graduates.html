@@ -30,10 +30,11 @@
 		</article>
 		<article id="graduatesArticle" class="article flexContainer__size5">
 			<h1 class="caption_lvl1">Выпускники</h1>
+			
 			<script>
 				let loadArt = new MultipleLoadingScript()
 				loadArt.src = ["js/path.js", "js/graduates.js"];
-				loadArt.runOnLoad = [null, {funcName : "loadArticle", param: null}];
+				loadArt.runOnLoad = [null, {funcName : "graduatesObject.loadArticle", param: null}];
 				loadArt.start();
 			</script>
 		</article>

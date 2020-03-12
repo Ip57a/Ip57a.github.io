@@ -64,7 +64,8 @@ function MultipleLoadingScript() {
 	};
 
 	this.runFunc = function(func) {
-		let fn = window[func.funcName];
+
+		let fn = this.getFunctionFromName(func.funcName);
 		if (typeof fn != "function" )
 			return;
 		fn(func.param);
@@ -94,5 +95,39 @@ function MultipleLoadingScript() {
 		}, {once: true});
 		document.head.appendChild(script);
 		return script;
+	};
+
+	this.getFunctionFromName = function(nameFunction) {
+		let stopIndex;
+		if (!nameFunction || typeof nameFunction != "string" 
+			|| (stopIndex = nameFunction.indexOf(".")) === -1)
+			return window[nameFunction];
+		let startIndex = 0;
+		let name = nameFunction.substring(startIndex, stopIndex);
+		let obj = window[name];
+		if (!obj)
+			return null;
+		let memObj = obj;
+		while (true) {
+			startIndex = ++stopIndex;
+			stopIndex = nameFunction.indexOf(".", stopIndex);
+			if (stopIndex === -1) {
+				name = nameFunction.substring(startIndex);
+				obj = obj[name];
+				if (!obj || typeof obj != "function") 
+					return null;
+				else {
+					return obj.bind(memObj);
+					//return obj;
+				}
+			} else {
+				name = nameFunction.substring(startIndex, stopIndex);
+				memObj = obj;
+				obj = obj[name];
+				if (!obj)
+					return null
+			}
+		}
+		return null;
 	};
 }

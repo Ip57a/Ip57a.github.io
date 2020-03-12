@@ -1,0 +1,13 @@
+.graduateList__photoContainer {
+	background: white;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	        flex-flow: column nowrap;
+	-webkit-box-align: center;
+	        align-items: center;
+	border-radius: 5px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, .5);
+	margin: 5px;
+}
