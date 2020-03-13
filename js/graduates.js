@@ -112,15 +112,11 @@ window.graduatesObject = {
 			this._data.onready = this.loadArticle.bind(this);
 			return;
 		}
-		let name = $.urlParam("n", window.location.search);
-		let year = $.urlParam("y", window.location.search);
-		let _class = $.urlParam("cl", window.location.search);
-		if (name)
-			name = decodeURIComponent(name);
-		if (year)
-			year = decodeURIComponent(year);
-		if (_class)
-			_class = decodeURIComponent(_class);
+		let search = decodeURIComponent(window.location.search);
+		let name = $.urlParam("n", search);
+		let year = $.urlParam("y", search);
+		let _class = $.urlParam("cl", search);
+		
 		this.updateHere(name);
 		let file = this.getFile(name);
 		if (file == null)
@@ -217,7 +213,7 @@ window.graduatesObject = {
 					else
 						search += "&"
 					search += "y=" + item.year + "&cl=" + name;
-					window.location.search = search;
+					window.location.search = encodeURI(search);
 				}
 				$(panel).append(div);
 				$(where).append(panel);
