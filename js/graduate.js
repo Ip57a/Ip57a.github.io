@@ -1,17 +1,17 @@
 "use strict";
 window.graduateObject = {
 	
-	createClass(_class) {
+	createClass: function(_class, year) {
 		let where = "#graduatesArticle";
 		where = document.querySelector(where);
 		let div = createTag("div", "graduateList");
 		this.appendElements(div, this.getCurator(_class),
 			this.getGroupPhoto(_class),
-			this.getStudents(_class),);
+			this.getStudents(_class));
 		where.appendChild(div);
 	},
 
-	appendElements(where, elems) {
+	appendElements: function(where, elems) {
 		if (!elems || !where)
 			return;
 		for (let i = 1; i < arguments.length; i++) {
@@ -20,7 +20,7 @@ window.graduateObject = {
 		}
 	},
 
-	getCurator(_class) {
+	getCurator: function(_class) {
 		let curatorName = this.findCuratorName(_class);
 		let curatorPhoto = this.findCuratorPhoto(_class);
 		if (!curatorName && !curatorPhoto)
@@ -31,27 +31,27 @@ window.graduateObject = {
 		return section;
 	},
 
-	findCuratorName(_class) {
+	findCuratorName: function(_class) {
 		let curator = this.getCuratorRecord(_class);
 		if (!curator)
 			return null;
 		return curator.name && curator.name.length > 0 ? curator.name : null;
 	},
 
-	findCuratorPhoto(_class) {
+	findCuratorPhoto: function(_class) {
 		let curator = this.getCuratorRecord(_class);
 		if (!curator)
 			return null;
 		return curator.photo && curator.photo.length > 0 ? curator.photo : null;
 	},
 
-	getCuratorRecord(_class) {
+	getCuratorRecord: function(_class) {
 		if (!_class)
 			return null;
 		return _class.curator ? _class.curator : null;
 	},
 
-	getStudents(_class) {
+	getStudents: function(_class) {
 		if (_class.students.length == 0)
 			return null;
 		let section = createTag("div", "graduateList__section", 
@@ -65,7 +65,7 @@ window.graduateObject = {
 		return section;
 	},
 
-	createPhoto(name, photo) {
+	createPhoto: function(name, photo) {
 		let figure = createTag("figure", "graduateList__photoContainer");
 		if (photo) {
 			let img = createTag("img", "graduateList__photo");
@@ -81,7 +81,7 @@ window.graduateObject = {
 		return figure;
 	},
 
-	getGroupPhoto(_class) {
+	getGroupPhoto: function(_class) {
 		if (_class.groupPhoto.length == 0)
 			return null;
 		let section = createTag("div", "graduateList__section", 
@@ -94,7 +94,7 @@ window.graduateObject = {
 		return section;
 	},
 
-	createTag(tagName, classNames) {
+	createTag: function(tagName, classNames) {
 		let tag = document.createElement(tagName);
 		for (let i = 1; i < arguments.length; i++) {
 			tag.classList.add(arguments[i]);

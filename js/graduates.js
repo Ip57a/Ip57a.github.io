@@ -7,7 +7,7 @@ window.graduatesObject = {
 		onready: null,
 	},
 
-	appendMenu(where, has)
+	appendMenu: function(where, has)
 	{
 		this._tag = where;
 		let self = this;
@@ -23,12 +23,12 @@ window.graduatesObject = {
 			});
 	},
 
-	findElem(where, has)
+	findElem: function(where, has)
 	{
 		return $(where);
 	},
 
-	parseGraduatesXml(xml){
+	parseGraduatesXml: function(xml){
 		let func = function(item, xmlElem) {
 			item.name = $(xmlElem).children("name").text();
 			item.file = $(xmlElem).children("file").text();
@@ -36,7 +36,7 @@ window.graduatesObject = {
 		return this.parseXml(xml, func);
 	},
 
-	parseItemGraduatesXml(xml) {
+	parseItemGraduatesXml: function(xml) {
 		let func = function(item, xmlElem) {
 			let value = $(xmlElem).children("year").text();
 			if (value == null)
@@ -72,7 +72,7 @@ window.graduatesObject = {
 		return this.parseXml(xml, func);
 	},
 
-	parseXml(xml, func) {
+	parseXml: function(xml, func) {
 		let xmlData = [];
 		$(xml).find("item").each(function() {
 			let item = {};
@@ -82,13 +82,13 @@ window.graduatesObject = {
 		return xmlData;
 	},
 
-	addElem(elem)
+	addElem: function(elem)
 	{
 		let tag = this.findElem(this._tag);
 		tag.append(elem);
 	},
 
-	createSubMenu(data)
+	createSubMenu: function(data)
 	{
 		let menu = document.createElement("ul");
 		menu.classList.add("subNav__container");
@@ -105,7 +105,7 @@ window.graduatesObject = {
 		return menu;
 	},
 
-	loadArticle()
+	loadArticle: function()
 	{
 		if (!this._data.ready)
 		{
@@ -126,7 +126,7 @@ window.graduatesObject = {
 		if (file == null)
 			return;
 		file = $.getPath() + file;
-		self = this;
+		let self = this;
 		$.ajax({
 			url: file,
 			success: function(xml)
@@ -141,15 +141,15 @@ window.graduatesObject = {
 		});
 	},
 
-	appendClass(xmlData, year, _class) {
+	appendClass: function(xmlData, year, _class) {
 		let unit = this.findClass(xmlData, year, _class);
 		let script = new MultipleLoadingScript();
-		script.src = ["js/graduate.js"];
+		script.src = ["js/graduate.js?1"];
 		script.runOnLoad = [{funcName: "graduateObject.createClass", param: unit}];
 		script.start();
 	},
 
-	findClass(xmlData, year, _class) {
+	findClass: function(xmlData, year, _class) {
 		for (let i = 0; i < xmlData.length; i++) {
 			let item = xmlData[i];
 			if (item.year != year) 
@@ -163,7 +163,7 @@ window.graduatesObject = {
 		return null;
 	},
 
-	getFile(name)
+	getFile: function(name)
 	{
 		let data = this._data.data;
 		for (let i = 0; i < data.length; i++) {
@@ -174,7 +174,7 @@ window.graduatesObject = {
 		return data[0].file;
 	},
 
-	appendArticle(xmlData){
+	appendArticle: function(xmlData){
 		let where = "#graduatesArticle";
 		for (let i = 0; i < xmlData.length; i++) {
 			this.appendYear(where, xmlData[i]);
@@ -182,7 +182,7 @@ window.graduatesObject = {
 		}
 	},
 
-	appendYear(where, item) {
+	appendYear: function(where, item) {
 		let year = item.year;
 		if (year != undefined) {
 			let h2 = this.createTag("h2", "caption_lvl2");
@@ -191,7 +191,7 @@ window.graduatesObject = {
 		}
 	},
 
-	createTag(tagName, classNames) {
+	createTag: function(tagName, classNames) {
 		let tag = document.createElement(tagName);
 		for (let i = 1; i < arguments.length; i++) {
 			tag.classList.add(arguments[i]);
@@ -199,7 +199,7 @@ window.graduatesObject = {
 		return tag;
 	},
 
-	createGraduatesPanel(where, item) {
+	createGraduatesPanel: function(where, item) {
 		let self = this;
 		item.classes.forEach(function(_class) {
 			let name = _class.name;
@@ -225,7 +225,7 @@ window.graduatesObject = {
 		})
 	},
 
-	createCuratorPhoto(_class) {
+	createCuratorPhoto: function(_class) {
 		let name = _class.curator.name;
 		if (!name || name.trim().length == 0)
 			return null;
@@ -237,7 +237,7 @@ window.graduatesObject = {
 		return this.createPhotoContainer(caption, photo, name);
 	},
 
-	createGroupPhoto(_class) {
+	createGroupPhoto: function(_class) {
 		let photo = _class.groupPhoto[0];
 		if (photo && photo.length > 0) {
 			return this.createPhotoContainer("", photo);
@@ -245,7 +245,7 @@ window.graduatesObject = {
 		return this.joinInGroupPhoto(_class);
 	},
 
-	joinInGroupPhoto(_class) {
+	joinInGroupPhoto: function(_class) {
 		if (!_class.students || !Array.isArray(_class.students))
 			return null;
 		let src = [];
@@ -259,7 +259,7 @@ window.graduatesObject = {
 		return getPhotoGalery(src, 140, 120);
 	},
 
-	createPhotoContainer(caption, photo, alt) {
+	createPhotoContainer: function(caption, photo, alt) {
 		let figure = this.createTag("figure", "graduatesPanel__photoContainer");
 		let img = this.createTag("img", "graduatesPanel__photo");
 		img.src = photo;
@@ -270,7 +270,7 @@ window.graduatesObject = {
 		return figure;
 	},
 
-	updateHere(name) {
+	updateHere: function(name) {
 		if (!name)
 			name = this._data.data[0].name;
 		let li = $(".subNav .here");
