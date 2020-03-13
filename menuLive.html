@@ -3,7 +3,7 @@
 </ul>
 <script>
 	let addMenu = new MultipleLoadingScript();
-	addMenu.src = ["js/path.js", "js/graduates.js?2"];
+	addMenu.src = ["js/path.js", "js/graduates.js?3"];
 	addMenu.runOnLoad = [null, {funcName : "graduatesObject.appendMenu", param: ".subNav li:has(a[href='graduates.html')"}];
 	addMenu.runAfter = [{funcName: "setLeftNavCurrentLi", param:null}];
 	addMenu.start();
