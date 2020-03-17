@@ -16,7 +16,7 @@
 				</student>
 				<student>
 					<name>ФИО</name>
-					<photo>images/graduates/2019/exampleClass/2.jpg</photo>
+					<photo>  </photo>
 				</student>
 				<student>
 					<name>ФИО</name>
@@ -119,7 +119,7 @@
 				<name>11Б</name>
 				<curator>
 					<name>Фарафонова Светлана Павловна</name>
-					<photo>images/teachers/farafonova_m.jpg</photo>
+					<photo></photo>
 				</curator>
 				<!-- <groupPhoto>images/graduates/2019/exampleClass/group1.jpg</groupPhoto> -->
 				<student>
@@ -132,7 +132,7 @@
 				</student>
 				<student>
 					<name>ФИО</name>
-					<photo>images/graduates/2019/exampleClass/3.jpg</photo>
+					<photo>images/graduates/2019/exampleClass/345.jpg</photo>
 				</student>
 				<student>
 					<name>ФИО</name>

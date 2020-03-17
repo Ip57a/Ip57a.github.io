@@ -1,4 +1,11 @@
 .graduateList__photo {
 	margin: 5px 5px 3px;
 	border-radius: 5px;
+	max-width: 180px;
+	max-height: 200px;
+}
+
+.graduateList__photo_big {
+	max-width: 800px;
+	max-height: 1000px;
 }

@@ -1,5 +1,60 @@
 "use strict";
 window.graduateObject = {
+
+	emptyAvatar: "images/interface/emptyAvatar.png",
+
+	EmptyAvatars: function() {
+		this.averageWidth = 0;
+		this.averageHeight = 0;
+		this.sumWidth = 0;
+		this.sumHeight = 0;
+		this.photoLoaded = 0;
+		this.data = [];
+
+		this.addData = function(img) {
+			if (!img)
+				return;
+			this.data.push(img);
+			if (img.style) {
+				this.updateSizeImg(img);
+			}
+		};
+
+		this.addSize = function(size) {
+			if (!size || !size.width || !size.height)
+				return
+			let memWidth = this.averageWidth;
+			let memHeight = this.averageHeight;
+			this.sumWidth += size.width;
+			this.sumHeight += size.height;
+			if (this.photoLoaded < 0)
+				this.photoLoaded = 0;
+			this.photoLoaded++;
+			this.averageWidth = this.sumWidth / this.photoLoaded;
+			this.averageHeight = this.sumHeight / this.photoLoaded;
+			if (this.sizeChanged 
+				&& typeof this.sizeChanged == "function"
+				&& (memWidth != this.averageWidth 
+				|| memHeight != this.averageHeight)) {
+				this.sizeChanged();
+			}
+		};
+
+		this.sizeChanged = null;
+
+		this.updateSizeData = function() {
+			for (let i = 0; i < this.data.length; i++) {
+				this.updateSizeImg(this.data[i]);
+			}
+		};
+
+		this.updateSizeImg = function(img) {
+			if (!img || !img.style)
+				return;
+			img.style.width = this.averageWidth + "px";
+			img.style.height = this.averageHeight + "px";
+		};
+	},
 	
 	createClass: function(_class, year) {
 		let where = "#graduatesArticle";
@@ -26,7 +81,7 @@ window.graduateObject = {
 		if (!curatorName && !curatorPhoto)
 			return;
 		let section = this.createTag("div", "graduateList__section", "graduateList__section_center");
-		let figure = this.createPhoto("Классный руководитель " + curatorName, curatorPhoto);
+		let figure = this.createPhoto("Классный руководитель " + curatorName, curatorPhoto ? curatorPhoto : this.emptyAvatar);
 		section.appendChild(figure);
 		return section;
 	},
@@ -54,21 +109,68 @@ window.graduateObject = {
 	getStudents: function(_class) {
 		if (_class.students.length == 0)
 			return null;
+		let emptyAvatars = new this.EmptyAvatars()
+		emptyAvatars.sizeChanged = emptyAvatars.updateSizeData;
 		let section = createTag("div", "graduateList__section", 
 			"graduateList__section_row");
 		for (let i = 0; i < _class.students.length; i++) {
-			let student = this.createPhoto(_class.students[i].name,
-				_class.students[i].photo);
-			if (student)
+			let photoPath = _class.students[i].photo;
+			if (!photoPath) {
+				photoPath = this.emptyAvatar;
+			}
+			let student = this.createPhoto(_class.students[i].name, photoPath);
+			if (student) {
 				section.appendChild(student);
+				if (photoPath === this.emptyAvatar) {
+					this.addEmptyAvatar(student, emptyAvatars);
+				}else {
+					this.updateEmptyAvatars(student, emptyAvatars);
+				}
+			}
 		}
 		return section;
 	},
 
-	createPhoto: function(name, photo) {
+	addEmptyAvatar: function(student, emptyAvatars) {
+		if (student && emptyAvatars) {
+			let img = student.querySelector("img");
+			if (img) {
+				emptyAvatars.addData(img);
+			}
+		}
+	},
+
+	updateEmptyAvatars: function(student, emptyAvatars) {
+		if (student && emptyAvatars) {
+			let img = student.querySelector("img");
+			if (img) {
+				if (this.isImageLoaded(img)) {
+					emptyAvatars.addSize({width: img.clientWidth,
+						height: img.clientHeight});
+				} else {
+					let self = this;
+					img.onload = function() {
+						emptyAvatars.addSize({width: this.clientWidth,
+							height: this.clientHeight});
+						this.onload = null;
+					}
+					img.onerror = function() {
+						this.src = self.emptyAvatar;
+						self.addEmptyAvatar(student, emptyAvatars);
+					}
+				}
+			}
+		}
+	},
+
+	isImageLoaded: function(img) {
+		return (img && img.complete && img.clientWidth > 0);
+	},
+
+	createPhoto: function(name, photo, additionalClasses) {
 		let figure = createTag("figure", "graduateList__photoContainer");
 		if (photo) {
-			let img = createTag("img", "graduateList__photo");
+			let img = createTag("img", "graduateList__photo", additionalClasses);
 			img.src = photo;
 			figure.appendChild(img);
 		}
@@ -87,7 +189,7 @@ window.graduateObject = {
 		let section = createTag("div", "graduateList__section", 
 			"graduateList__section_row");
 		for (let i = 0; i < _class.groupPhoto.length; i++) {
-			let photo = this.createPhoto(null, _class.groupPhoto[i]);
+			let photo = this.createPhoto(null, _class.groupPhoto[i], "graduateList__photo_big");
 			if (photo)
 				section.appendChild(photo);
 		}
@@ -97,6 +199,8 @@ window.graduateObject = {
 	createTag: function(tagName, classNames) {
 		let tag = document.createElement(tagName);
 		for (let i = 1; i < arguments.length; i++) {
+			if (!arguments[i])
+				continue;
 			tag.classList.add(arguments[i]);
 		}
 		return tag;

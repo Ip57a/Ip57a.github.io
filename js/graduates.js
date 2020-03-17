@@ -213,7 +213,8 @@ window.graduatesObject = {
 					else
 						search += "&"
 					search += "y=" + item.year + "&cl=" + name;
-					window.location.search = encodeURI(search);
+					search = encodeURI(search);
+					window.location.search = search;
 				}
 				$(panel).append(div);
 				$(where).append(panel);
@@ -227,7 +228,7 @@ window.graduatesObject = {
 			return null;
 		let photo = _class.curator.photo;
 		if (!photo || photo.trim().length == 0)
-			return null;
+			photo = "images/interface/emptyAvatar.png";
 		let caption = "Классный руководитель<br><strong>" + name +
 			"</strong>";
 		return this.createPhotoContainer(caption, photo, name);
