@@ -51,16 +51,27 @@ window.graduateObject = {
 		this.updateSizeImg = function(img) {
 			if (!img || !img.style)
 				return;
-			img.style.width = this.averageWidth + "px";
-			img.style.height = this.averageHeight + "px";
+			let width = this.averageWidth > 0 
+				? this.averageWidth : 0;
+			let height = this.averageHeight > 0 
+				? this.averageHeight : 0;
+			img.style.width = width + "px";
+			img.style.height = height + "px";
 		};
 	},
 	
-	createClass: function(_class, year) {
+	/* data - объект {_class, year}*/
+	createClass: function(data) {
+		if (!data || !data._class || !data.year)
+			return;
+		let _class = data._class;
+		let year = data.year;
 		let where = "#graduatesArticle";
 		where = document.querySelector(where);
 		let div = createTag("div", "graduateList");
-		this.appendElements(div, this.getCurator(_class),
+		this.appendElements(div, 
+			this.getTitle(_class.name, year),
+			this.getCurator(_class),
 			this.getGroupPhoto(_class),
 			this.getStudents(_class));
 		where.appendChild(div);
@@ -73,6 +84,14 @@ window.graduateObject = {
 			if (arguments[i])
 				where.appendChild(arguments[i]);
 		}
+	},
+
+	getTitle: function(name, year) {
+		if (!name || !year)
+			return null;
+		let title = this.createTag("h2", "caption_lvl2");
+		title.innerHTML = year + ' "' + name + '"';
+		return title;
 	},
 
 	getCurator: function(_class) {

@@ -130,6 +130,7 @@ window.graduatesObject = {
 				let xmlData = self.parseItemGraduatesXml(xml);
 				if (year && _class) {
 					self.appendClass(xmlData, year, _class);
+					self.updateInHere(year + ' "' + _class +'"');
 				}else {
 					self.appendArticle(xmlData);	
 				}
@@ -140,8 +141,8 @@ window.graduatesObject = {
 	appendClass: function(xmlData, year, _class) {
 		let unit = this.findClass(xmlData, year, _class);
 		let script = new MultipleLoadingScript();
-		script.src = ["js/graduate.js?1"];
-		script.runOnLoad = [{funcName: "graduateObject.createClass", param: unit}];
+		script.src = ["js/graduate.js?2"];
+		script.runOnLoad = [{funcName: "graduateObject.createClass", param: {_class: unit, year: year}}];
 		script.start();
 	},
 
@@ -190,7 +191,8 @@ window.graduatesObject = {
 	createTag: function(tagName, classNames) {
 		let tag = document.createElement(tagName);
 		for (let i = 1; i < arguments.length; i++) {
-			tag.classList.add(arguments[i]);
+			if (arguments[i])
+				tag.classList.add(arguments[i]);
 		}
 		return tag;
 	},
@@ -275,7 +277,29 @@ window.graduatesObject = {
 		let a = $(li).find("a:contains('" + name + "')");
 		li = a.parent("li");
 		li.addClass("here");
-		a.attr("onclick", "return false;")
+		a.onclick = this.falseFunction;
 		
 	},
+
+	updateInHere:function(subName) {
+		let li = $(".subNav .here");
+		li.removeClass("here");
+		li.append(this.createInHere(subName));
+	},
+
+	createInHere: function(subName) {
+		let ul = this.createTag("ul", "subNav__container");
+		let li = this.createTag("li", "subNav__item_lvl2", "here");
+		let a = this.createTag("a");
+		a.href = "#";
+		a.onclick = this.falseFunction;
+		a.innerHTML = subName;
+		ul.appendChild(li);
+		li.appendChild(a);
+		return ul;
+	},
+
+	falseFunction: function() {
+		return false;
+	}
 }
