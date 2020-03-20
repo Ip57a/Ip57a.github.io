@@ -84,6 +84,7 @@ function getMainMenuName(id)
 			name = "Учебная работа";
 			break;
 		case "graduates":
+		case "honorBook":
 			name = "Общий раздел";
 			break;
 	}
@@ -142,11 +143,14 @@ function getSubMenuName(id)
 		case "vpr":
 			name = "ВПР";
 			break;
+		case "npb":
+			name = "Нормативно-правовая база";
+			break;
 		case "graduates":
 			name = "Выпускники";
 			break;
-		case "npb":
-			name = "Нормативно-правовая база";
+		case "honorBook":
+			name = "Книга почета";
 			break;
 	}
 	return name;
