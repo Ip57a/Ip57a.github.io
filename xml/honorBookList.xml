@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<page>
+		<section>
+			<year>2002</year>
+			<item>
+				<text>Бородаева Варвара Кирилловна</text>
+				<ref>xml/honorBook/borodaeva_vk.xml?1</ref>
+			</item>
+			<item>
+				<text>Ерёмина Анастасия Николаевна</text>
+				<ref></ref>
+			</item>
+		</section>
+	</page>
+	<page>
+		<section>
+			<year></year>
+			<item>
+				<text></text>
+				<ref></ref>
+			</item>
+		</section>
+	</page>
+</list>
