@@ -59,7 +59,7 @@ let honorBook = {
 		}
 	},
 
-	addLinkArray(page) {
+	addLinkArray: function(page) {
 		for (let i = 0; i < page.sections.length; i++) {
 			let section = page.sections[i];
 			for (let j = 0; j < section.items.length; j++) {
@@ -196,7 +196,7 @@ let honorBook = {
 		});
 	},
 
-	addHonorPages(honor) {
+	addHonorPages: function(honor) {
 		if (!honor || !honor.pages || honor.pages.length <= 0)
 			return;
 		for (let i = 0; i < honor.pages.length; i++) {
@@ -206,7 +206,7 @@ let honorBook = {
 		}
 	},
 
-	addHonorPage(honorPage, pageNumber) {
+	addHonorPage: function(honorPage, pageNumber) {
 		let page = null;
 		if (honorPage.photo) {
 			page = this.createHonorPhotoPage(honorPage.photo);
@@ -218,7 +218,7 @@ let honorBook = {
 		}
 	},
 
-	createHonorPhotoPage(ref) {
+	createHonorPhotoPage: function(ref) {
 		if (!ref || !ref.length)
 			return null;
 		let section = this.createTag("div", "honorBook__section");
@@ -228,7 +228,11 @@ let honorBook = {
 		return section;
 	},
 
-	findHonorId(link) {
+	createHonorTextPage: function(text) {
+
+	},
+
+	findHonorId: function(link) {
 		return this.linkPages.get(link) || 0;
 	},
 
@@ -255,12 +259,12 @@ let honorBook = {
 		return honor;
 	},
 
-	gotoPage(pageNumber) {
+	gotoPage: function(pageNumber) {
 		if (this.book)
 			this.book.booklet("gotopage", pageNumber);
 	},
 
-	isInt(value) {
+	isInt: function(value) {
 		if (isNaN(value))
 			return false;
 		let x = parseFloat(value);
