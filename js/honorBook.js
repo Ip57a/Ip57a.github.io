@@ -197,24 +197,18 @@ let honorBook = {
 	},
 
 	addHonorPages: function(honor) {
-		if (!honor || !honor.pages || honor.pages.length <= 0)
+		if (!honor || !honor.texts || honor.texts.length <= 0)
 			return;
-		for (let i = 0; i < honor.pages.length; i++) {
+		let photoPage = this.createHonorPhotoPage(
+			honor.photo);
+		if (!photoPage)
+			return;
+		for (let i = 0; i < honor.texts.length; i++) {
 			let pageNumber = this.findNewIndex(honor.id
-				+ this.listPageAmount);
-			this.addHonorPage(honor.pages[i], pageNumber);
-		}
-	},
-
-	addHonorPage: function(honorPage, pageNumber) {
-		let page = null;
-		if (honorPage.photo) {
-			page = this.createHonorPhotoPage(honorPage.photo);
-		} else if (honorPage.text) {
-			page = this.createHonorTextPage(honorPage.text);
-		}
-		if (page) {
-			this.addPage(pageNumber, page);
+				+ this.listPageAmount + i * 2) + 1;
+			this.addPage(pageNumber, photoPage);
+			let page = this.createHonorTextPage(honor.title, honor.texts[i]);
+			this.addPage(pageNumber + 1, page);
 		}
 	},
 
@@ -228,8 +222,17 @@ let honorBook = {
 		return section;
 	},
 
-	createHonorTextPage: function(text) {
-
+	createHonorTextPage: function(title, text) {
+		// TODO: сделать добавление титульной надписи
+		let div = this.createTag("div", "honorBook__textContainer");
+		let caption = this.createTag("h2", "caption_lvl2");
+		caption.innerText = title;
+		div.appendChild(caption);
+		let paragraph = this.createTag("div");
+		paragraph.innerHTML = text;
+		div.appendChild(paragraph);
+		
+		return div;
 	},
 
 	findHonorId: function(link) {
@@ -241,20 +244,18 @@ let honorBook = {
 			return null;
 		let honor = {
 			id: this.findHonorId(link),
-			pages: [],
+			photo: $(xml).children("section")
+				.children("photo").text(),
+			title: $(xml).children("section")
+				.children("title").text(),
+			texts: [],
 		}
 		if (!honor.id || honor.id <= 0)
 			return null;
-		$(xml).children("section").find("page")
+		$(xml).children("section").find("text")
 			.each(function(){
-				let page = {};
-				let item = $(this).children("photo").text();
-				if (item)
-					page.photo = item;
-				item = $(this).children("text").text();
-				if (item)
-					page.text = item;
-				honor.pages.push(page);
+				//honor.texts.push($(this).html());
+				honor.texts.push($(this).text());
 		});
 		return honor;
 	},
