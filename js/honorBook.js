@@ -7,16 +7,125 @@ $(".honorBook").booklet({
 });
 
 let honorBook = {
-	listPageAmount: 0,
-	pages: [1, 65535],
-	linkPages: new Map(),
-	addedHonorPage: new Map(),
-	linkArray:[],
+	honorListPath: "xml/honorBookList.xml?1",
 	book: null,
+
+	chapters: {
+		firstPageNumber: 2, //номер первой после обложки страницы
+		//listChapters - список глав
+		// key - ссылка, value - id главы
+		listChapters: new Map(),
+		// addedChapters - массив добавленных глав
+		addedChaptersArray: [],
+		addedChaptersMap: new Map(),
+
+		addLink: function(link) {
+			if (!this.listChapters.has(link))
+				this.listChapters.set(link, 
+					this.listChapters.size);
+		},
+
+		//добавление страниц в главу
+		//chapter - глава, в которую добавляются страницы
+		//amount - кол-во добавляемых страниц
+		addPages: function(chapter, pageAmount) {
+			chapter.lastPage += pageAmount;
+			this._shiftPages(chapter.index + 1, pageAmount);
+		},
+
+		//добавление главы в книгу
+		//link - ссылка на страницу
+		addChapter: function(link){
+			let id = this.listChapters.get(link);
+			if (id == undefined)
+				return null;
+			let chapter = new this._createChapter(id, link);
+			this._addChapter(chapter);
+			return chapter;
+		},
+
+		_createChapter: function(id, link) {
+			this.id = id;			//номер по порядку
+			this.index = -1;		//индекс в массиве для быстрого поиска
+			this.link = link;		//ссылка на файл xml
+			this.firstPage = -1;	//первая страница
+			this.lastPage = -1;		//последняя страница
+		},
+
+		//добавление главы в книгу
+		_addChapter: function(chapter) {
+			let index = this._findNewIndex(chapter.id);
+			this._insertChapter(chapter, index);
+		},
+
+		//вставка главы
+		//chapter - вставляемая глава
+		//index - место, куда вставляется
+		_insertChapter: function(chapter, index) {
+			this.addedChaptersArray.splice(index, 0, chapter);
+			chapter.index = index;
+			this.addedChaptersMap.set(chapter.link, chapter);
+			let amount = chapter.firstPage === -1 ? 1 :
+				chapter.lastPage - chapter.firstPage + 1;
+			let firstPage = index === 0 ? this.firstPageNumber : 
+				this.addedChaptersArray[index - 1].lastPage + 1;
+			if (chapter.firstPage < 0) {
+				chapter.firstPage = firstPage;
+				chapter.lastPage = firstPage + amount - 1;
+			}
+			this._shiftPages(index + 1, amount);
+		},
+
+		//смещение страниц в книге
+		//index - индекс главы, с которой смещяем страницы
+		//amount - число, на которое смещаем
+		_shiftPages: function(index, amount) {
+			for (let i = index; i < this.addedChaptersArray.length; i++) {
+				this.addedChaptersArray[i].firstPage += amount;
+				this.addedChaptersArray[i].lastPage += amount;
+			}
+		},
+
+		//поиск нового индекса вставки
+		//id - индекс вставки
+		_findNewIndex: function(id) {
+			let chapters = this.addedChaptersArray;
+			if (chapters.length === 0)
+				return 0;
+			let start = 0;
+			let stop = chapters.length - 1;
+			let memCurrent = -1;
+			let maxCycle = chapters.length;
+			while (maxCycle >= 0) {
+				maxCycle--;
+				let current = honorBook.div(stop - start, 2);
+				if (current === memCurrent)
+					current++;
+				memCurrent = current;
+				if (chapters[current].id <= id 
+					&& current >= chapters.length - 1)
+					return chapters.length;
+				else if (chapters[current].id > id 
+					&& current === 0)
+					return 0;
+				else if (chapters[current].id <= id
+					&& chapters[current + 1].id > id)
+					return current + 1;
+				else if (chapters[current].id > id
+					&& chapters[current - 1].id <= id)
+					return current;
+				else if (chapters[current].id > id)
+					stop = current;
+				else
+					start = current;
+			}
+			return -1;
+		},
+	},
 
 	loadList: function() {
 		let self = this;
-		$.get($.getPath() + "xml/honorBookList.xml", function(xml) {
+		$.get($.getPath() + this.honorListPath, function(xml) {
 			let book = self.parseList(xml);
 			self.formateList(book);
 		});
@@ -50,63 +159,32 @@ let honorBook = {
 	},
 
 	formateList: function(book) {
-		if (!this.book)
+		if (!book || !book.pages.length)
 			return;
+		let chapters = this.chapters;
+		chapters.addLink("list");
+		let chapter = chapters.addChapter("list");
 		for (let i = 0; i < book.pages.length; i++) {
 			let page = this.createListPage(book.pages[i]);
-			this.addListPage(page);
-			this.addLinkArray(book.pages[i]);
+			this.addPage(chapter.firstPage + i, page);
+			this.addListLink(book.pages[i]);
 		}
+		chapters.addPages(chapter, book.pages.length - 1);
 	},
 
-	addLinkArray: function(page) {
+	addListLink: function(page) {
 		for (let i = 0; i < page.sections.length; i++) {
 			let section = page.sections[i];
 			for (let j = 0; j < section.items.length; j++) {
-				let ref = section.items[j].ref;
-				this.linkArray.push(ref);
-				this.linkPages.set(ref, 
-					this.linkPages.size + 1);
+				this.chapters.addLink(section.items[j].ref);
 			}
 		}
-	},
-
-	addListPage: function(page) {
-		this.addPage(this.pages.length, page);
-		this.listPageAmount++;
 	},
 
 	addPage: function(pageNumber, page) {
 		if (!this.book)
 			return;
-		let index = this.findNewIndex(pageNumber);
-		this.pages.splice(index, 0, pageNumber);
-		this.book.booklet("add", index + 1, page.outerHTML);
-	},
-
-	findNewIndex: function(pageNumber) {
-		let startIndex = 0;
-		let stopIndex = this.pages.length - 1;
-		if (pageNumber < this.pages[startIndex])
-			return startIndex;
-		if (pageNumber > this.pages[stopIndex])
-			return this.pages.length;
-		let currentIndex = 0;
-		while (startIndex < stopIndex - 1) {
-			if (this.pages[currentIndex] === pageNumber)
-				currentIndex++;
-			else
-				currentIndex = this.div(stopIndex - startIndex, 2)
-				+ startIndex;
-			if (this.pages[currentIndex] <= pageNumber 
-				&& this.pages[currentIndex + 1] > pageNumber) 
-				return currentIndex + 1;
-			else if (this.pages[currentIndex] <= pageNumber)
-				startIndex = currentIndex;
-			else 
-				stopIndex = currentIndex;
-		}
-		return startIndex + 1;
+		this.book.booklet("add", pageNumber - 1, page.outerHTML);
 	},
 
 	createListPage: function(page) {
@@ -152,10 +230,9 @@ let honorBook = {
 	},
 
 	pageAdded: function(event, data) {
-		/* Глюк в библиотеке, в data.page приходит не 
-		 * добавленная страница. Приходится брать преды-
-		 * дущий фрагмент*/
-		let page = data.page.previousSibling;
+		let page = data.page;
+		if (page.nodeType !== 1)
+			return;
 		let links = page.querySelectorAll(".honorBook__listItem");
 		let onClick = this.listLinkClick.bind(this);
 		if(links.length) {
@@ -174,9 +251,9 @@ let honorBook = {
 	},
 
 	gotoPageBylink: function(link) {
-		let pageNumber = this.addedHonorPage.get(link);
-		if (pageNumber) {
-			this.gotoPage(pageNumber);
+		let chapter = this.chapters.addedChaptersMap.get(link);
+		if (chapter != undefined) {
+			this.gotoPage(chapter.firstPage);
 			return;
 		}
 		this.loadPage(link);
@@ -185,31 +262,34 @@ let honorBook = {
 	loadPage: function(link, callback) {
 		let self = this;
 		$.get($.getPath() + link, function(xml) {
+			let chapter = self.chapters.addChapter(link);
+			if (!chapter)
+				return;
 			let honor = self.parseHonor(xml, link);
 			if (!honor)
 				return;
-			let pageNumber = self.findNewIndex(honor.id 
-				+ self.listPageAmount + 1) + 1;
-			self.addedHonorPage.set(link, pageNumber);
-			self.addHonorPages(honor);
-			self.gotoPage(pageNumber);
+			self.addHonorPages(honor, chapter);
+			self.gotoPage(chapter.firstPage);
 		});
 	},
 
-	addHonorPages: function(honor) {
-		if (!honor || !honor.texts || honor.texts.length <= 0)
+	addHonorPages: function(honor, chapter) {
+		if (!honor || !honor.texts || honor.texts.length <= 0
+			|| !chapter)
 			return;
 		let photoPage = this.createHonorPhotoPage(
 			honor.photo);
 		if (!photoPage)
 			return;
+		let pageAmount = 0;
 		for (let i = 0; i < honor.texts.length; i++) {
-			let pageNumber = this.findNewIndex(honor.id
-				+ this.listPageAmount + i * 2) + 1;
+			let pageNumber = chapter.firstPage + i * 2;
 			this.addPage(pageNumber, photoPage);
 			let page = this.createHonorTextPage(honor.title, honor.texts[i]);
 			this.addPage(pageNumber + 1, page);
+			pageAmount += 2;
 		}
+		this.chapters.addPages(chapter, pageAmount);
 	},
 
 	createHonorPhotoPage: function(ref) {
@@ -235,26 +315,18 @@ let honorBook = {
 		return div;
 	},
 
-	findHonorId: function(link) {
-		return this.linkPages.get(link) || 0;
-	},
-
-	parseHonor: function(xml, link) {
-		if (!link)
+	parseHonor: function(xml) {
+		if (!xml)
 			return null;
 		let honor = {
-			id: this.findHonorId(link),
 			photo: $(xml).children("section")
 				.children("photo").text(),
 			title: $(xml).children("section")
 				.children("title").text(),
 			texts: [],
 		}
-		if (!honor.id || honor.id <= 0)
-			return null;
 		$(xml).children("section").find("text")
 			.each(function(){
-				//honor.texts.push($(this).html());
 				honor.texts.push($(this).text());
 		});
 		return honor;
