@@ -1,357 +1,555 @@
 "use strict";
-$(".honorBook").booklet({
-	closed: true,
-	autoCenter: true,
-	pageNumbers: false,
-	covers: true,
-});
+(function($){
+$.fn.extend({
+	honorBook: function(option) {
+		function HonorBook(option) {
+			//события
+			//массивы событий
+			let _initialised = new Set();
+			const TABLEOFCONTENTS = "list";
 
-let honorBook = {
-	honorListPath: "xml/honorBookList.xml?1",
-	book: null,
-
-	chapters: {
-		firstPageNumber: 2, //номер первой после обложки страницы
-		//listChapters - список глав
-		// key - ссылка, value - id главы
-		listChapters: new Map(),
-		// addedChapters - массив добавленных глав
-		addedChaptersArray: [],
-		addedChaptersMap: new Map(),
-
-		addLink: function(link) {
-			if (!this.listChapters.has(link))
-				this.listChapters.set(link, 
-					this.listChapters.size);
-		},
-
-		//добавление страниц в главу
-		//chapter - глава, в которую добавляются страницы
-		//amount - кол-во добавляемых страниц
-		addPages: function(chapter, pageAmount) {
-			chapter.lastPage += pageAmount;
-			this._shiftPages(chapter.index + 1, pageAmount);
-		},
-
-		//добавление главы в книгу
-		//link - ссылка на страницу
-		addChapter: function(link){
-			let id = this.listChapters.get(link);
-			if (id == undefined)
-				return null;
-			let chapter = new this._createChapter(id, link);
-			this._addChapter(chapter);
-			return chapter;
-		},
-
-		_createChapter: function(id, link) {
-			this.id = id;			//номер по порядку
-			this.index = -1;		//индекс в массиве для быстрого поиска
-			this.link = link;		//ссылка на файл xml
-			this.firstPage = -1;	//первая страница
-			this.lastPage = -1;		//последняя страница
-		},
-
-		//добавление главы в книгу
-		_addChapter: function(chapter) {
-			let index = this._findNewIndex(chapter.id);
-			this._insertChapter(chapter, index);
-		},
-
-		//вставка главы
-		//chapter - вставляемая глава
-		//index - место, куда вставляется
-		_insertChapter: function(chapter, index) {
-			this.addedChaptersArray.splice(index, 0, chapter);
-			chapter.index = index;
-			this.addedChaptersMap.set(chapter.link, chapter);
-			let amount = chapter.firstPage === -1 ? 1 :
-				chapter.lastPage - chapter.firstPage + 1;
-			let firstPage = index === 0 ? this.firstPageNumber : 
-				this.addedChaptersArray[index - 1].lastPage + 1;
-			if (chapter.firstPage < 0) {
-				chapter.firstPage = firstPage;
-				chapter.lastPage = firstPage + amount - 1;
+			let book = $(option.selector);
+			let self = this;
+			let _tableOfContents = null;	//заглавие книги
+			let _chapters = null;
+			let bookEvent = {
+				start: function(event, data) {
+						if (checkChapterChanged(data.index)) {
+							changeChapter(data.index);
+							if (currentChapter) {
+								let index = currentChapter.id - 1;
+								let chapter;
+								if (index >= 0) {
+									chapter = _chapters.getChapterByIndex(index);
+									addChapter(chapter.link);
+								}
+								index = currentChapter.id + 1;
+								if (index < _chapters.length) {
+									chapter = _chapters.getChapterByIndex(index)
+									addChapter(chapter.link);
+								}
+							}
+						}
+				},
 			}
-			this._shiftPages(index + 1, amount);
-		},
+			let currentChapter = null;
 
-		//смещение страниц в книге
-		//index - индекс главы, с которой смещяем страницы
-		//amount - число, на которое смещаем
-		_shiftPages: function(index, amount) {
-			for (let i = index; i < this.addedChaptersArray.length; i++) {
-				this.addedChaptersArray[i].firstPage += amount;
-				this.addedChaptersArray[i].lastPage += amount;
-			}
-		},
+			function Chapters(tableOfContents) {
+				let selfChapters = this;
+				//_chaptersMap - карта глав
+				//key - ссылка на главу, 
+				//value - chapter
+				let _chaptersMap = new Map(); 
+				//массив для бычтрого поиска по порядку
+				let _chaptersArray = [];
+				//_addedChaptersMap - добавленные главы
+				//key - ссылка на главу,
+				//value - добавленая глава
+				let _addedChaptersMap = new Map();
 
-		//поиск нового индекса вставки
-		//id - индекс вставки
-		_findNewIndex: function(id) {
-			let chapters = this.addedChaptersArray;
-			if (chapters.length === 0)
-				return 0;
-			let start = 0;
-			let stop = chapters.length - 1;
-			let memCurrent = -1;
-			let maxCycle = chapters.length;
-			while (maxCycle >= 0) {
-				maxCycle--;
-				let current = honorBook.div(stop - start, 2);
-				if (current === memCurrent)
-					current++;
-				memCurrent = current;
-				if (chapters[current].id <= id 
-					&& current >= chapters.length - 1)
-					return chapters.length;
-				else if (chapters[current].id > id 
-					&& current === 0)
-					return 0;
-				else if (chapters[current].id <= id
-					&& chapters[current + 1].id > id)
-					return current + 1;
-				else if (chapters[current].id > id
-					&& chapters[current - 1].id <= id)
-					return current;
-				else if (chapters[current].id > id)
-					stop = current;
-				else
-					start = current;
-			}
-			return -1;
-		},
-	},
+				let _firstPage = option.firstPage;
+				let _lastPage = _firstPage;
+				let _pageAmount = 0;
 
-	loadList: function() {
-		let self = this;
-		$.get($.getPath() + this.honorListPath, function(xml) {
-			let book = self.parseList(xml);
-			self.formateList(book);
-		});
-	},
-
-	parseList: function(xml) {
-		let book = {
-			pages: [],
-		}
-		$(xml).find("page").each(function() {
-			let page = {
-				sections: [],
-			};
-			$(this).find("section").each(function() {
-				let section = {
-					year: $(this).children("year").text(),
-					items: [],
-				}
-				$(this).find("item").each(function() {
-					let item = {
-						text: $(this).children("text").text(),
-						ref: $(this).children("ref").text(),
+				Object.defineProperties(this, {
+					"firstPage": {
+						get: function() {
+							return _firstPage;
+						},
+					},
+					"lastPage": {
+						get: function() {
+							return _lastPage;
+						},
+					},
+					"pageAmount": {
+						get: function() {
+							return _pageAmount;
+						},
+					},
+					"length": {
+						get: function() {
+							return _chaptersArray.length;
+						}
 					}
-					section.items.push(item);
 				});
-				page.sections.push(section);
-			});
-			book.pages.push(page);
-		});
-		return book;
-	},
 
-	formateList: function(book) {
-		if (!book || !book.pages.length)
-			return;
-		let chapters = this.chapters;
-		chapters.addLink("list");
-		let chapter = chapters.addChapter("list");
-		for (let i = 0; i < book.pages.length; i++) {
-			let page = this.createListPage(book.pages[i]);
-			this.addPage(chapter.firstPage + i, page);
-			this.addListLink(book.pages[i]);
-		}
-		chapters.addPages(chapter, book.pages.length - 1);
-	},
+				this.getChapterByIndex = function(index) {
+					return _chaptersArray[index];
+				}
 
-	addListLink: function(page) {
-		for (let i = 0; i < page.sections.length; i++) {
-			let section = page.sections[i];
-			for (let j = 0; j < section.items.length; j++) {
-				this.chapters.addLink(section.items[j].ref);
+				this.getChapterByLink = function(link) {
+					return _chaptersMap.get(link);
+				}
+
+				this.getChapterByPage = function(pageNumber) {
+					let func = function(current) {
+						let chapter = _chaptersArray[current];
+						if (chapter.firstPage <= pageNumber
+							&& chapter.lastPage >= pageNumber)
+							return 0;
+						else if (chapter.firstPage > pageNumber)
+							return -1;
+						else
+							return 1;
+					}
+					let current = fastSearch(0, _chaptersArray.length - 1,
+						func);
+					if (current != null)
+						return _chaptersArray[current];
+					else
+						return current;
+				}
+
+				this.isChapterHas = function(link) {
+					return _addedChaptersMap.get(link) != undefined;
+				}
+
+				this.addChapter = function(link) {
+					if (this.isChapterHas(link))
+						return false;
+					let chapter = this.getChapterByLink(link);
+					if (!chapter)
+						return false;
+					_addedChaptersMap.set(chapter.link, chapter);
+					return true;
+				}
+
+				function Chapter (link, id) {
+					this.link = link;
+					this.id = id;
+					this.firstPage = -1;
+					this.lastPage = -1;
+					Object.defineProperties(this, {
+						"length": {
+							get: function() {
+								if (this.firstPage < 0)
+									return -1;
+								return this.lastPage - this.firstPage + 1;
+							}
+						}
+					})
+				}
+
+				function createChapters(tableOfContents) {
+					let pages = tableOfContents.pages;
+					let firstPage;
+					if (_chaptersMap.size === 0)
+						firstPage = _firstPage;
+					else {
+						firstPage = _chaptersMap.get(TABLEOFCONTENTS)
+							.lastPage + 1;
+					}
+					for (let i = 0; i < pages.length; i++) {
+						let sections = pages[i].sections;
+						for (let j = 0; j < sections.length; j++) {
+							let items = sections[j].items;
+							for (let k = 0; k < items.length; k++) {
+								let item = items[k];
+								let chapter = new Chapter(item.ref, 
+									_chaptersMap.size);
+								chapter.firstPage = firstPage;
+								chapter.lastPage = firstPage 
+									+ item.amount * 2 - 1;
+								if (saveChapter(chapter)) {
+									firstPage = chapter.lastPage + 1;
+									_lastPage = chapter.lastPage;
+									updatePageAmount();
+								}
+							}
+						}
+					}
+				}
+
+				function createListChapter(tableOfContents) {
+					if (!tableOfContents)
+						return false;
+					let pages = tableOfContents.pages;
+					let listChapter = new Chapter(TABLEOFCONTENTS, 0);
+					listChapter.firstPage = _firstPage;
+					listChapter.lastPage = _firstPage 
+						+ pages.length - 1;
+					if (pages.length % 2 !== 0)
+						listChapter.lastPage++;
+					if (saveChapter(listChapter)) {
+						_lastPage = listChapter.lastPage;
+						updatePageAmount();
+					}
+					return true;
+					
+				}
+
+				//быстрый поиск
+				//start, stop - начальное и конечное значение соответственно
+				//func - функция, принимающая на вход current,
+				//и возвращающая 1, если больше, -1, если меньше,
+				//и 0, если совпало.
+				function fastSearch(start, stop, func) {
+					if (func(stop) > 0)
+						return stop + 1;
+					if (func(start) < 0)
+						return (start - 1);
+					let maxCycle = stop - start + 1;
+					let memCurrent = -1;
+					let endFlag = -1;
+					while (maxCycle >= 0 && endFlag || start > stop) {
+						maxCycle--;
+						let current = div(stop - start, 2) + start;
+						if (current === memCurrent)
+							current++;
+						memCurrent = current;
+						let endFlag = func(current);
+						if (endFlag === 0) {
+							return current;
+						} else if (endFlag < 0) {
+							stop = current;
+						} else {
+							start = current;
+						}
+					}
+					return null;
+				}
+
+				function init(tableOfContents) {
+					if (!tableOfContents)
+						return;
+					createListChapter(tableOfContents);
+					createChapters(tableOfContents);
+				}
+
+				function div(val, by) {
+					return (val - val % by) / by;
+				}
+
+				function saveChapter(chapter) {
+					if (!(chapter instanceof Chapter))
+						return false;
+					//если уже есть, возвращаем false
+					if (selfChapters.getChapterByLink(chapter.link))
+						return false;
+					_chaptersMap.set(chapter.link, chapter);
+					_chaptersArray.push(chapter);
+					return true;
+				}
+
+				function updatePageAmount() {
+					_pageAmount = _lastPage - _firstPage + 1;
+				}
+
+				init(tableOfContents);
+			}
+
+			//добавление события
+			this.addEvent = function(nameEvent, func)  {
+				return eventAct(nameEvent, func, "add");
+			}
+
+			//удаление события
+			this.deleteEvent = function(nameEvent, func) {
+				return eventAct(nameEvent, func, "delete");
+			}
+
+			//инициализация книги, необходимо вызывать
+			//сразу после создания
+			this.init = function() {
+				new Promise(function(resolve, reject) {
+					_loadTableOfContents(resolve, reject);
+				})
+				.then(function() {
+					_chapters = new Chapters(_tableOfContents);
+					_createEmptyPages(_chapters.pageAmount);
+					_initBook();
+					addChapter(TABLEOFCONTENTS);
+				})
+				.catch(function(error) {
+					alert(error);
+				});
+			}
+
+			function addChapter(link) {
+				if (_chapters.isChapterHas(link))
+					return;
+				let chapter = _chapters.getChapterByLink(link);
+				if (!chapter)
+					return;
+				if (chapter.link === TABLEOFCONTENTS)
+					loadListChapter(chapter)
+				else
+					loadChapter(chapter);
+			}
+
+			function addPages(firstPageNumber, pages) {
+				for (let i = 0; i < pages.length; i++) {
+					let page = pages[i];
+					let emptyPage = getPage(firstPageNumber);
+					emptyPage.innerHTML = "";
+					emptyPage.appendChild(page);
+					firstPageNumber++;
+				}
+			}
+
+			function changeChapter(pageNumber) {
+				let chapter = _chapters.getChapterByPage(pageNumber);
+				if (chapter)
+					currentChapter = chapter;
+			}
+
+			function checkChapterChanged(pageNumber) {
+				if (!currentChapter) {
+					return true
+				}
+				if (currentChapter.firstPage > pageNumber 
+					|| currentChapter.lastPage < pageNumber)
+					return true;
+				return false;
+			}
+
+			function _createEmptyPages(amount) {
+				for (let i = 0; i < amount; i++) {
+					for (let j = 0; j < book.length; j++) {
+						book[j].appendChild(createTag("div"));
+					}
+				}
+			}
+
+			function createHonorPhotoPage(ref) {
+				if (!ref || !ref.length)
+					return null;
+				let section = createTag("div", "honorBook__section");
+				let photo = createTag("div", "honorBook__photo");
+				photo.style.background = 'center / contain url("'+ ref + '") no-repeat';
+				section.appendChild(photo);
+				return section;
+			}
+
+			function createHonorTextPage(title, text) {
+				let div = createTag("div", "honorBook__textContainer");
+				let caption = createTag("h2", "caption_lvl2");
+				caption.innerText = title;
+				div.appendChild(caption);
+				let paragraph = createTag("div");
+				paragraph.innerHTML = text;
+				div.appendChild(paragraph);
+				return div;
+			}
+
+			function createListItem(item) {
+				let listItem = createTag("a", "honorBook__listItem");
+				listItem.innerHTML = item.text;
+				listItem.dataset.ref = item.ref;
+				return listItem;
+			}
+
+			function createListSection(section) {
+				let listSection = createTag("div", "honorBook__listSection");
+				let year = createYearListItem(section.year);
+				listSection.appendChild(year);
+				for (let i = 0; i < section.items.length; i++) {
+					let item = createListItem(section.items[i]);
+					listSection.appendChild(item);
+				}
+				return listSection;
+			}
+
+			function createListPage(page) {
+				let listPage = createTag("div");
+				for (let i = 0; i < page.sections.length; i++) {
+					let section = createListSection(page.sections[i]);
+					listPage.appendChild(section);
+				}
+				return listPage;
+			}
+
+			function createListPages(tableOfContents, chapter) {
+				let pages = tableOfContents.pages;
+				let amount = chapter.length > pages.length ?
+					pages.length : chapter.length;
+				let listPages = [];
+				for (let i = 0; i < amount; i++) {
+					listPages.push(createListPage(pages[i]));
+				}
+				return listPages;
+			}
+
+			function createYearListItem(year) {
+				let yearItem = createTag("p", "honorBook__listYear");
+				yearItem.innerHTML = year;
+				return yearItem;
+			}
+
+			function createPages(honor, chapter) {
+				if (!honor || !honor.texts || honor.texts.length <= 0
+					|| !chapter)
+					return null;
+				let maxPage = chapter.length;
+				if (maxPage > honor.texts.length * 2)
+					maxPage = honor.texts.length * 2;
+				let pages = [];
+				for (let i = 0; i < honor.texts.length; i++) {
+					let photoPage = createHonorPhotoPage(honor.photo);
+					let page = createHonorTextPage(honor.title, honor.texts[i]);
+					pages.push(photoPage, page);
+				}
+				return pages;
+			}
+
+			function createTag(tagName, classNames) {
+				let tag = document.createElement(tagName);
+				for (let i = 1; i < arguments.length; i++) {
+					if (arguments[i])
+						tag.classList.add(arguments[i]);
+				}
+				return tag;
+			}
+
+			//действие с событием
+			//nameEvent - имя события
+			//func - функция, связанная с событием
+			//act - дествие над событием
+			function eventAct(nameEvent, func, act) {
+				if (typeof func !== "function")
+					return false;
+				let events = _getEvents(nameEvent);
+				if (events)
+					return events[act](func);
+				else
+					return false;
+			}
+
+			//получения множества событий по имени
+			function _getEvents(nameEvent) {
+				switch (nameEvent) {
+					case "init":
+						return _initialised;
+					default:
+						return null;
+				}
+			}
+
+			function getPage(number) {
+				let selector = ".b-page-" + number + ">div";
+				let page = book.find(selector)[0];
+				return page;
+			}
+
+			function _initBook() {
+				book.booklet({
+						closed: true,
+						autoCenter: true,
+						pageNumbers: false,
+						covers: true,
+					});
+				book.bind("bookletstart", bookEvent.start);
+			}
+
+			function loadChapter(chapter) {
+				let path = $.getPath() + chapter.link;
+				$.ajax({
+					url: path,
+					success: function(xml) {
+						let honor = parseHonor(xml);
+						let pages = createPages(honor, chapter);
+						if (pages) {
+							addPages(chapter.firstPage, pages);
+							_chapters.addChapter(chapter.link);
+						}
+					}
+				});
+			}
+
+			function loadListChapter(chapter) {
+				if (!_tableOfContents)
+					return;
+				let pages = createListPages(_tableOfContents, chapter);
+				if (pages) {
+					addPages(chapter.firstPage, pages);
+					_chapters.addChapter(chapter.link);
+				}
+			}
+
+			function _loadTableOfContents(resolve, reject) {
+				let path = $.getPath() + option.listRef;
+				$.ajax({
+					url: path,
+					success: function(xml) {
+						if (_parseListXml(xml))
+							resolve();
+						else
+							reject("Неверный формат содержания книги");
+					},
+					error: function() {
+						reject("Не удалось загрузить содержание книги");
+					},
+				})
+			}
+
+			function parseHonor(xml) {
+				if (!xml)
+					return null;
+				let honor = {
+					photo: $(xml).children("section")
+						.children("photo").text(),
+					title: $(xml).children("section")
+						.children("title").text(),
+					texts: [],
+				}
+				$(xml).children("section").find("text")
+					.each(function(){
+						honor.texts.push($(this).text());
+				});
+				return honor;
+			}
+
+			function _parseListXml(xml) {
+				let table = {pages: [],};
+				let list = $(xml).children(TABLEOFCONTENTS)[0];
+				if (!list)
+					return false;
+				$(list).find("page").each(function() {
+					let page = {sections: [],}
+					$(this).find("section").each(function() {
+						let year = $(this).children("year")[0];
+						if (year){
+							year = $(year).text();
+							let section = {
+								year: year,
+								items: [],
+							}
+							$(this).find("item").each(function(){
+								let text = $(this).children("text")[0];
+								let ref = $(this).children("ref")[0];
+								let amount = $(this).children("amount")[0];
+								if(text && ref && amount) {
+									text = $(text).text();
+									ref = $(ref).text()
+									amount = parseInt($(amount).text(), 10);
+									let item = {
+										text: text,
+										ref: ref,
+										amount: amount,
+									}
+									section.items.push(item);
+								}
+							});
+							page.sections.push(section);
+						}
+					});
+					table.pages.push(page);
+				});
+				_tableOfContents = table;
+				return true;
 			}
 		}
-	},
 
-	addPage: function(pageNumber, page) {
-		if (!this.book)
-			return;
-		this.book.booklet("add", pageNumber - 1, page.outerHTML);
-	},
-
-	createListPage: function(page) {
-		let listPage = this.createTag("div");
-		for (let i = 0; i < page.sections.length; i++) {
-			let listSection = this.createSection(page.sections[i]);
-			listPage.appendChild(listSection);
+		let defaults = {
+			firstPage: 2,	//номер первой после обложки страницы,
+			selector: ".honorBook", //селектор
+			listRef: "",	//ссылка на файл содержания
 		}
-		return listPage;
-	},
+		let settings = $.extend(defaults, option);
 
-	createSection: function(section) {
-		let listSection = this.createTag("div", "honorBook__listSection");
-		let year = this.createYearListItem(section.year);
-		listSection.appendChild(year);
-		for (let i = 0; i < section.items.length; i++) {
-			let item = this.createListItem(section.items[i]);
-			listSection.appendChild(item);
-		}
-		return listSection;
-	},
-
-	createYearListItem: function(year) {
-		let yearItem = this.createTag("p", "honorBook__listYear");
-		yearItem.innerHTML = year;
-		return yearItem;
-	},
-
-	createListItem: function(item) {
-		let listItem = this.createTag("a", "honorBook__listItem");
-		listItem.innerHTML = item.text;
-		listItem.dataset.ref = item.ref;
-		return listItem;
-	},
-
-	createTag: function(tagName, classNames) {
-		let tag = document.createElement(tagName);
-		for (let i = 1; i < arguments.length; i++) {
-			if (arguments[i])
-				tag.classList.add(arguments[i]);
-		}
-		return tag;
-	},
-
-	pageAdded: function(event, data) {
-		let page = data.page;
-		if (page.nodeType !== 1)
-			return;
-		let links = page.querySelectorAll(".honorBook__listItem");
-		let onClick = this.listLinkClick.bind(this);
-		if(links.length) {
-			for (let i = 0; i < links.length; i++) {
-				links[i].addEventListener("click", onClick);
-			}
-		}
-	},
-
-	listLinkClick: function(event) {
-		event.preventDefault();
-		let link = event.target.dataset.ref;
-		if (!link)
-			return;
-		this.gotoPageBylink(link);
-	},
-
-	gotoPageBylink: function(link) {
-		let chapter = this.chapters.addedChaptersMap.get(link);
-		if (chapter != undefined) {
-			this.gotoPage(chapter.firstPage);
-			return;
-		}
-		this.loadPage(link);
-	},
-
-	loadPage: function(link, callback) {
-		let self = this;
-		$.get($.getPath() + link, function(xml) {
-			let chapter = self.chapters.addChapter(link);
-			if (!chapter)
-				return;
-			let honor = self.parseHonor(xml, link);
-			if (!honor)
-				return;
-			self.addHonorPages(honor, chapter);
-			self.gotoPage(chapter.firstPage);
-		});
-	},
-
-	addHonorPages: function(honor, chapter) {
-		if (!honor || !honor.texts || honor.texts.length <= 0
-			|| !chapter)
-			return;
-		let photoPage = this.createHonorPhotoPage(
-			honor.photo);
-		if (!photoPage)
-			return;
-		let pageAmount = 0;
-		for (let i = 0; i < honor.texts.length; i++) {
-			let pageNumber = chapter.firstPage + i * 2;
-			this.addPage(pageNumber, photoPage);
-			let page = this.createHonorTextPage(honor.title, honor.texts[i]);
-			this.addPage(pageNumber + 1, page);
-			pageAmount += 2;
-		}
-		this.chapters.addPages(chapter, pageAmount);
-	},
-
-	createHonorPhotoPage: function(ref) {
-		if (!ref || !ref.length)
-			return null;
-		let section = this.createTag("div", "honorBook__section");
-		let photo = this.createTag("div", "honorBook__photo");
-		photo.style.background = 'center / contain url("'+ ref + '") no-repeat';
-		section.appendChild(photo);
-		return section;
-	},
-
-	createHonorTextPage: function(title, text) {
-		// TODO: сделать добавление титульной надписи
-		let div = this.createTag("div", "honorBook__textContainer");
-		let caption = this.createTag("h2", "caption_lvl2");
-		caption.innerText = title;
-		div.appendChild(caption);
-		let paragraph = this.createTag("div");
-		paragraph.innerHTML = text;
-		div.appendChild(paragraph);
-		
-		return div;
-	},
-
-	parseHonor: function(xml) {
-		if (!xml)
-			return null;
-		let honor = {
-			photo: $(xml).children("section")
-				.children("photo").text(),
-			title: $(xml).children("section")
-				.children("title").text(),
-			texts: [],
-		}
-		$(xml).children("section").find("text")
-			.each(function(){
-				honor.texts.push($(this).text());
-		});
-		return honor;
-	},
-
-	gotoPage: function(pageNumber) {
-		if (this.book)
-			this.book.booklet("gotopage", pageNumber);
-	},
-
-	isInt: function(value) {
-		if (isNaN(value))
-			return false;
-		let x = parseFloat(value);
-		return (x | 0) === x;
-	},
-
-	//целочисленное деление
-	div: function(val, by) {
-		return (val - val % by) / by;
+		return new HonorBook(settings);
 	}
-}
 
-honorBook.book = $(".honorBook");
-honorBook.book.bind("bookletadd", function(event, data) {
-	honorBook.pageAdded(event, data);
 });
-honorBook.loadList();
+})(jQuery);

@@ -6,20 +6,18 @@
 			<item>
 				<text>Бородаева Варвара Кирилловна</text>
 				<ref>xml/honorBook/borodaeva_vk.xml?1</ref>
+				<amount>4</amount>
 			</item>
 			<item>
 				<text>Ерёмина Анастасия Николаевна</text>
 				<ref>xml/honorBook/eremina_an.xml</ref>
+				<amount>1</amount>
 			</item>
 		</section>
 	</page>
 	<page>
 		<section>
-			<year></year>
-			<item>
-				<text></text>
-				<ref></ref>
-			</item>
+			
 		</section>
 	</page>
 </list>
