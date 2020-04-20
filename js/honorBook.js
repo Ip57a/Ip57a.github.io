@@ -21,15 +21,9 @@ $.fn.extend({
 							changeChapter(data.index);
 							if (currentChapter) {
 								let index = currentChapter.id - 1;
-								let chapter;
-								if (index >= 0) {
-									chapter = _chapters.getChapterByIndex(index);
-									addChapter(chapter.link);
-								}
-								index = currentChapter.id + 1;
-								if (index < _chapters.length) {
-									chapter = _chapters.getChapterByIndex(index)
-									addChapter(chapter.link);
+								for (let i = 0; i < 3; i++) {
+									addChapterByIndex(index);
+									index++;
 								}
 							}
 						}
@@ -170,15 +164,17 @@ $.fn.extend({
 							let items = sections[j].items;
 							for (let k = 0; k < items.length; k++) {
 								let item = items[k];
-								let chapter = new Chapter(item.ref, 
-									_chaptersMap.size);
-								chapter.firstPage = firstPage;
-								chapter.lastPage = firstPage 
-									+ item.amount * 2 - 1;
-								if (saveChapter(chapter)) {
-									firstPage = chapter.lastPage + 1;
-									_lastPage = chapter.lastPage;
-									updatePageAmount();
+								if (item.ref) {
+									let chapter = new Chapter(item.ref, 
+										_chaptersMap.size);
+									chapter.firstPage = firstPage;
+									chapter.lastPage = firstPage 
+										+ item.amount * 2 - 1;
+									if (saveChapter(chapter)) {
+										firstPage = chapter.lastPage + 1;
+										_lastPage = chapter.lastPage;
+										updatePageAmount();
+									}
 								}
 							}
 						}
@@ -282,13 +278,13 @@ $.fn.extend({
 			//сразу после создания
 			this.init = function() {
 				new Promise(function(resolve, reject) {
-					_loadTableOfContents(resolve, reject);
+					loadTableOfContents(resolve, reject);
 				})
 				.then(function() {
 					_chapters = new Chapters(_tableOfContents);
 					createEmptyPages(_chapters.pageAmount);
 					_initBook();
-					addChapter(TABLEOFCONTENTS);
+					addChapterByLink(TABLEOFCONTENTS);
 				})
 				.then(function() {
 
@@ -298,8 +294,17 @@ $.fn.extend({
 				});
 			}
 
+			//добавление главы по индексу
+			function addChapterByIndex(index) {
+				let chapter;
+				if (index >= 0 && index < _chapters.length) {
+					chapter = _chapters.getChapterByIndex(index);
+					addChapterByLink(chapter.link);
+				}
+			}
+
 			//добавление главы по ссылке
-			function addChapter(link) {
+			function addChapterByLink(link) {
 				if (_chapters.isChapterHas(link))
 					return;
 				let chapter = _chapters.getChapterByLink(link);
@@ -377,9 +382,14 @@ $.fn.extend({
 
 			//создание ссылки в оглавлении
 			function createListItem(item) {
-				let listItem = createTag("a", "honorBook__listItem");
+				let listItem;
+				if (item.ref) {
+					listItem = createTag("a", "honorBook__listItem");
+					listItem.dataset.ref = item.ref;
+				} else {
+					listItem = createTag("p", "honorBook__listItem_disabled");
+				}
 				listItem.innerHTML = item.text;
-				listItem.dataset.ref = item.ref;
 				return listItem;
 			}
 
@@ -495,7 +505,7 @@ $.fn.extend({
 			}
 
 			function gotoChapter(link) {
-				_chapters.addChapter(link);
+				addChapterByLink(link);
 				let chapter = _chapters.getChapterByLink(link);
 				if (chapter) {
 					book.booklet("gotopage", chapter.firstPage);
@@ -542,7 +552,7 @@ $.fn.extend({
 			}
 
 			//загрузка оглавления
-			function _loadTableOfContents(resolve, reject) {
+			function loadTableOfContents(resolve, reject) {
 				let path = $.getPath() + option.listRef;
 				$.ajax({
 					url: path,
@@ -596,10 +606,18 @@ $.fn.extend({
 								let text = $(this).children("text")[0];
 								let ref = $(this).children("ref")[0];
 								let amount = $(this).children("amount")[0];
-								if(text && ref && amount) {
+								if(text) {
 									text = $(text).text();
-									ref = $(ref).text()
-									amount = parseInt($(amount).text(), 10);
+									if (ref) {
+										ref = $(ref).text()
+									} else	if (!ref || ref.trim().length === 0) {
+											ref = null;
+									}
+									if (amount) {
+										amount = parseInt($(amount).text(), 10);
+									} else {
+										amount = 0;
+									}
 									let item = {
 										text: text,
 										ref: ref,

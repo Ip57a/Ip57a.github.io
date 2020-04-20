@@ -1,3 +1,7 @@
 .honorBook__listItem {
 	cursor: pointer;
 }
+
+.honorBook__listItem_disabled {
+	cursor: default;
+}
