@@ -6,13 +6,16 @@ $.fn.extend({
 			//события
 			//массивы событий
 			let _initialised = new Set();
+
+			//константы
 			const TABLEOFCONTENTS = "list";
 
 			let book = $(option.selector);
-			let self = this;
-			let _tableOfContents = null;	//заглавие книги
-			let _chapters = null;
+			let _tableOfContents = null;	//оглавление книги
+			let _chapters = null;					//главы
+			//события книги
 			let bookEvent = {
+				//начало переворачивания страницы
 				start: function(event, data) {
 						if (checkChapterChanged(data.index)) {
 							changeChapter(data.index);
@@ -31,9 +34,26 @@ $.fn.extend({
 							}
 						}
 				},
+				//щелчок по ссылке в оглавлении
+				clickRef: function(event) {
+					event.preventDefault();
+					let link = event.target.dataset.ref;
+					if (!link)
+						return;
+					gotoChapter(link);
+				}
 			}
+			//текущая глава
 			let currentChapter = null;
 
+			Object.defineProperties(this, {
+				//константы событий
+				"INITIALISED": {
+					value: "init",
+				}
+			});
+
+			//работа с главами
 			function Chapters(tableOfContents) {
 				let selfChapters = this;
 				//_chaptersMap - карта глав
@@ -101,10 +121,12 @@ $.fn.extend({
 						return current;
 				}
 
+				//добавлена ли глава в книгу
 				this.isChapterHas = function(link) {
 					return _addedChaptersMap.get(link) != undefined;
 				}
 
+				//добавление главы в книгу
 				this.addChapter = function(link) {
 					if (this.isChapterHas(link))
 						return false;
@@ -115,6 +137,7 @@ $.fn.extend({
 					return true;
 				}
 
+				//создание главы
 				function Chapter (link, id) {
 					this.link = link;
 					this.id = id;
@@ -131,6 +154,7 @@ $.fn.extend({
 					})
 				}
 
+				//создание глав по оглавлению
 				function createChapters(tableOfContents) {
 					let pages = tableOfContents.pages;
 					let firstPage;
@@ -161,6 +185,7 @@ $.fn.extend({
 					}
 				}
 
+				//создание главы для оглавления
 				function createListChapter(tableOfContents) {
 					if (!tableOfContents)
 						return false;
@@ -210,6 +235,7 @@ $.fn.extend({
 					return null;
 				}
 
+				//инициализация глав книги
 				function init(tableOfContents) {
 					if (!tableOfContents)
 						return;
@@ -217,10 +243,12 @@ $.fn.extend({
 					createChapters(tableOfContents);
 				}
 
+				//целочисленное деление
 				function div(val, by) {
 					return (val - val % by) / by;
 				}
 
+				//сохранение новой главы в массивы
 				function saveChapter(chapter) {
 					if (!(chapter instanceof Chapter))
 						return false;
@@ -232,6 +260,7 @@ $.fn.extend({
 					return true;
 				}
 
+				//обновление кол-ва страниц в книге
 				function updatePageAmount() {
 					_pageAmount = _lastPage - _firstPage + 1;
 				}
@@ -257,15 +286,19 @@ $.fn.extend({
 				})
 				.then(function() {
 					_chapters = new Chapters(_tableOfContents);
-					_createEmptyPages(_chapters.pageAmount);
+					createEmptyPages(_chapters.pageAmount);
 					_initBook();
 					addChapter(TABLEOFCONTENTS);
+				})
+				.then(function() {
+
 				})
 				.catch(function(error) {
 					alert(error);
 				});
 			}
 
+			//добавление главы по ссылке
 			function addChapter(link) {
 				if (_chapters.isChapterHas(link))
 					return;
@@ -278,6 +311,9 @@ $.fn.extend({
 					loadChapter(chapter);
 			}
 
+			//добавление страниц в книгу
+			//страница просто загружается, кол-во страниц в книге
+			//при этом не увеличивается
 			function addPages(firstPageNumber, pages) {
 				for (let i = 0; i < pages.length; i++) {
 					let page = pages[i];
@@ -288,12 +324,14 @@ $.fn.extend({
 				}
 			}
 
+			//смена главы
 			function changeChapter(pageNumber) {
 				let chapter = _chapters.getChapterByPage(pageNumber);
 				if (chapter)
 					currentChapter = chapter;
 			}
 
+			//проверка изменилась ли глава
 			function checkChapterChanged(pageNumber) {
 				if (!currentChapter) {
 					return true
@@ -304,7 +342,9 @@ $.fn.extend({
 				return false;
 			}
 
-			function _createEmptyPages(amount) {
+			//добавление пустого тега div в книгу
+			//теги необходимо добавлять до инициализации
+			function createEmptyPages(amount) {
 				for (let i = 0; i < amount; i++) {
 					for (let j = 0; j < book.length; j++) {
 						book[j].appendChild(createTag("div"));
@@ -312,6 +352,7 @@ $.fn.extend({
 				}
 			}
 
+			//создание страницы с фото
 			function createHonorPhotoPage(ref) {
 				if (!ref || !ref.length)
 					return null;
@@ -322,6 +363,7 @@ $.fn.extend({
 				return section;
 			}
 
+			//создание страницы с текстом
 			function createHonorTextPage(title, text) {
 				let div = createTag("div", "honorBook__textContainer");
 				let caption = createTag("h2", "caption_lvl2");
@@ -333,6 +375,7 @@ $.fn.extend({
 				return div;
 			}
 
+			//создание ссылки в оглавлении
 			function createListItem(item) {
 				let listItem = createTag("a", "honorBook__listItem");
 				listItem.innerHTML = item.text;
@@ -340,6 +383,7 @@ $.fn.extend({
 				return listItem;
 			}
 
+			//создание секции в оглавлении
 			function createListSection(section) {
 				let listSection = createTag("div", "honorBook__listSection");
 				let year = createYearListItem(section.year);
@@ -351,6 +395,7 @@ $.fn.extend({
 				return listSection;
 			}
 
+			//создание страницы оглавления
 			function createListPage(page) {
 				let listPage = createTag("div");
 				for (let i = 0; i < page.sections.length; i++) {
@@ -360,6 +405,7 @@ $.fn.extend({
 				return listPage;
 			}
 
+			//создание страниц оглавления
 			function createListPages(tableOfContents, chapter) {
 				let pages = tableOfContents.pages;
 				let amount = chapter.length > pages.length ?
@@ -371,12 +417,14 @@ $.fn.extend({
 				return listPages;
 			}
 
+			//создание года в оглавлении
 			function createYearListItem(year) {
 				let yearItem = createTag("p", "honorBook__listYear");
 				yearItem.innerHTML = year;
 				return yearItem;
 			}
 
+			//создание страниц почетных членов
 			function createPages(honor, chapter) {
 				if (!honor || !honor.texts || honor.texts.length <= 0
 					|| !chapter)
@@ -405,33 +453,56 @@ $.fn.extend({
 			//действие с событием
 			//nameEvent - имя события
 			//func - функция, связанная с событием
-			//act - дествие над событием
+			//act - дествие над событием (добавление, удаление)
 			function eventAct(nameEvent, func, act) {
 				if (typeof func !== "function")
 					return false;
-				let events = _getEvents(nameEvent);
+				let events = getEvents(nameEvent);
 				if (events)
 					return events[act](func);
 				else
 					return false;
 			}
 
+			//добавление события к ссылкам в оглавлении
+			function formateListRef(pages) {
+				for (let i = 0; i < pages.length; i++) {
+					let page = pages[i];
+					let links = page.querySelectorAll(".honorBook__listItem");
+					if (links.length) {
+						for (let j = 0; j < links.length; j++) {
+							links[j].addEventListener("click", bookEvent.clickRef);
+						}
+					}
+				}
+			}
+
 			//получения множества событий по имени
-			function _getEvents(nameEvent) {
+			function getEvents(nameEvent) {
 				switch (nameEvent) {
-					case "init":
+					case this.INITIALISED:
 						return _initialised;
 					default:
 						return null;
 				}
 			}
 
+			//получение html страницы по номеру
 			function getPage(number) {
 				let selector = ".b-page-" + number + ">div";
 				let page = book.find(selector)[0];
 				return page;
 			}
 
+			function gotoChapter(link) {
+				_chapters.addChapter(link);
+				let chapter = _chapters.getChapterByLink(link);
+				if (chapter) {
+					book.booklet("gotopage", chapter.firstPage);
+				}
+			}
+
+			//инициализация книги
 			function _initBook() {
 				book.booklet({
 						closed: true,
@@ -442,6 +513,7 @@ $.fn.extend({
 				book.bind("bookletstart", bookEvent.start);
 			}
 
+			//загрузка главы
 			function loadChapter(chapter) {
 				let path = $.getPath() + chapter.link;
 				$.ajax({
@@ -457,16 +529,19 @@ $.fn.extend({
 				});
 			}
 
+			//загрузка главы оглавления
 			function loadListChapter(chapter) {
 				if (!_tableOfContents)
 					return;
 				let pages = createListPages(_tableOfContents, chapter);
+				formateListRef(pages);
 				if (pages) {
 					addPages(chapter.firstPage, pages);
 					_chapters.addChapter(chapter.link);
 				}
 			}
 
+			//загрузка оглавления
 			function _loadTableOfContents(resolve, reject) {
 				let path = $.getPath() + option.listRef;
 				$.ajax({
@@ -483,6 +558,7 @@ $.fn.extend({
 				})
 			}
 
+			//парсим почетных членов из xml
 			function parseHonor(xml) {
 				if (!xml)
 					return null;
@@ -500,6 +576,7 @@ $.fn.extend({
 				return honor;
 			}
 
+			//парсим оглавление из xml
 			function _parseListXml(xml) {
 				let table = {pages: [],};
 				let list = $(xml).children(TABLEOFCONTENTS)[0];
@@ -539,8 +616,20 @@ $.fn.extend({
 				_tableOfContents = table;
 				return true;
 			}
+
+			//уведомление о событии всех подписавшихся
+			function sendEvent(nameEvent, value) {
+				let event = getEvents(nameEvent);
+				if (!event)
+					return;
+				event.forEach(function(value1) {
+					if (typeof value1 === "function")
+						value1(value);
+				});
+			}
 		}
 
+		//настройки по умолчанию
 		let defaults = {
 			firstPage: 2,	//номер первой после обложки страницы,
 			selector: ".honorBook", //селектор
