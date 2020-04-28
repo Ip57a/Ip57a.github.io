@@ -33,6 +33,8 @@
 		</article>
 		<article class="article flexContainer__size5">
 			<h1 class="caption_lvl1">Книга почета</h1>
+			<div class="honorBook__nav honorBook__nav_tableContent">Содержание
+			</div>
 			<div class="honorBook">
 				<div>
 					<img src="images/interface/booklet/bookTitle.png" style="width: 100%; height: 100%" alt="">
@@ -47,6 +49,11 @@
 				}
 				let honorBook = $(".honorBook").honorBook(option);
 				honorBook.init();
+				$(".honorBook__nav_tableContent").each(function(){
+					this.addEventListener("click", function() {
+						honorBook.gotopage(2);
+					})
+				});
 			</script>
 		</article>
 	</main>

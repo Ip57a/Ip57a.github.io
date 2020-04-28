@@ -274,6 +274,13 @@ $.fn.extend({
 				return eventAct(nameEvent, func, "delete");
 			}
 
+			//переход на страницу с номеро pageNumber
+			this.gotopage = function(pageNumber) {
+				if (book) {
+					book.booklet("gotopage", pageNumber);
+				}
+			};
+
 			//инициализация книги, необходимо вызывать
 			//сразу после создания
 			this.init = function() {
@@ -519,6 +526,14 @@ $.fn.extend({
 						autoCenter: true,
 						pageNumbers: false,
 						covers: true,
+						arrows: true,
+						//shadows: true,
+						//shadowBtmWidth: 50,
+						//tabs: true,
+						nextControlText: "Далее >>>",
+						previousControlText: "<<< Назад",
+						//overlays: false,
+						//manual: false,
 					});
 				book.bind("bookletstart", bookEvent.start);
 			}

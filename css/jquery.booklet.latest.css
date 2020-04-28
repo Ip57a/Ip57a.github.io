@@ -18,9 +18,11 @@
 	.booklet .b-pN  {}
 	.booklet .b-p0  {}
 	.booklet .b-p1  {}
-	.booklet .b-p2  {}    
+	.booklet .b-p2  {}
 	.booklet .b-p3  {}
 	.booklet .b-p4  {}
+
+	.booklet .b-page-2.b-p1{}
 	   
    	/* Page Wrappers */
 	.booklet .b-wrap       {top:0; position:absolute;}
@@ -67,12 +69,13 @@
 	.booklet .b-tab:hover  {background:#aaa; color:#000;}	
 	
    	/* Arrow Controls */
-	.booklet .b-arrow          {display:block; position:absolute; text-indent:-9999px; top:0; height:100%; width:74px;}
-	.booklet .b-arrow div      {display:none; text-indent:-9999px; height:170px; width:74px; position:absolute; left:0; top:25%;}
-	.booklet .b-arrow-next     {right:-80px;}
-	.booklet .b-arrow-prev     {left:-80px;}
-	.booklet .b-arrow-next div {background:url("../images/interface/booklet/arrow-next.png") no-repeat left top;}
-	.booklet .b-arrow-prev div {background:url("../images/interface/booklet/arrow-prev.png") no-repeat left top;}
+	.booklet .b-arrow          {display:block; position:absolute; text-indent:-9999px; top:0; height:100%; width:30px;}
+	.booklet .b-arrow div      {display:none; text-indent:-9999px; height:140px; width:30px; position:absolute; left:0; top:25%;}
+	.booklet .b-arrow-next     {right:-35px;}
+	.booklet .b-arrow-prev     {left:-35px;}
+	.booklet .b-arrow-next div {background:url("../images/interface/booklet/arrow-next.png") no-repeat left top/100% 100%;}
+	.booklet .b-arrow-prev div {background:url("../images/interface/booklet/arrow-prev.png") no-repeat left top/100% 100%;}
+	}
 		
 /* @z-index fix (needed for older IE browsers)
 ----------------------------------------*/
@@ -108,4 +111,3 @@
 	.b-selector a .b-text        {float:left; clear:none;}
 	.b-selector a .b-num         {float:right; clear:none;}
 	.b-selector a:hover          {color:#fff;}
-		
