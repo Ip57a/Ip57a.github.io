@@ -21,7 +21,7 @@
 			<item>
 				<text>Бородаева Варвара Кирилловна</text>
 				<ref>xml/honorBook/borodaeva_vk.xml</ref>
-				<amount>4</amount>
+				<amount>2</amount>
 			</item>
 			<item>
 				<text>Ерёмина Анастасия Николаевна</text>
@@ -37,7 +37,7 @@
 			<item>
 				<text>Осокин Геннадий Артамонович</text>
 				<ref>xml/honorBook/osokin_ga.xml</ref>
-				<amount>4</amount>
+				<amount>2</amount>
 			</item>
 		</section>
 	</page>

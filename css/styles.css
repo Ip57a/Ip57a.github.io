@@ -320,6 +320,11 @@ a[href^="https:"] {
 .headerBanner__titleText_main {
   font-size: 3.4em; }
 
+.headerBanner__titleText_note {
+  font-size: 1.9em;
+  margin-top: 20px;
+  color: rgba(23, 20, 132, 0.9); }
+
 .honorBook__listItem {
   cursor: pointer; }
 
@@ -345,8 +350,8 @@ a[href^="https:"] {
   font-size: 1.5rem;
   color: #00ace5;
   cursor: pointer;
-  padding-left: 28px;
-  height: 25px;
+  padding-left: 23px;
+  height: 20px;
   display: flex;
   align-items: center; }
 
@@ -362,7 +367,7 @@ a[href^="https:"] {
   height: 100%; }
 
 .honorBook__text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-indent: 3rem; }
 
 .honorBook__text_continue {
@@ -765,6 +770,13 @@ a[href^="https:"] {
   background: linear-gradient(to top, #6f6c6c, #ffffff);
   color: black; }
 
+.table__body_simple tr:nth-of-type(odd) {
+  background: #f5f5f5;
+  color: black; }
+.table__body_simple tr:nth-of-type(even) {
+  background: #fff;
+  color: black; }
+
 .table__caption {
   color: #73210e; }
 
@@ -799,6 +811,9 @@ a[href^="https:"] {
   background: -webkit-gradient(linear, left bottom, left top, from(#2d1205), to(#5f2626));
   background: linear-gradient(to top, #2d1205, #5f2626);
   color: white; }
+
+.table__headRow_simple {
+  background: #888; }
 
 .table__row_first {
   border-radius: 10px 10px 0 0; }

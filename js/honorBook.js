@@ -378,9 +378,11 @@ $.fn.extend({
 			//создание страницы с текстом
 			function createHonorTextPage(title, text) {
 				let div = createTag("div", "honorBook__textContainer");
-				let caption = createTag("h2", "caption_lvl2");
-				caption.innerText = title;
-				div.appendChild(caption);
+				if (title) {
+					let caption = createTag("h2", "caption_lvl2");
+					caption.innerText = title;
+					div.appendChild(caption);
+				}
 				let paragraph = createTag("div");
 				paragraph.innerHTML = text;
 				div.appendChild(paragraph);
@@ -452,7 +454,9 @@ $.fn.extend({
 				let pages = [];
 				for (let i = 0; i < honor.texts.length; i++) {
 					let photoPage = createHonorPhotoPage(honor.photo);
-					let page = createHonorTextPage(honor.title, honor.texts[i]);
+					let page = createHonorTextPage(
+						i === 0 ? honor.title : null,
+						honor.texts[i]);
 					pages.push(photoPage, page);
 				}
 				return pages;
@@ -543,7 +547,8 @@ $.fn.extend({
 				let path = $.getPath() + chapter.link;
 				$.ajax({
 					url: path,
-					success: function(xml) {
+					cache: false,
+					success: function(xml, status, xhr) {
 						let honor = parseHonor(xml);
 						let pages = createPages(honor, chapter);
 						if (pages) {
@@ -571,7 +576,8 @@ $.fn.extend({
 				let path = $.getPath() + option.listRef;
 				$.ajax({
 					url: path,
-					success: function(xml) {
+					cache: false,
+					success: function(xml, status) {
 						if (_parseListXml(xml))
 							resolve();
 						else
