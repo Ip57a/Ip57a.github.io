@@ -669,6 +669,15 @@ a[href^="https:"] {
   background: center/30px auto url("../images/interface/download.gif") no-repeat, white;
   border-radius: 5px; }
 
+.poem {
+  display: flex;
+  flex-flow: column;
+  align-items: center; }
+
+.poem__paragraph {
+  margin-bottom: 15px;
+  margin-top: 5px; }
+
 .remark {
   font-size: 1.2rem;
   text-indent: 0;
