@@ -674,6 +674,12 @@ a[href^="https:"] {
   flex-flow: column;
   align-items: center; }
 
+.poem__author {
+  align-self: flex-end;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #98032c; }
+
 .poem__paragraph {
   margin-bottom: 15px;
   margin-top: 5px; }
