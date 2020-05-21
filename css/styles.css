@@ -776,6 +776,9 @@ a[href^="https:"] {
 .table_midi {
   max-width: 70%; }
 
+.table_max {
+  max-width: 90%; }
+
 .table__body tr:nth-of-type(odd) {
   background: -webkit-gradient(linear, left top, left bottom, from(#947132), to(#22202d));
   background: linear-gradient(to bottom, #947132, #22202d);
@@ -821,6 +824,9 @@ a[href^="https:"] {
 
 .table__coll_description {
   width: 60%; }
+
+.table__coll_half {
+  width: 50%; }
 
 .table__headRow {
   background: -webkit-gradient(linear, left bottom, left top, from(#2d1205), to(#5f2626));

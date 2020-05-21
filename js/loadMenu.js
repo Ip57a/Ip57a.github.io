@@ -83,6 +83,9 @@ function getMainMenuName(id)
 		case "vpr":
 			name = "Учебная работа";
 			break;
+		case "methodicalCouncil":
+			name = "Методическая работа";
+			break;
 		case "graduates":
 		case "honorBook":
 		case "attributes":
@@ -146,6 +149,9 @@ function getSubMenuName(id)
 			break;
 		case "npb":
 			name = "Нормативно-правовая база";
+			break;
+		case "methodicalCouncil":
+			name = "Методический совет";
 			break;
 		case "graduates":
 			name = "Выпускники";
