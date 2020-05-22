@@ -84,6 +84,7 @@ function getMainMenuName(id)
 			name = "Учебная работа";
 			break;
 		case "methodicalCouncil":
+		case"methodicalAssociation":
 			name = "Методическая работа";
 			break;
 		case "graduates":
@@ -152,6 +153,9 @@ function getSubMenuName(id)
 			break;
 		case "methodicalCouncil":
 			name = "Методический совет";
+			break;
+		case"methodicalAssociation":
+			name = "Методические объединения";
 			break;
 		case "graduates":
 			name = "Выпускники";
