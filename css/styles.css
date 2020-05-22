@@ -408,6 +408,10 @@ a[href^="https:"] {
   -webkit-box-flex: 2;
   flex: 2 0 25em; }
 
+.flexContainer__size4 {
+  -webkit-box-flex: 4;
+  flex: 4 0 30em; }
+
 .flexContainer__size5 {
   -webkit-box-flex: 5;
   flex: 5 0 40em; }
@@ -462,6 +466,22 @@ a[href^="https:"] {
 .footerTable__cell_center {
   vertical-align: middle;
   text-align: center; }
+
+.epigraph {
+  display: flex;
+  flex-direction: column; }
+
+.epigraph__block {
+  display: inline-block;
+  align-self: flex-end; }
+
+.epigraph__string {
+  display: block;
+  font-size: 1.2rem;
+  color: #555; }
+
+.epigraph__string_signature {
+  text-align: right; }
 
 .graduatesPanel {
   margin: 4px 4px;
