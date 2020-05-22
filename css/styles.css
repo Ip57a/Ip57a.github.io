@@ -183,6 +183,9 @@ a[href^="https:"] {
 .article__text_indent {
   text-indent: 2em; }
 
+.article__text_center {
+  text-align: center; }
+
 .caption_lvl1 {
   color: #504c8e;
   border-bottom: 1px solid #504c8e;
