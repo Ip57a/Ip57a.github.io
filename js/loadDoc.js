@@ -19,5 +19,9 @@ $(document).ready(function(){
 	function newOpenWindow(){
 		return !window.open(this.href);
 	}
+
+	$(".flexContainer__subNav").each(function() {
+		$(this).constantVisible();
+	});
 })
 
