@@ -20,8 +20,8 @@ $(document).ready(function(){
 		return !window.open(this.href);
 	}
 
-	$(".flexContainer__subNav").each(function() {
-		$(this).constantVisible();
-	});
+	// $(".flexContainer__subNav").each(function() {
+	// 	$(this).constantVisible2();
+	// });
 })
 
