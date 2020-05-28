@@ -209,12 +209,12 @@ $.fn.extend({
 				let scroll = window.pageYOffset;
 				let screenHeight = document.documentElement.clientHeight;
 				let visibleHeight = node.offsetHeight
-					+ settings.top * 2;
+					+ settings.top + settings.bottom;
 				if (visibleHeight > screenHeight)
 					visibleHeight = screenHeight;
 				let parentOffset = getOffsetTop(parent);
 				let parentHeight = parent.offsetHeight;
-				if ((scroll + visibleHeight + settings.top > parentOffset + parentHeight)
+				if ((scroll + visibleHeight > parentOffset + parentHeight)
 					|| (visibleHeight >= screenHeight 
 						&& directionChanged)) {
 						absolute(object);
@@ -324,7 +324,7 @@ $.fn.extend({
 				- marginBottom
 				- parentMarginBottom
 				- parentPaddingBottom
-				- settings.top;
+				- settings.bottom;
 			let offset;
 			if (window.pageYOffset > downLimit) {
 				offset = downLimit;
