@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/movedSubmenu.js"></script>
 	<script src="js/loadDoc.js"></script>
 	<script src="js/loadScript.js"></script>
 	<script src="js/photoGalery.js"></script>
@@ -21,17 +22,19 @@
 		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
 	</noscript>
 	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
-		<article class="article flexContainer__subNav">
-			<nav class="subNav">
-				<script>
-					$("nav.subNav").load("menuLive.html");
-					let addMenu = new MultipleLoadingScript();
-					addMenu.src = ["js/path.js", "js/graduates.js?4"];
-					addMenu.runOnLoad = [null, {funcName : "graduatesObject.appendMenu", param: ".subNav li:has(a[href='graduates.html')"}];
-					addMenu.start();
-				</script>
-			</nav>
-		</article>
+		<div class="flexContainer__subNav movedMenu">
+			<article class="article movedMenu__item_unfixed">
+				<nav class="subNav">
+					<script>
+						$("nav.subNav").load("menuLive.html");
+						let addMenu = new MultipleLoadingScript();
+						addMenu.src = ["js/path.js", "js/graduates.js?4"];
+						addMenu.runOnLoad = [null, {funcName : "graduatesObject.appendMenu", param: ".subNav li:has(a[href='graduates.html')"}];
+						addMenu.start();
+					</script>
+				</nav>
+			</article>
+		</div>
 		<article id="graduatesArticle" class="article flexContainer__size5">
 			<h1 class="caption_lvl1">Выпускники</h1>
 			

@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/movedSubmenu.js"></script>
 	<script src="js/loadDoc.js"></script>
 	<script src="js/path.js"></script>
 	<script src="js/monitorTag.js"></script>
@@ -22,17 +23,19 @@
 		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
 	</noscript>
 	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
-		<article class="article flexContainer__subNav">
-			<nav class="subNav">
-				<script>
-					$("nav.subNav").load("menuLive.html");
-					$().attributesSubMenu({
-						className: ".subNav__item:has(a[href='attributes.html'])",
-						menuPath: "menuAttribute.html",
-					});
-				</script>
-			</nav>
-		</article>
+		<div class="flexContainer__subNav movedMenu">
+			<article class="article movedMenu__item_unfixed">
+				<nav class="subNav">
+					<script>
+						$("nav.subNav").load("menuLive.html");
+						$().attributesSubMenu({
+							className: ".subNav__item:has(a[href='attributes.html'])",
+							menuPath: "menuAttribute.html",
+						});
+					</script>
+				</nav>
+			</article>
+		</div>
 		<article class="article flexContainer__size5">
 			<h1 class="caption_lvl1">Атрибутика</h1>
 			<h2 id="hymn" class="caption_lvl2">Гимн</h2>
