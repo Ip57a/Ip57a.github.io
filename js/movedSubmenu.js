@@ -386,7 +386,7 @@ $.fn.extend({
 		settings.top = parseInt(settings.top) || 0;
 		settings.bottom = parseInt(settings.bottom) || 0;
 		let objects = [];
-		let direction = 1;	//направление скрола
+		let direction = 0;	//направление скрола
 		let directionChanged;	//смена направления скрола
 		window.addEventListener("scroll", scrollAll);
 		let oldWindowOffset = window.pageYOffset;
@@ -426,9 +426,10 @@ $.fn.extend({
 
 		function scrollAll(){
 			let direct = getDirection();
-			if (direct === 0)
+			if (direct === 0 && direction !== 0)
 				return;
-			if (direct === - direction)
+			if (direct === - direction 
+				&& direction !== 0)
 				directionChanged = true;
 			else
 				directionChanged = false;
@@ -528,7 +529,7 @@ $.fn.extend({
 						node.style.top = settings.top + "px";
 						node.style.bottom = "";
 					}
-				} else if (direction === -1) {
+				} else {
 					//скролл вверх
 					if (top >= settings.top
 						&& bottom - parentBottom >= -1
@@ -540,7 +541,7 @@ $.fn.extend({
 				}
 			} else {
 				// размеры меню больше экрана
-				if (direction === 1){
+				if (direction >= 0){
 					//направление вниз
 					if (bottom - parentBottom < -1
 						&& bottom + settings.bottom < screenHeight) {
@@ -548,7 +549,7 @@ $.fn.extend({
 						node.style.top = "";
 						node.style.bottom = settings.bottom + "px";
 					}
-				} else if (direction === -1) {
+				} else {
 					// направление вверх
 					if (top >= settings.top 
 						&& top > parentTop + settings.top) {
