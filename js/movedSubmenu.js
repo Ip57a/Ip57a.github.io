@@ -30,14 +30,27 @@ $.fn.extend({
 			};
 			objects.push(object);
 			let node = this;
+			setMinWidth(object);
 			window.addEventListener("resize", function() {
 				if (object.state === FIXED) {
 					copyProperty(node);
 				}
+				setMinWidth(object);
 				fixedStateCommand(object);
 				absoluteStateCommand(object);
 			});
 		})
+
+		function setMinWidth(object) {
+			let parent = object.node.parentElement;
+			if (parent.clientWidth > object.node.offsetWidth) {
+				let style = window.getComputedStyle(object.node);
+				let width = parent.clientWidth 
+					- (parseInt(style.marginLeft) || 0)
+					- (parseInt(style.marginRight) || 0);
+				object.node.style.minWidth = width + "px";
+			}
+		}
 
 		function copyProperty(node) {
 			let parent = node.parentElement;
