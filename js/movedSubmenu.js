@@ -31,8 +31,11 @@ $.fn.extend({
 			objects.push(object);
 			let node = this;
 			window.addEventListener("resize", function() {
-				if (object.state === FIXED)
+				if (object.state === FIXED) {
 					copyProperty(node);
+				}
+				fixedStateCommand(object);
+				absoluteStateCommand(object);
 			});
 		})
 
