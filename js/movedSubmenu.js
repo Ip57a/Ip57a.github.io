@@ -426,6 +426,8 @@ $.fn.extend({
 
 		function scrollAll(){
 			let direct = getDirection();
+			if (direct === 0)
+				return;
 			if (direct === - direction)
 				directionChanged = true;
 			else
@@ -476,7 +478,7 @@ $.fn.extend({
 				absolute(object);
 				node.style.top = "0";
 				node.style.bottom = "";
-			}else if(parent && bottom > parentBottom) {
+			}else if(parent && bottom - parentBottom > 1) {
 				//находимся ниже родителя
 				absolute(object);
 				node.style.top = parent.offsetHeight
@@ -487,7 +489,7 @@ $.fn.extend({
 				if (directionChanged) {
 					absolute(object);
 					let offset = oldWindowOffset
-					- parentTop + settings.top;
+					- parent.offsetTop + settings.top;
 					if (direction === -1) {
 						offset += screenHeight - height;
 					}
@@ -521,7 +523,7 @@ $.fn.extend({
 				if (direction === 1) {
 					//скролл вниз
 					if (top <= settings.top 
-						&& bottom < parentBottom) {
+						&& bottom - parentBottom < -1) {
 						fixed(object);
 						node.style.top = settings.top + "px";
 						node.style.bottom = "";
@@ -529,7 +531,7 @@ $.fn.extend({
 				} else if (direction === -1) {
 					//скролл вверх
 					if (top >= settings.top
-						&& bottom >= parentBottom
+						&& bottom - parentBottom >= -1
 						&& top > parentTop) {
 						fixed(object);
 						node.style.top = settings.top + "px";
@@ -540,8 +542,8 @@ $.fn.extend({
 				// размеры меню больше экрана
 				if (direction === 1){
 					//направление вниз
-					if (bottom > parentBottom
-						&& bottom + settings.bottom > screenHeight) {
+					if (bottom - parentBottom < -1
+						&& bottom + settings.bottom < screenHeight) {
 						fixed(object);
 						node.style.top = "";
 						node.style.bottom = settings.bottom + "px";
@@ -551,8 +553,8 @@ $.fn.extend({
 					if (top >= settings.top 
 						&& top > parentTop + settings.top) {
 						fixed(object);
-					node.style.bottom = "";
-					node.style.top = settings.top + "px";
+						node.style.bottom = "";
+						node.style.top = settings.top + "px";
 					}
 				}
 			}
