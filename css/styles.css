@@ -587,6 +587,16 @@ a[href^="https:"] {
   max-width: 1200px;
   margin: 0 auto; }
 
+.movedMenu {
+  position: relative;
+  align-self: stretch; }
+
+.movedMenu__item_fixed {
+  position: fixed; }
+
+.movedMenu__item_unfixed {
+  position: absolute; }
+
 /*╨╝╨╕╨╜. ╨▓╤Л╤Б╨╛╤В╨░ ╨╛╤Б╨╜╨╛╨▓╨╜╨╛╨│╨╛ ╨╝╨╡╨╜╤О*/
 /*╨╝╨╕╨╜╨╕╨╝╨░╨╗╤М╨╜╤Л╨╡ ╤И╨╕╤А╨╕╨╜╤Л ╨╝╨╡╨╜╤О*/
 /*╨║╨╛╨╗-╨▓╨╛ ╤Н╨╗╨╡╨╝╨╡╨╜╤В╨╛╨▓ ╨╝╨╡╨╜╤О*/
