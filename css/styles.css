@@ -735,6 +735,12 @@ a[href^="https:"] {
 .section_bottom {
   padding-bottom: 10px; }
 
+.searchBlock {
+  max-width: 250px;
+  margin-right: 10px;
+  margin-left: auto;
+  margin-top: 5px; }
+
 .signature {
   text-align: right;
   float: right;
