@@ -1,6 +1,9 @@
 "use strict";
 (function($){
 $.fn.extend({
+	/* Добавляет подменю в меню
+	 * className - тэг меню,
+	 * menuPath - путь к меню в html*/
 	attributesSubMenu:function(options) {
 		let defaults = {
 			className: ".nav",
