@@ -92,6 +92,7 @@ function getMainMenuName(id)
 		case "graduates":
 		case "honorBook":
 		case "attributes":
+		case "parents":
 			name = "Общий раздел";
 			break;
 	}
@@ -173,6 +174,9 @@ function getSubMenuName(id)
 			break;
 		case "attributes":
 			name = "Атрибутика";
+			break;
+		case "parents":
+			name = "Родителям";
 			break;
 	}
 	return name;

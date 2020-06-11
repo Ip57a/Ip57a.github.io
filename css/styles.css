@@ -186,6 +186,10 @@ a[href^="https:"] {
 .article__text_center {
   text-align: center; }
 
+.article__text_notice {
+  font-size: 1.3rem;
+  text-indent: 0; }
+
 .caption_lvl1 {
   color: #504c8e;
   border-bottom: 1px solid #504c8e;
@@ -564,7 +568,7 @@ a[href^="https:"] {
 
 .imgContainer__img_medium {
   max-width: 30em;
-  max-width: 30em; }
+  max-height: 30em; }
 
 .imgContainer__item_center {
   margin: 2px auto 5px; }
