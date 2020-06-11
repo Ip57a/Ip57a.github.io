@@ -2,7 +2,7 @@ https://gry-dmitrij.github.io/
 https://gry-dmitrij.github.io/attributes.html
 https://gry-dmitrij.github.io/docs.html
 https://gry-dmitrij.github.io/education.html
-https://gry-dmitrij.github.io/educationStandart.html
+https://gry-dmitrij.github.io/educationStandarts.html
 https://gry-dmitrij.github.io/equipment.html
 https://gry-dmitrij.github.io/finActivity.html
 https://gry-dmitrij.github.io/footer.html
