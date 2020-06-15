@@ -31,6 +31,28 @@ $.fn.extend({
 			if (menu && elem)
 				$(elem).append(menu);
 		}
-	}
+	},
+
+	updateSubMenu:function() {
+		let updateHere = function(name) {
+			let li = $(".subNav .here");
+			li.removeClass("here");
+			let str = ".subNav__item_lvl2 a[href*='" + name +"']";
+			let a = $(li).find(str);
+			li = a.parent("li");
+			li.addClass("here");
+			a.onclick = falseFunction;
+		}
+
+		function falseFunction() {
+			return false;
+		}
+
+		function getName() {
+			return $("body").attr("id");
+		}
+
+		updateHere(getName());
+	},
 });
 })(jQuery);
