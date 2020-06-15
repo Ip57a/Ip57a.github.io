@@ -11,3 +11,12 @@
 	list-style: circle;
 	padding-left: 10px;
 }
+
+.article__list_enumerated {
+	list-style: decimal;
+	padding-left: 10px;
+}
+.article__list_roman {
+	list-style: upper-roman;
+	padding-left: 10px;
+}

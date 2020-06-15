@@ -93,6 +93,10 @@ function getMainMenuName(id)
 		case "honorBook":
 		case "attributes":
 		case "parents":
+		case "childHands":
+		case "childMistakes":
+		case "speachReady":
+		case "reasonMistakes":
 			name = "Общий раздел";
 			break;
 	}
@@ -177,6 +181,12 @@ function getSubMenuName(id)
 			break;
 		case "parents":
 			name = "Родителям";
+			break;
+		case "childHands":
+		case "childMistakes":
+		case "speachReady":
+		case "reasonMistakes":
+			name = "Советы логопеда";
 			break;
 	}
 	return name;
