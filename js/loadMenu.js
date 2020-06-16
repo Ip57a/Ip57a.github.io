@@ -87,6 +87,10 @@ function getMainMenuName(id)
 		case "methodicalAssociation":
 		case "innovations":
 		case "olympiads":
+		case "nouDoc":
+		case "nouSections":
+		case "nouPublications":
+		case "nouNews":
 			name = "Методическая работа";
 			break;
 		case "graduates":
@@ -169,6 +173,12 @@ function getSubMenuName(id)
 			break;
 		case "olympiads":
 			name = "Олимпиады";
+			break;
+		case "nouDoc":
+		case "nouSections":
+		case "nouPublications":
+		case "nouNews":
+			name = "НОУ «Творчество, поиск, открытие»";
 			break;
 		case "graduates":
 			name = "Выпускники";

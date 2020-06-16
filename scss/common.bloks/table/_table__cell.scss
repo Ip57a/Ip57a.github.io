@@ -23,3 +23,15 @@
 .table__cell_subpoint {
 	min-width: 5rem;
 }
+
+.table__cell_important {
+	font-weight: bold;
+}
+
+$listWidth: (1, 9, 10, 11, 15, 20, 24, 30, 35, 50, 60, 70);
+
+@each $width in $listWidth {
+	.table__cell_w#{$width} {
+		width: 1%*$width;
+	}
+}

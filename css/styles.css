@@ -870,6 +870,45 @@ a[href^="https:"] {
 .table__cell_subpoint {
   min-width: 5rem; }
 
+.table__cell_important {
+  font-weight: bold; }
+
+.table__cell_w1 {
+  width: 1%; }
+
+.table__cell_w9 {
+  width: 9%; }
+
+.table__cell_w10 {
+  width: 10%; }
+
+.table__cell_w11 {
+  width: 11%; }
+
+.table__cell_w15 {
+  width: 15%; }
+
+.table__cell_w20 {
+  width: 20%; }
+
+.table__cell_w24 {
+  width: 24%; }
+
+.table__cell_w30 {
+  width: 30%; }
+
+.table__cell_w35 {
+  width: 35%; }
+
+.table__cell_w50 {
+  width: 50%; }
+
+.table__cell_w60 {
+  width: 60%; }
+
+.table__cell_w70 {
+  width: 70%; }
+
 .table__coll_description, .table__coll_note {
   text-align: left; }
 
@@ -885,7 +924,8 @@ a[href^="https:"] {
   color: white; }
 
 .table__headRow_simple {
-  background: #888; }
+  background: #888;
+  font-weight: bold; }
 
 .table__row_first {
   border-radius: 10px 10px 0 0; }

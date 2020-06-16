@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/movedSubmenu.js"></script>
+	<script src="js/loadDoc.js"></script>
+	<script src="js/path.js"></script>
+	<script src="js/monitorTag.js"></script>
+	<script src="js/subMenu.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Document</title>
+</head>
+<body id="nouNews">
+	<header id="banner" class="header">
+		
+	</header>
+	<nav class="nav maxContainer">
+		
+	</nav>
+	<script src="js/loadMenu.js"></script>
+	<noscript>
+		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
+	</noscript>
+	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
+		<div class="flexContainer__subNav movedMenu">
+			<article class="article movedMenu__item_unfixed">
+				<nav class="subNav">
+					<script>
+						$("nav.subNav").load("menuMethodWork.html");
+						$().attributesSubMenu({
+							className: ".subNav__item:has(a[href='nouDoc.html'])",
+							menuPath: "menunou.html",
+						});
+					</script>
+				</nav>
+			</article>
+		</div>
+		<article class="article flexContainer__size5">
+			<h1 class="caption_lvl1">Новости НОУ</h1>
+		</article>
+	</main>
+	<footer class="footer">
+	</footer>
+	<script src="js/loadFooter.js"></script>
+</body>
+</html>

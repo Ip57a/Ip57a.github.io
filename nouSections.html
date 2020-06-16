@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/movedSubmenu.js"></script>
+	<script src="js/loadDoc.js"></script>
+	<script src="js/path.js"></script>
+	<script src="js/monitorTag.js"></script>
+	<script src="js/subMenu.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Секции НОУ</title>
+</head>
+<body id="nouSections">
+	<header id="banner" class="header">
+		
+	</header>
+	<nav class="nav maxContainer">
+		
+	</nav>
+	<script src="js/loadMenu.js"></script>
+	<noscript>
+		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
+	</noscript>
+	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
+		<div class="flexContainer__subNav movedMenu">
+			<article class="article movedMenu__item_unfixed">
+				<nav class="subNav">
+					<script>
+						$("nav.subNav").load("menuMethodWork.html");
+						$().attributesSubMenu({
+							className: ".subNav__item:has(a[href='nouDoc.html'])",
+							menuPath: "menunou.html",
+						});
+					</script>
+				</nav>
+			</article>
+		</div>
+		<article class="article flexContainer__size5">
+			<h1 class="caption_lvl1">Секции НОУ</h1>
+			<table class="table table_center">
+				<thead>
+					<tr class="table__headRow table__headRow_simple table__row_first">
+						<th class="table__cell table__cell_general table__cell_first table__cell_w35">Наименование секции</th>
+						<th class="table__cell table__cell_general table__cell_w35">Направление</th>
+						<th class="table__cell table__cell_general table__cell_w11">Возраст детей, лет</th>
+						<th class="table__cell table__cell_general table__cell_w11">Класс</th>
+						<th class="table__cell table__cell_general table__cell_last table__cell_w24">Руководитель </th>
+					</tr>
+				</thead>
+				<tbody class="table__body table__body_simple">
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Радуга</td>
+						<td class="table__cell table__cell_general">Социально-педагогическое</td>
+						<td class="table__cell table__cell_general">8,10,16</td>
+						<td class="table__cell table__cell_general">2, 4, 10</td>
+						<td class="table__cell table__cell_general">Бабина Елена Ивановна</td>
+					</tr>
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Юные исследователи природы</td>
+						<td class="table__cell table__cell_general">Естественнонаучное</td>
+						<td class="table__cell table__cell_general">14-16</td>
+						<td class="table__cell table__cell_general">9-11</td>
+						<td class="table__cell table__cell_general">Кривоченко Елена Васильевна</td>
+					</tr>
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Открытие</td>
+						<td class="table__cell table__cell_general">Естественнонаучное</td>
+						<td class="table__cell table__cell_general">12-15</td>
+						<td class="table__cell table__cell_general">7-9</td>
+						<td class="table__cell table__cell_general">Булгакова Любовь Михайловна</td>
+					</tr>
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Химическое  общество</td>
+						<td class="table__cell table__cell_general">Естественнонаучное</td>
+						<td class="table__cell table__cell_general">13-17</td>
+						<td class="table__cell table__cell_general">7-11</td>
+						<td class="table__cell table__cell_general">Почекаева Елена Витальевна</td>
+					</tr>
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Юный программист</td>
+						<td class="table__cell table__cell_general">Техническое</td>
+						<td class="table__cell table__cell_general">13-17</td>
+						<td class="table__cell table__cell_general">7-11</td>
+						<td class="table__cell table__cell_general">Свиридова Ирина Петровна</td>
+					</tr>
+					<tr>
+						<td colspan="5" class="table__cell table__cell_general table__cell_important">В рамках внеурочной деятельности</td>
+					</tr>
+					<tr>
+						<td class="table__cell table__cell_general table__cell_important">Юные исследователи</td>
+						<td class="table__cell table__cell_general">Обще интеллектуальное</td>
+						<td class="table__cell table__cell_general">8-9</td>
+						<td class="table__cell table__cell_general">3</td>
+						<td class="table__cell table__cell_general">Минка Елена Ивановна</td>
+					</tr>
+					<tr class="table__row_last">
+						<td class="table__cell table__cell_general table__cell_important table__cell_first">Юный исследователь</td>
+						<td class="table__cell table__cell_general">Обще интеллектуальное</td>
+						<td class="table__cell table__cell_general">7-8</td>
+						<td class="table__cell table__cell_general">2</td>
+						<td class="table__cell table__cell_general table__cell_last">Фролова Галина Борисовна</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</main>
+	<footer class="footer">
+	</footer>
+	<script src="js/loadFooter.js"></script>
+</body>
+</html>
