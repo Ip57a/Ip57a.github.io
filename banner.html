@@ -1,4 +1,3 @@
-<script src="js/uhpv-full.min.js"></script>
 <div class="flexContainer maxContainer">
 	<div><a class="link_reset" id="specialButton" href="#"><img src="images/interface/special.png" alt="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" title="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" /></a></div>
 	<div class="searchBlock">
@@ -15,3 +14,10 @@
 	</div>
 	<div class="changingPhoto"></div> 
 </div>
+<script>
+	$().ready(function() {
+		let script = document.createElement("script");
+		script.src = "js/uhpv-full.min.js";
+		document.head.appendChild(script);
+	});
+</script>
