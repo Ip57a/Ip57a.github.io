@@ -30,7 +30,9 @@ $.fn.extend({
 			};
 			objects.push(object);
 			let node = this;
-			setMinWidth(object);
+			$(object.node.parent).ready(function() {
+				setMinWidth(object);
+			});
 			window.addEventListener("resize", function() {
 				if (object.state === FIXED) {
 					copyProperty(node);
