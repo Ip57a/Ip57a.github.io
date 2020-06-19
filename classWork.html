@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="js/movedSubmenu.js"></script>
+	<script src="js/loadDoc.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<title>Классные часы</title>
+</head>
+<body id="classWork">
+	<header id="banner" class="header">
+		
+	</header>
+	<nav class="nav maxContainer">
+		
+	</nav>
+	<script src="js/loadMenu.js"></script>
+	<noscript>
+		<h1>В Вашем браузере отключены или не поддерживаются скрипты.  Данному сайту необходима поддержка javascript.</h1>
+	</noscript>
+	<main class="flexContainer flexContainer_row_nowrap flexContainer_hTop maxContainer section_vert">
+		<div class="flexContainer__subNav movedMenu">
+			<article class="article movedMenu__item_unfixed">
+				<nav class="subNav">
+					<script>
+						$("nav.subNav").load("menuEducational.html");
+					</script>
+				</nav>
+			</article>
+		</div>
+		<article class="article flexContainer__size5">
+			<h1 class="caption_lvl1">Классные часы</h1>
+			<h2 class="caption_lvl2">Новости</h2>
+			<div class="divided">
+				<ul class="article__list">
+					<li><span class="link__news_data">19.03.19</span><a href="new.html?fn=city-80-years">К 80-летию города: Заглянули в книжку школьники</a></li>
+				</ul>
+			</div>
+			<h2 class="caption_lvl2">Методические разработки классных часов</h2>
+			<ul class="article__list article__list_mark">
+				<li><a href="asset/doc/educationalWork/Rasinkova_family.doc">Методическая разработка</a> 
+					классного часа на тему «Семья и семейные 
+					ценности».
+					<p class="article__text article__text_notice">Классный руководитель 6 А класса Разинкова Е.Н.</p>
+				</li>
+			</ul>
+		</article>
+	</main>
+	<footer class="footer">
+	</footer>
+	<script src="js/loadFooter.js"></script>
+</body>
+</html>

@@ -43,10 +43,34 @@
 	<new>
 		<date>
 			<year>2019</year>
+			<month>6</month>
+			<day>13</day>
+		</date>
+		<href>belgorod-philharmonic</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
 			<month>9</month>
 			<day>5</day>
 		</date>
 		<href>new1</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>4</month>
+			<day>8</day>
+		</date>
+		<href>healthy-day</href>
+	</new>
+	<new>
+		<date>
+			<year>2019</year>
+			<month>03</month>
+			<day>19</day>
+		</date>
+		<href>city-80-years</href>
 	</new>
 	<new>
 		<date>

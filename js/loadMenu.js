@@ -93,6 +93,13 @@ function getMainMenuName(id)
 		case "nouNews":
 			name = "Методическая работа";
 			break;
+		case "educationalSystem":
+		case "sportPage":
+		case "classWork":
+		case "schoolCamp":
+		case "worldwar":
+			name = "Воспитательная работа";
+			break;
 		case "graduates":
 		case "honorBook":
 		case "attributes":
@@ -179,6 +186,21 @@ function getSubMenuName(id)
 		case "nouPublications":
 		case "nouNews":
 			name = "НОУ «Творчество, поиск, открытие»";
+			break;
+		case "educationalSystem":
+			name = "Воспитательная система гимназии";
+			break;
+		case "sportPage":
+			name = "Спортивная страничка";
+			break;
+		case "classWork":
+			name = "Классные часы";
+			break;
+		case "schoolCamp":
+			name = "Школьный лагерь";
+			break;
+		case "worldwar":
+			name = "Они защищали Родину";
 			break;
 		case "graduates":
 			name = "Выпускники";

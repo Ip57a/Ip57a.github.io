@@ -2,6 +2,11 @@
 	display: block;
 }
 
+.imgContainer__img_large {
+	max-width: 60em;
+	max-height: 60em;
+}
+
 .imgContainer__img_big {
 	max-width: 40em;
 	max-height: 40em;
@@ -10,4 +15,14 @@
 .imgContainer__img_medium {
 	max-width: 30em;
 	max-height: 30em;
+}
+
+.imgContainer__img_small {
+	max-width: 20em;
+	max-height: 20em;
+}
+
+.imgContainer__img_smaller {
+	max-width: 15em;
+	max-height: 15em;
 }

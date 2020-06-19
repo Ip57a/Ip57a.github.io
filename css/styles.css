@@ -88,6 +88,9 @@ strong {
 .right {
   float: right; }
 
+.float_clear {
+  clear: both; }
+
 a {
   text-decoration: none;
   font-size: 1.6em;
@@ -570,6 +573,10 @@ a[href^="https:"] {
 .imgContainer__img {
   display: block; }
 
+.imgContainer__img_large {
+  max-width: 60em;
+  max-height: 60em; }
+
 .imgContainer__img_big {
   max-width: 40em;
   max-height: 40em; }
@@ -577,6 +584,14 @@ a[href^="https:"] {
 .imgContainer__img_medium {
   max-width: 30em;
   max-height: 30em; }
+
+.imgContainer__img_small {
+  max-width: 20em;
+  max-height: 20em; }
+
+.imgContainer__img_smaller {
+  max-width: 15em;
+  max-height: 15em; }
 
 .imgContainer__item_center {
   margin: 2px auto 5px; }
@@ -589,7 +604,7 @@ a[href^="https:"] {
 .interlinear__item {
   font-size: 1em; }
 
-.link_reset {
+.link_reset, a.link_reset {
   padding-left: 0;
   background: none;
   text-decoration: none;
