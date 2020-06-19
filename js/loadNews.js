@@ -115,7 +115,7 @@ function parseShortNew(html, item)
 {
 	let section = parseNew(html);
 	//оставляем только разрешенные теги	
-	$(section).contents().not("h1, h2, h3, h4, h5, h6, div, p, a, br").remove();
+	$(section).contents().not("h1, h2, h3, h4, h5, h6, p, a, br").remove();
 	$(section).contents().filter(function(){
 		return this.textContent.trim().length === 0;
 	}).remove();
@@ -149,6 +149,8 @@ function parseShortNew(html, item)
 		text[i-1].innerText = innerText.trim() + "...";
 		text[i-1].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
 		$(section).children(":gt("+(i-1)+")").remove();
+	} else {
+		text[i-1].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
 	}
 	return section;
 
