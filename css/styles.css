@@ -600,6 +600,10 @@ a[href^="https:"] {
   -webkit-transition: none;
   transition: none; }
 
+.link__news_data {
+  width: 80px;
+  display: inline-block; }
+
 .linkDisabled {
   font-size: 1.6rem;
   color: black;
