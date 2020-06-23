@@ -487,7 +487,9 @@ a[href^="https:"] {
 
 .epigraph {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-right: 10px;
+  margin-bottom: 10px; }
 
 .epigraph__block {
   display: inline-block;
