@@ -134,7 +134,7 @@ function parseShortNew(html, item)
 	while (max <= maxSymbols && i < text.length)
 	{
 		i++;
-		innerText = text[i-1].innerText;
+		innerText = text[i-1].textContent;
 		max += innerText.length;
 		tags.push(text[i-1]);
 		if (max <= maxSymbols)
@@ -146,7 +146,8 @@ function parseShortNew(html, item)
 	if (max > maxSymbols)
 	{
 		innerText = innerText.substring(0, 500 - current);
-		text[i-1].innerText = innerText.trim() + "...";
+		innerText = innerText.trim();
+		text[i-1].textContent = innerText + "...";
 		text[i-1].innerHTML += "<a href='new.html?fn="+item.href + "'>читать далее</a>";
 		$(section).children(":gt("+(i-1)+")").remove();
 	} else {
