@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <news>
+	<!-- new>(date>year+month+day)+href -->
+	<new>
+		<date>
+			<year>2020</year>
+			<month>6</month>
+			<day>8</day>
+		</date>
+		<href>road-safety</href>
+	</new>
 	<new>
 		<date>
 			<year>2020</year>
