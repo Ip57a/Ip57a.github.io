@@ -88,8 +88,6 @@ function preloadImages(tags) {
 
 /* Предзагрузка картинок*/
 function preloadImage(tag) {
-	/* TODO: (80) проверить, если в IE метод contains работает, 
-	 * тогда заменить везде $.hasClass на этот */
 	let src = tag.photoSrc;
 	if (src) {
 		tag.loadedImage = 0;
