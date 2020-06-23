@@ -45,12 +45,12 @@ $.fn.extend({
 
 		function setMinWidth(object) {
 			let parent = object.node.parentElement;
-			if (parent.clientWidth > object.node.offsetWidth) {
-				let style = window.getComputedStyle(object.node);
-				let width = parent.clientWidth 
+			let style = window.getComputedStyle(object.node);
+			let width = parent.clientWidth 
 					- (parseInt(style.marginLeft) || 0)
 					- (parseInt(style.marginRight) || 0);
-				object.node.style.minWidth = width + "px";
+			if (width !== object.node.offsetWidth) {
+				object.node.style.width = width + "px";
 			}
 		}
 
