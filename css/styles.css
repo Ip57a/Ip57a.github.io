@@ -232,29 +232,10 @@ a[href^="https:"] {
   margin: 10px 30px 10px 10px;
   height: 200px;
   width: 300px;
-  min-width: 300px;
-  background: #C00;
+  background-color: transparent;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
-  background: url(../images/interface/change/rod.jpg) center/cover no-repeat #aaa;
-  -webkit-animation: mainPhoto2 10s infinite;
-  animation: mainPhoto2 10s infinite;
-  background-image: url(../images/interface/change/rod.jpg), url(../images/interface/change/1.jpg);
-  background-position: center, 300px center; }
+  background: center / cover no-repeat transparent; }
 
-@-webkit-keyframes mainPhoto2 {
-  0%, 45% {
-    background-position: center, 300px center; }
-  50%, 95% {
-    background-position: -340px center, center; }
-  100% {
-    background-position: center, 300px center; } }
-@keyframes mainPhoto2 {
-  0%, 45% {
-    background-position: center, 300px center; }
-  50%, 95% {
-    background-position: -340px center, center; }
-  100% {
-    background-position: center, 300px center; } }
 .divided {
   margin: 15px 0;
   padding-bottom: 10px;

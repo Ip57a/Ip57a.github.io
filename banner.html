@@ -19,5 +19,20 @@
 		let script = document.createElement("script");
 		script.src = "js/uhpv-full.min.js";
 		document.head.appendChild(script);
+		script = document.createElement("script");
+		script.src = "js/changingPhoto.js";
+		document.head.appendChild(script);
+		$(script).on("load", function(){
+			$(".changingPhoto").changingPhoto({
+				left: 300,
+				right: 280,
+				delay: 5000,
+				duration: 1000,
+				photoPath:[
+					"images/interface/change/rod.jpg",
+					"images/interface/change/1.jpg",
+					"images/educationalWork/4.jpg",],
+		});
+		})
 	});
 </script>
