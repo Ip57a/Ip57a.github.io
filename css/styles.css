@@ -165,6 +165,9 @@ a[href^="https:"] {
   border-radius: 10px;
   padding: 10px; }
 
+.article_mw680 {
+  min-width: 680px; }
+
 .article__h3 {
   margin: 20px 15px; }
 
