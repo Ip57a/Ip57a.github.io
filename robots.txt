@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://gry-dmitrij.github.io/sitemap.txt
+Sitemap: https://ip57a.github.io/sitemap.txt
